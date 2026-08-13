@@ -1,6 +1,6 @@
 # Launch Content Checklist
 
-The prototype is intentionally conservative where client facts have not been verified. Complete this checklist before making the final domain public and requesting indexing.
+The site is intentionally conservative where client facts have not been verified. Complete this checklist before making the final domain public and requesting indexing.
 
 ## Business identity
 

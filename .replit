@@ -1,8 +1,8 @@
-run = "npm run dev -- --host 0.0.0.0"
+run = "npm run dev -- --hostname 0.0.0.0"
 entrypoint = "app/page.tsx"
 
 [env]
 PORT = "3000"
 
 [deployment]
-run = ["sh", "-c", "npm run build && npm run start"]
+run = ["npm", "run", "start"]
