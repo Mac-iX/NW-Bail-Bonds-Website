@@ -44,7 +44,6 @@ export const metadata: Metadata = {
     images: ["/montana-city-hero.jpeg"],
   },
   other: {
-    "codex-preview": "development",
     "geo.region": "US-MT",
     "geo.placename": "Billings, Montana",
     "business:contact_data:phone_number": "+1-406-601-1225",

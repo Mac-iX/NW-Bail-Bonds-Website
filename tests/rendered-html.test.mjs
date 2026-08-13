@@ -1,49 +1,30 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-const developmentPreviewMeta =
-  /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']development["'])[^>]*>/i;
+const testBaseUrl = process.env.TEST_BASE_URL;
+if (!testBaseUrl) throw new Error("TEST_BASE_URL is required. Run this suite through npm test.");
 
-test("renders development preview metadata", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
-
-  const response = await worker.fetch(
-    new Request("http://localhost/", {
-      headers: { accept: "text/html" },
-    }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
-    },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
-  );
-
-  assert.equal(response.status, 200);
-  assert.match(
-    response.headers.get("content-type") ?? "",
-    /^text\/html\b/i,
-  );
-  assert.match(await response.text(), developmentPreviewMeta);
-});
+async function request(pathname, options = {}) {
+  return fetch(`${testBaseUrl}${pathname}`, {
+    redirect: "manual",
+    ...options,
+  });
+}
 
 async function render(pathname) {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}-${pathname}`);
-  const { default: worker } = await import(workerUrl.href);
-  const response = await worker.fetch(
-    new Request(`http://localhost${pathname}`, { headers: { accept: "text/html" } }),
-    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
-    { waitUntil() {}, passThroughOnException() {} },
-  );
+  const response = await request(pathname, { headers: { accept: "text/html" } });
   assert.equal(response.status, 200);
+  assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   return response.text();
 }
+
+test("uses the configured public URL for canonical and Open Graph metadata", async () => {
+  const html = await render("/");
+  assert.match(html, /<link rel="canonical" href="https:\/\/example\.test"\/>/);
+  assert.match(html, /<meta property="og:url" content="https:\/\/example\.test"\/>/);
+  assert.match(html, /https:\/\/example\.test\/northwest-logo-transparent\.png/);
+  assert.doesNotMatch(html, /chatgpt\.site|codex-preview/);
+});
 
 test("renders the approved homepage lead, concise help form, and a visible Home navigation link", async () => {
   const html = await render("/");
@@ -67,6 +48,18 @@ test("gives supporting pages distinct, literal headings", async () => {
   ]);
   for (const [pathname, heading] of expectations) {
     assert.match(await render(pathname), new RegExp(`<h1>${heading.replaceAll(".", "\\.")}</h1>`));
+  }
+});
+
+test("serves every public route and metadata endpoint", async () => {
+  for (const pathname of ["/", "/service-areas", "/about", "/resources", "/contact", "/privacy"]) {
+    assert.equal((await request(pathname)).status, 200, pathname);
+  }
+
+  for (const pathname of ["/sitemap.xml", "/robots.txt"]) {
+    const response = await request(pathname);
+    assert.equal(response.status, 200, pathname);
+    assert.match(await response.text(), /https:\/\/example\.test/);
   }
 });
 
@@ -182,16 +175,15 @@ test("places real Northwest photography by narrative purpose with descriptive me
 });
 
 test("removes the How Bail Works page and redirects its old address", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}-retired-route`);
-  const { default: worker } = await import(workerUrl.href);
-  const response = await worker.fetch(
-    new Request("http://localhost/how-bail-works", { headers: { accept: "text/html" }, redirect: "manual" }),
-    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
-    { waitUntil() {}, passThroughOnException() {} },
-  );
+  const response = await request("/how-bail-works", { headers: { accept: "text/html" } });
   assert.equal(response.status, 308);
   assert.match(response.headers.get("location") ?? "", /\/resources#faq$/);
+});
+
+test("redirects the licensing shortcut to the verified disclosure section", async () => {
+  const response = await request("/licensing", { headers: { accept: "text/html" } });
+  assert.equal(response.status, 307);
+  assert.match(response.headers.get("location") ?? "", /\/resources#licensing$/);
 });
 
 test("keeps the inquiry form on every primary page and removes stranded guide links", async () => {
@@ -201,7 +193,9 @@ test("keeps the inquiry form on every primary page and removes stranded guide li
     assert.doesNotMatch(html, /href="\/how-bail-works"/);
   }
 
-  const sitemap = await render("/sitemap.xml");
+  const sitemapResponse = await request("/sitemap.xml");
+  assert.equal(sitemapResponse.status, 200);
+  const sitemap = await sitemapResponse.text();
   assert.doesNotMatch(sitemap, /how-bail-works/);
 });
 

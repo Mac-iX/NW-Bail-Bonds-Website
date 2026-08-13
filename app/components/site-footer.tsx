@@ -1,4 +1,3 @@
-/* Standard anchors intentionally avoid a Vinext RSC navigation failure in the portable build. */
 /* eslint-disable @next/next/no-html-link-for-pages, @next/next/no-img-element */
 import { EMAIL_ADDRESS, FACEBOOK_URL, PHONE_DISPLAY, PHONE_LINK } from "@/app/lib/site";
 
