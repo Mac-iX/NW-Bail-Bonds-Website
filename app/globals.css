@@ -276,6 +276,7 @@ img { max-width: 100%; }
 .facts-grid a { margin-top: auto; padding-top: 25px; color: #dfe5e7; font-size: 11px; font-weight: 650; letter-spacing: .04em; text-transform: uppercase; text-decoration: underline; text-decoration-color: rgba(255,196,45,.45); text-underline-offset: 5px; }
 
 .faq-section { display: grid; grid-template-columns: minmax(260px,.65fr) minmax(0,1.35fr); gap: 60px 100px; }
+.faq-section > * { min-width: 0; }
 .faq-list { border-top: 1px solid var(--line); }
 .faq-list details { border-bottom: 1px solid var(--line); }
 .faq-list summary { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; list-style: none; cursor: pointer; font-family: var(--display); font-size: clamp(20px,2vw,25px); font-weight: 580; letter-spacing: -.01em; }
@@ -629,9 +630,9 @@ img { max-width: 100%; }
   .hero-copy { width: min(650px, 72vw); }
   .call-prep { grid-template-columns: 1fr; }
   .call-prep-copy { max-width: 700px; }
-  .section-intro, .faq-section { grid-template-columns: 1fr; }
+  .section-intro, .faq-section { grid-template-columns: minmax(0,1fr); }
   .section-lede { max-width: 760px; }
-  .faq-section > .text-link { grid-column: auto; }
+  .faq-section > .text-link { grid-column: auto; width: fit-content; max-width: 100%; }
   .people-section, .coverage-section, .credibility-section, .help-section { grid-template-columns: 1fr; }
   .facts-grid { grid-template-columns: 1fr 1fr; }
   .joel-story-section { grid-template-columns: 1fr; }
