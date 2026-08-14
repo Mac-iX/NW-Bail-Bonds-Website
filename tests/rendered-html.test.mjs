@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const testBaseUrl = process.env.TEST_BASE_URL;
@@ -69,11 +70,33 @@ test("renders all 56 real Montana county selections", async () => {
   assert.match(html, /aria-label="Select Yellowstone County"[^>]+aria-pressed="true"/);
 });
 
-test("renders the county detention directory and private email intake entry point", async () => {
+test("defines a non-empty jail or sheriff resource for all 56 counties", async () => {
+  const siteSource = await readFile(new URL("../app/lib/site.ts", import.meta.url), "utf8");
+  const directorySource = await readFile(
+    new URL("../app/data/montana-detention.ts", import.meta.url),
+    "utf8",
+  );
+  const countyBlock = siteSource.match(/export const COUNTIES = \[([\s\S]*?)\] as const;/)?.[1] ?? "";
+  const counties = [...countyBlock.matchAll(/"([^"]+)"/g)].map((match) => match[1]).sort();
+  const resourceCounties = [...directorySource.matchAll(/^  (?:"([^"]+)"|([A-Za-z]+)): \[$/gm)]
+    .map((match) => match[1] || match[2])
+    .sort();
+
+  assert.equal(counties.length, 56);
+  assert.deepEqual(resourceCounties, counties);
+  assert.match(directorySource, /satisfies Record<CountyName, NonEmptyFacilities>/);
+});
+
+test("renders the county jail directory and private email intake entry point", async () => {
   const html = await render("/service-areas");
-  assert.match(html, /Detention facilities in Yellowstone County/);
+  assert.match(html, /Jail and detention resources for Yellowstone County/);
   assert.match(html, /Yellowstone County Detention Facility/);
-  assert.match(html, /Official custody search/);
+  assert.match(html, /Search Current Inmates/);
+  assert.match(html, /Detention &amp; Sheriff Information/);
+  assert.match(
+    html,
+    /href="https:\/\/www\.yellowstonecountymt\.gov\/Sheriff\/Detention\/dcsearch\.asp" target="_blank"/,
+  );
   assert.match(html, /Ask Northwest about someone in/);
   assert.match(html, /Facility assignments and rosters can change/);
   assert.doesNotMatch(html, /Person(?:&apos;|')s full legal name/);
