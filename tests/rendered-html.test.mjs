@@ -251,11 +251,12 @@ test("publishes the recommended attorney and current Billings office address", a
   const home = await render("/");
   const resources = await render("/resources");
 
-  assert.match(resources, /Need a Lawyer\?/);
   assert.match(resources, /Lance Lundvall · LP Law PC/);
   assert.match(resources, /admitted to practice in Montana since 1997/);
   assert.match(resources, /href="https:\/\/lplawpc\.com" target="_blank"/);
   assert.match(resources, /Legal services are provided independently by LP Law PC/);
+  assert.match(resources, /lance-lundvall-lp-law-pc\.webp/);
+  assert.doesNotMatch(resources, /Independent verification|Check an attorney before hiring|State Bar attorney resources/);
 
   for (const html of [home, resources]) {
     assert.match(html, /711 Central Ave Ste\. 111/);

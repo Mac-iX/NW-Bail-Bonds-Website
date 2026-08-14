@@ -121,7 +121,7 @@ export default function AboutPage() {
           <p className="story-pullquote">But God had other plans.</p>
           <p>Another officer who knew his family offered him something rare: a second chance. A ride-along. During that drive, the officer said something Joel never forgot: “God has more for you.” That one sentence lit a fire that would change everything. Joel didn&apos;t just want to run from his past—he wanted to redeem it by serving others.</p>
           <p>Wrestling carried him to the state championships, but life had more in store. He pursued a career in healthcare, where he learned to listen, serve, and love people through their pain. One day, a client who had been hardened by life looked Joel in the eyes and said, “I want to give my life to the Lord. Will you help me?” In that moment, Joel knew: when you plant a seed in love, it grows.</p>
-          <figure className="story-photo story-photo-healthcare">
+          <figure className="story-photo story-photo-portrait story-photo-healthcare">
             <img
               src="/images/real/joel-graf-community-healthcare-visit.jpeg"
               alt="Joel Graf shaking hands with a Montana health care professional."
@@ -149,7 +149,7 @@ export default function AboutPage() {
           <p className="story-pullquote">He launched his own bail bond company—not to post bail, but to post hope.</p>
           <p>Joel doesn&apos;t just drop money and disappear. He gives people rides to court. He takes them home from jail. He helps them find jobs, invites them to Bible studies, and reminds them of a truth many have forgotten: they matter.</p>
           <p className="story-pullquote">To Joel, this is not business—it&apos;s ministry.</p>
-          <figure className="story-photo story-photo-prayer">
+          <figure className="story-photo story-photo-portrait story-photo-prayer">
             <img
               src="/images/real/joel-graf-praying-with-man.jpeg"
               alt="Joel Graf holding a man's hands in prayer outdoors at night."

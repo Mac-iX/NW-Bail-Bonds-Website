@@ -9,8 +9,6 @@ export const FACEBOOK_URL = "https://www.facebook.com/p/Northwest-Bail-Bonds-LLC
 export const FACEBOOK_REVIEW_URL = "https://www.facebook.com/100063740815259/reviews/";
 export const GOOGLE_BUSINESS_URL =
   "https://www.google.com/maps/search/?api=1&query=Northwest+Bail+Bonds+Billings+Montana";
-export const MONTANA_LAWYER_REFERRAL_URL =
-  "https://www.montanabar.org/For-the-Public/Hiring-an-Attorney-in-Montana";
 export const RECOMMENDED_ATTORNEY_URL = "https://lplawpc.com";
 
 const LOCAL_SITE_URL = "http://localhost:3000";

@@ -9,7 +9,6 @@ import { SiteHeader } from "@/app/components/site-header";
 import {
   BASE_URL,
   FAQS,
-  MONTANA_LAWYER_REFERRAL_URL,
   PHONE_DISPLAY,
   PHONE_LINK,
   RECOMMENDED_ATTORNEY_URL,
@@ -34,14 +33,25 @@ const resourceSchema = {
   url: `${BASE_URL}/resources`,
   description: "Guides, Montana licensing information, attorney resources, official public sources, and bail bond answers.",
   about: ["Montana bail bonds", "surety bail bond producer licensing", "Montana court information"],
-  image: {
-    "@type": "ImageObject",
-    name: "City of Billings courtroom",
-    url: `${BASE_URL}/images/real/city-of-billings-montana-courtroom.jpeg`,
-    width: 1152,
-    height: 1536,
-    caption: "The City of Billings courtroom viewed from the public seating area.",
-  },
+  image: [
+    {
+      "@type": "ImageObject",
+      name: "City of Billings courtroom",
+      url: `${BASE_URL}/images/real/city-of-billings-montana-courtroom.jpeg`,
+      width: 1152,
+      height: 1536,
+      caption: "The City of Billings courtroom viewed from the public seating area.",
+    },
+    {
+      "@type": "ImageObject",
+      name: "Lance Lundvall of LP Law PC",
+      url: `${BASE_URL}/images/real/lance-lundvall-lp-law-pc.webp`,
+      width: 1200,
+      height: 1800,
+      caption: "Lance Lundvall of LP Law PC.",
+      creditText: "LP Law PC",
+    },
+  ],
 };
 
 export default function ResourcesPage() {
@@ -108,26 +118,32 @@ export default function ResourcesPage() {
       </section>
 
       <section className="attorney-section" id="attorney">
-        <div>
+        <div className="attorney-intro">
           <span className="section-label">Legal referral</span>
-          <h2>Need a Lawyer?</h2>
-          <p>Northwest can explain the bond agreement. Questions about charges, defenses, plea decisions, or court strategy belong with an attorney.</p>
+          <h2>Lance Lundvall · LP Law PC</h2>
+          <p>Joel works with Lance professionally and recommends his criminal-defense practice.</p>
         </div>
-        <div className="attorney-options">
-          <article className="recommended-attorney-card">
+        <article className="recommended-attorney-card attorney-profile-card">
+          <figure className="attorney-profile-photo">
+            <img
+              src="/images/real/lance-lundvall-lp-law-pc.webp"
+              alt="Lance Lundvall of LP Law PC in the firm's official portrait."
+              title="Lance Lundvall of LP Law PC"
+              width="1200"
+              height="1800"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Lance Lundvall · LP Law PC</figcaption>
+          </figure>
+          <div className="attorney-profile-copy">
             <span>Joel&apos;s professional referral</span>
-            <h3>Lance Lundvall · LP Law PC</h3>
+            <h3>Experienced Montana criminal defense</h3>
             <p>Lance Lundvall has been admitted to practice in Montana since 1997. LP Law PC handles felony and misdemeanor criminal defense, including DUI, drug, assault, homicide, juvenile, and probation matters in Billings and Eastern Montana.</p>
             <small>Legal services are provided independently by LP Law PC. Contacting the firm does not guarantee representation.</small>
             <a href={RECOMMENDED_ATTORNEY_URL} target="_blank" rel="noreferrer">Visit LP Law PC ↗</a>
-          </article>
-          <article>
-            <span>Independent verification</span>
-            <h3>Check an attorney before hiring</h3>
-            <p>The State Bar of Montana provides public information about hiring an attorney and lawyer referral resources.</p>
-            <a href={MONTANA_LAWYER_REFERRAL_URL} target="_blank" rel="noreferrer">State Bar attorney resources ↗</a>
-          </article>
-        </div>
+          </div>
+        </article>
       </section>
 
       <section className="official-section" id="official">
