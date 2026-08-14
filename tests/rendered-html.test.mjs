@@ -29,7 +29,7 @@ test("uses the configured public URL for canonical and Open Graph metadata", asy
 
 test("renders the approved homepage lead, concise help form, and a visible Home navigation link", async () => {
   const html = await render("/");
-  assert.match(html, /A bail bond company built around customer service/);
+  assert.match(html, /A Bail Bond Company Built Around Customer Service/);
   assert.match(html, /Northwest believes urgent service can still be personal\./);
   assert.match(html, /<a[^>]+href="\/"[^>]*>Home<\/a>/);
   assert.match(html, /We&#x27;re here to help/);
@@ -44,7 +44,7 @@ test("gives supporting pages distinct, literal headings", async () => {
   const expectations = new Map([
     ["/about", "About Northwest Bail Bonds"],
     ["/service-areas", "Serving all 56 Montana counties"],
-    ["/resources", "Montana bail bond resources"],
+    ["/resources", "Montana Bail Bond Resources"],
     ["/contact", "Contact Northwest Bail Bonds"],
   ]);
   for (const [pathname, heading] of expectations) {
@@ -191,6 +191,8 @@ test("places real Northwest photography by narrative purpose with descriptive me
     "joel-graf-praying-with-man.jpeg",
   ]) assert.match(about, new RegExp(asset.replaceAll(".", "\\.")));
   assert.match(about, /holding a man&#x27;s hands in prayer outdoors at night/);
+  assert.match(about, /Northwest Bail Bonds fugitive recovery field team in Montana/);
+  assert.match(about, /Joel Graf sharing a moment of prayer and support/);
 
   assert.match(resources, /city-of-billings-montana-courtroom\.jpeg/);
   assert.match(resources, /title="City of Billings courtroom"/);
@@ -243,6 +245,24 @@ test("uses sentence case for generic bail bond terminology", async () => {
       .replace(/<[^>]+>/g, " ");
     assert.doesNotMatch(visibleText, /\bBail Bond company\b|\bCommon Bail Bond questions\b|\bNeed a Bail Bondsman\b|\bMontana Bail Bonds ·/);
   }
+});
+
+test("publishes the recommended attorney and current Billings office address", async () => {
+  const home = await render("/");
+  const resources = await render("/resources");
+
+  assert.match(resources, /Need a Lawyer\?/);
+  assert.match(resources, /Lance Lundvall · LP Law PC/);
+  assert.match(resources, /admitted to practice in Montana since 1997/);
+  assert.match(resources, /href="https:\/\/lplawpc\.com" target="_blank"/);
+  assert.match(resources, /Legal services are provided independently by LP Law PC/);
+
+  for (const html of [home, resources]) {
+    assert.match(html, /711 Central Ave Ste\. 111/);
+    assert.match(html, /Billings, MT 59102/);
+  }
+  assert.match(home, /"streetAddress":"711 Central Ave Ste\. 111"/);
+  assert.match(home, /"postalCode":"59102"/);
 });
 
 test("removes terminal periods from short page and section headings", async () => {

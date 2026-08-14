@@ -6,6 +6,8 @@ import { SiteFooter } from "@/app/components/site-footer";
 import { SiteHeader } from "@/app/components/site-header";
 import {
   BASE_URL,
+  BUSINESS_POSTAL_CODE,
+  BUSINESS_STREET_ADDRESS,
   EMAIL_ADDRESS,
   FAQS,
   FACEBOOK_URL,
@@ -56,8 +58,10 @@ const organizationSchema = {
   },
   address: {
     "@type": "PostalAddress",
+    streetAddress: BUSINESS_STREET_ADDRESS,
     addressLocality: "Billings",
     addressRegion: "MT",
+    postalCode: BUSINESS_POSTAL_CODE,
     addressCountry: "US",
   },
   openingHoursSpecification: [
@@ -119,7 +123,7 @@ export default function Home() {
             <span className="live-dot" /> Montana bail bonds · phones answered 24/7
           </p>
           <h1>
-            A bail bond company built around customer service
+            A Bail Bond Company Built Around Customer Service
           </h1>
           <p className="hero-lede">
             Northwest believes urgent service can still be personal. Every call

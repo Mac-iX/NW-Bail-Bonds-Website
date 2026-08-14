@@ -2,12 +2,16 @@ export const SITE_NAME = "Northwest Bail Bonds";
 export const PHONE_DISPLAY = "(406) 601-1225";
 export const PHONE_LINK = "+14066011225";
 export const EMAIL_ADDRESS = "northwestbailbond@gmail.com";
+export const BUSINESS_STREET_ADDRESS = "711 Central Ave Ste. 111";
+export const BUSINESS_CITY_LINE = "Billings, MT 59102";
+export const BUSINESS_POSTAL_CODE = "59102";
 export const FACEBOOK_URL = "https://www.facebook.com/p/Northwest-Bail-Bonds-LLC-100063740815259/";
 export const FACEBOOK_REVIEW_URL = "https://www.facebook.com/100063740815259/reviews/";
 export const GOOGLE_BUSINESS_URL =
   "https://www.google.com/maps/search/?api=1&query=Northwest+Bail+Bonds+Billings+Montana";
 export const MONTANA_LAWYER_REFERRAL_URL =
   "https://www.montanabar.org/For-the-Public/Hiring-an-Attorney-in-Montana";
+export const RECOMMENDED_ATTORNEY_URL = "https://lplawpc.com";
 
 const LOCAL_SITE_URL = "http://localhost:3000";
 

@@ -12,6 +12,7 @@ import {
   MONTANA_LAWYER_REFERRAL_URL,
   PHONE_DISPLAY,
   PHONE_LINK,
+  RECOMMENDED_ATTORNEY_URL,
 } from "@/app/lib/site";
 
 export const metadata: Metadata = {
@@ -51,7 +52,7 @@ export default function ResourcesPage() {
       <SiteHeader />
       <PageHero
         eyebrow="Guides · licensing · legal resources"
-        title="Montana bail bond resources"
+        title="Montana Bail Bond Resources"
         intro="Practical guides, license-verification links, attorney resources, official Montana sources, and answers to common bail bond questions."
         variant="resources"
       />
@@ -108,17 +109,22 @@ export default function ResourcesPage() {
 
       <section className="attorney-section" id="attorney">
         <div>
-          <h2>Legal questions belong with an attorney</h2>
-          <p>A bondsman can explain the bond agreement. Questions about charges, defenses, plea decisions, or court strategy should go to a qualified Montana lawyer.</p>
+          <span className="section-label">Legal referral</span>
+          <h2>Need a Lawyer?</h2>
+          <p>Northwest can explain the bond agreement. Questions about charges, defenses, plea decisions, or court strategy belong with an attorney.</p>
         </div>
         <div className="attorney-options">
-          <article>
-            <h3>What Northwest can explain</h3>
-            <p>Northwest can explain the bond agreement, payment terms, collateral, signer responsibilities, and the release process. Criminal case strategy belongs with an attorney.</p>
+          <article className="recommended-attorney-card">
+            <span>Joel&apos;s professional referral</span>
+            <h3>Lance Lundvall · LP Law PC</h3>
+            <p>Lance Lundvall has been admitted to practice in Montana since 1997. LP Law PC handles felony and misdemeanor criminal defense, including DUI, drug, assault, homicide, juvenile, and probation matters in Billings and Eastern Montana.</p>
+            <small>Legal services are provided independently by LP Law PC. Contacting the firm does not guarantee representation.</small>
+            <a href={RECOMMENDED_ATTORNEY_URL} target="_blank" rel="noreferrer">Visit LP Law PC ↗</a>
           </article>
           <article>
-            <h3>Need an independent place to start?</h3>
-            <p>The State Bar of Montana provides public information about hiring an attorney and its lawyer referral resources.</p>
+            <span>Independent verification</span>
+            <h3>Check an attorney before hiring</h3>
+            <p>The State Bar of Montana provides public information about hiring an attorney and lawyer referral resources.</p>
             <a href={MONTANA_LAWYER_REFERRAL_URL} target="_blank" rel="noreferrer">State Bar attorney resources ↗</a>
           </article>
         </div>

@@ -30,7 +30,23 @@ const aboutImageSchema = {
       url: `${BASE_URL}/images/real/northwest-bail-bonds-field-agent-paperwork.jpeg`,
       width: 1155,
       height: 1536,
-      caption: "A fugitive recovery agent reviews paperwork outside a Montana facility.",
+      caption: "Northwest Bail Bonds field work in Montana",
+    },
+    {
+      "@type": "ImageObject",
+      name: "Yellowstone County fugitive recovery badge",
+      url: `${BASE_URL}/images/real/yellowstone-county-fugitive-recovery-badge.jpeg`,
+      width: 710,
+      height: 920,
+      caption: "Yellowstone County fugitive recovery badge",
+    },
+    {
+      "@type": "ImageObject",
+      name: "Joel Graf with a Montana health care professional",
+      url: `${BASE_URL}/images/real/joel-graf-community-healthcare-visit.jpeg`,
+      width: 710,
+      height: 1000,
+      caption: "Health care and community have long been part of Joel Graf's path",
     },
     {
       "@type": "ImageObject",
@@ -38,7 +54,7 @@ const aboutImageSchema = {
       url: `${BASE_URL}/images/real/joel-graf-praying-with-man.jpeg`,
       width: 710,
       height: 920,
-      caption: "Joel Graf pauses to pray with a man during an evening encounter.",
+      caption: "Joel Graf shares a moment of prayer and support",
     },
     {
       "@type": "ImageObject",
@@ -46,7 +62,7 @@ const aboutImageSchema = {
       url: `${BASE_URL}/images/real/northwest-bail-bonds-fugitive-recovery-team.jpeg`,
       width: 1536,
       height: 864,
-      caption: "Two fugitive recovery agents during field work in Montana.",
+      caption: "Northwest Bail Bonds fugitive recovery field team in Montana",
     },
   ],
 };
@@ -64,16 +80,18 @@ export default function AboutPage() {
       />
       <section className="content-section joel-story-section" id="joel-story">
         <aside className="joel-story-mark">
-          <img
-            src="/images/real/northwest-bail-bonds-field-agent-paperwork.jpeg"
-            alt="A fugitive recovery agent in a black vest reviewing paperwork beside an official vehicle outside a Montana facility."
-            title="Northwest Bail Bonds field work in Montana"
-            width="1155"
-            height="1536"
-            loading="lazy"
-            decoding="async"
-          />
-          <p>Field work in Montana</p>
+          <figure className="joel-field-photo">
+            <img
+              src="/images/real/northwest-bail-bonds-field-agent-paperwork.jpeg"
+              alt="A fugitive recovery agent in a black vest reviewing paperwork beside an official vehicle outside a Montana facility."
+              title="Northwest Bail Bonds field work in Montana"
+              width="1155"
+              height="1536"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Northwest Bail Bonds field work in Montana</figcaption>
+          </figure>
           <div className="joel-story-cta">
             <span>Statewide support</span>
             <strong>Joel and his team answer 24/7</strong>
@@ -93,7 +111,7 @@ export default function AboutPage() {
               loading="lazy"
               decoding="async"
             />
-            <figcaption>Yellowstone County · Fugitive recovery</figcaption>
+            <figcaption>Yellowstone County fugitive recovery badge</figcaption>
           </figure>
         </aside>
         <article className="prose joel-story-copy">
@@ -113,7 +131,7 @@ export default function AboutPage() {
               loading="lazy"
               decoding="async"
             />
-            <figcaption>Health care and community have long been part of Joel&apos;s path.</figcaption>
+            <figcaption>Joel Graf with a Montana health care professional</figcaption>
           </figure>
           <p>His path wound from roofing houses in Crow, to wearing a badge as a cop in Hardin. Yet the justice system still felt sterile and transactional—especially in bail bonds. People were hurting. No one was helping. Joel couldn&apos;t ignore it. That&apos;s when his calling became clear.</p>
           <figure className="story-photo story-photo-field-team">
@@ -126,7 +144,7 @@ export default function AboutPage() {
               loading="lazy"
               decoding="async"
             />
-            <figcaption>Fugitive recovery field work in Montana.</figcaption>
+            <figcaption>Northwest Bail Bonds fugitive recovery field team in Montana</figcaption>
           </figure>
           <p className="story-pullquote">He launched his own bail bond company—not to post bail, but to post hope.</p>
           <p>Joel doesn&apos;t just drop money and disappear. He gives people rides to court. He takes them home from jail. He helps them find jobs, invites them to Bible studies, and reminds them of a truth many have forgotten: they matter.</p>
@@ -141,7 +159,7 @@ export default function AboutPage() {
               loading="lazy"
               decoding="async"
             />
-            <figcaption>Joel pauses to pray with a man during an evening encounter.</figcaption>
+            <figcaption>Joel Graf sharing a moment of prayer and support</figcaption>
           </figure>
           <p>In 2024, his mission deepened. The mother of his child died from a fentanyl overdose. Just days later, while bounty hunting, Joel found a young couple—trapped in the same addiction that had just torn his world apart. He could&apos;ve walked away. But he didn&apos;t. Instead, he leaned in with love. Because now, it wasn&apos;t just about helping others. It was personal.</p>
           <p>Today, Joel gives all glory to God. “It&apos;s not my money, it&apos;s God&apos;s,” he says—and he means it. He invests in youth programs in Crow, supports police K-9 units, and helps fund orphanages in Kenya. From Montana to East Africa, Joel is building bridges, planting seeds, and rewriting stories.</p>
