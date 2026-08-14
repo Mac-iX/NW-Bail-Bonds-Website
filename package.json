@@ -11,6 +11,7 @@
     "build": "next build",
     "build:production": "node scripts/validate-production-env.mjs && next build",
     "start": "next start -H 0.0.0.0",
+    "typecheck": "tsc --noEmit",
     "test": "node scripts/run-site-tests.mjs",
     "lint": "eslint ."
   },

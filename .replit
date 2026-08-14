@@ -1,8 +1,17 @@
-run = "npm run dev -- --hostname 0.0.0.0"
+run = ["npm", "run", "dev", "--", "--hostname", "0.0.0.0"]
 entrypoint = "app/page.tsx"
+language = "javascript"
 
 [env]
 PORT = "3000"
 
+[gitHubImport]
+requiredFiles = [".replit", "package.json", "package-lock.json"]
+
 [deployment]
+build = "npm ci && npm run build:production"
 run = ["npm", "run", "start"]
+
+[[ports]]
+localPort = 3000
+externalPort = 80

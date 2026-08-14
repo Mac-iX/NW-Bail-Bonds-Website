@@ -9,15 +9,32 @@ Required runtime:
 - Node.js 22.13 or newer; use Node 22 LTS
 - npm 11, with the committed `package-lock.json`
 
+## Current handoff source
+
+- Repository: `Mac-iX/NW-Bail-Bonds-Website`
+- Ready branch: `repo-cleanup-replit-handoff`
+- Review: pull request #1
+
+The default `main` branch is intentionally unchanged until the pull request is approved. Importing the repository without selecting or switching to the ready branch will load the older pre-cleanup application.
+
+If Northwest Bail Bonds will use a separate GitHub repository, copy the ready branch into that repository and make the approved revision its default branch before importing it into Replit. This keeps the client's GitHub repository—not a Replit-only copy—as the canonical source.
+
 ## Import and first preview
 
 1. Sign in to the client's Replit account and choose **Import from GitHub**.
-2. Connect GitHub, select `Mac-iX/NW-Bail-Bonds-Website`, and import the intended branch.
-3. Confirm the Replit workspace is using Node 22. The repository includes `.nvmrc`, and `package.json` declares the minimum version.
-4. Run `npm ci` if Replit has not already installed dependencies from the lockfile.
-5. Add `NEXT_PUBLIC_SITE_URL` in Replit Secrets as described below.
-6. Select **Run**. The committed `.replit` file runs `npm run dev -- --hostname 0.0.0.0` for Preview.
-7. Check the home page, navigation, county search, call links, email links, and email-draft form at desktop and mobile widths.
+2. Connect GitHub and select the destination repository.
+3. Confirm the checked-out branch is `repo-cleanup-replit-handoff`, or the approved default branch in the client's copied repository. Use Replit's Git pane to switch branches. If the handoff branch is not listed, run:
+
+   ```bash
+   git fetch origin repo-cleanup-replit-handoff
+   git switch --track origin/repo-cleanup-replit-handoff
+   ```
+
+4. Confirm the Replit workspace is using Node 22. The repository includes `.nvmrc`, and `package.json` declares the minimum version.
+5. Run `npm ci` if Replit has not already installed dependencies from the lockfile.
+6. Add `NEXT_PUBLIC_SITE_URL` in Replit Secrets as described below.
+7. Select **Run**. The committed `.replit` file runs `npm run dev -- --hostname 0.0.0.0` for Preview and maps port 3000 to Replit's web output.
+8. Check the home page, navigation, county search, call links, email links, and email-draft form at desktop and mobile widths.
 
 No database, API key, authentication secret, or third-party service credential is required by the current website.
 
@@ -27,7 +44,7 @@ No database, API key, authentication secret, or third-party service credential i
 | --- | --- |
 | Install exactly from lockfile | `npm ci` |
 | Development server | `npm run dev` |
-| Type check | `npx tsc --noEmit` |
+| Type check | `npm run typecheck` |
 | Lint | `npm run lint` |
 | Local/CI production build | `npm run build` |
 | Deployment build | `npm run build:production` |
@@ -61,7 +78,7 @@ In **Publishing**, verify these commands before launch:
 - Build command: `npm ci && npm run build:production`
 - Run command: `npm run start`
 
-Expose only the Next.js application port. The site uses port 3000 by default and the `PORT` environment variable when Replit supplies another value. Replit production secrets are configured separately from workspace secrets, so confirm `NEXT_PUBLIC_SITE_URL` appears in the Publishing settings before building.
+These commands are also committed in `.replit`. Expose only the Next.js application port. The site uses port 3000 by default and the `PORT` environment variable when Replit supplies another value. Replit production secrets are configured separately from workspace secrets, so confirm `NEXT_PUBLIC_SITE_URL` appears in the Publishing settings before building.
 
 ## Business settings and editable content
 
@@ -89,7 +106,7 @@ Do not send a real message while testing. Confirm only that:
 
 1. Create a focused branch from the current GitHub `main`.
 2. Make and preview the change.
-3. Run `npm ci`, `npx tsc --noEmit`, `npm run lint`, `npm run build`, and `npm test`.
+3. Run `npm ci`, `npm run typecheck`, `npm run lint`, `npm run build`, and `npm test`.
 4. Review desktop and mobile output and the generated SEO endpoints.
 5. Commit with a plain description and push to GitHub.
 6. Merge only after review, then import or pull the approved GitHub revision into Replit.

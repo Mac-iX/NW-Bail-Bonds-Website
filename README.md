@@ -43,7 +43,7 @@ The normal project lifecycle is:
 | Task | Command |
 | --- | --- |
 | Development server | `npm run dev` |
-| Type check | `npx tsc --noEmit` |
+| Type check | `npm run typecheck` |
 | Lint | `npm run lint` |
 | Portable production build | `npm run build` |
 | Deployment build with URL validation | `npm run build:production` |
@@ -74,7 +74,9 @@ Phone, email, social links, company name, FAQs, county names, and coverage hubs 
 
 ## Replit handoff
 
-Import this GitHub repository into the client's Replit account, add `NEXT_PUBLIC_SITE_URL`, and use the ordinary npm commands above. The included `.replit` command exposes the development server correctly for Replit Preview.
+The current approved handoff source is the `repo-cleanup-replit-handoff` branch in PR #1. The repository's default `main` branch is intentionally unchanged until review is complete, so select the handoff branch after importing or make that branch the default in the destination repository before import.
+
+Add `NEXT_PUBLIC_SITE_URL` in Replit, then use the ordinary npm commands above. The committed `.replit` file defines the Preview command, production build and start commands, required import files, and port mapping. The root `replit.md` gives Replit Agent the architecture and preservation rules for future work.
 
 See [docs/replit-handoff.md](docs/replit-handoff.md) for import, preview, publishing, domain, and owner-verification instructions. See [docs/launch-content-checklist.md](docs/launch-content-checklist.md) for business facts and assets that still require owner approval before launch.
 
