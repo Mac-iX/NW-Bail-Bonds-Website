@@ -6,11 +6,16 @@ import { MontanaCoverage } from "@/app/components/montana-coverage";
 import { PageHero } from "@/app/components/page-hero";
 import { SiteFooter } from "@/app/components/site-footer";
 import { SiteHeader } from "@/app/components/site-header";
+import {
+  type CountyName,
+  type DetentionFacility,
+  getCountyDetention,
+} from "@/app/data/montana-detention";
 import { BASE_URL } from "@/app/lib/site";
 
 export const metadata: Metadata = {
   title: "Montana Bail Bond Service Areas",
-  description: "Northwest Bail Bonds serves Billings, Yellowstone County, and all 56 Montana counties. Search your county and call for 24-hour statewide Bail Bond help.",
+  description: "Northwest Bail Bonds serves Billings, Yellowstone County, and all 56 Montana counties. Search your county and call for 24-hour statewide bail bond help.",
   alternates: { canonical: "/service-areas" },
 };
 
@@ -24,6 +29,7 @@ const regions = [
     height: 1024,
     alt: "Billings Rimrocks above the Yellowstone River, representing Northwest Bail Bonds' Billings and South Central Montana service area.",
     caption: "Northwest Bail Bonds serves Yellowstone, Carbon, Stillwater, Big Horn, Musselshell, Golden Valley, Wheatland, Sweet Grass, and Treasure counties.",
+    counties: ["Yellowstone", "Carbon", "Stillwater", "Big Horn", "Musselshell", "Golden Valley", "Wheatland", "Sweet Grass", "Treasure"] as CountyName[],
   },
   {
     title: "Bozeman, Butte & Southwest",
@@ -34,6 +40,7 @@ const regions = [
     height: 1024,
     alt: "Historic Butte mine headframe set against southwest Montana mountains, representing Northwest Bail Bonds' Bozeman, Butte, and Southwest Montana service area.",
     caption: "Northwest Bail Bonds serves Gallatin, Park, Madison, Beaverhead, Silver Bow, Deer Lodge, Granite, Jefferson, and Broadwater counties.",
+    counties: ["Gallatin", "Park", "Madison", "Beaverhead", "Silver Bow", "Deer Lodge", "Granite", "Jefferson", "Broadwater"] as CountyName[],
   },
   {
     title: "Helena & Central Montana",
@@ -44,6 +51,7 @@ const regions = [
     height: 1254,
     alt: "Montana State Capitol in Helena, representing Northwest Bail Bonds' Helena and Central Montana service area.",
     caption: "Northwest Bail Bonds serves Lewis and Clark, Cascade, Meagher, Judith Basin, Fergus, Petroleum, Teton, and Chouteau counties.",
+    counties: ["Lewis and Clark", "Cascade", "Meagher", "Judith Basin", "Fergus", "Petroleum", "Teton", "Chouteau"] as CountyName[],
   },
   {
     title: "Missoula, Kalispell & West",
@@ -54,6 +62,7 @@ const regions = [
     height: 1254,
     alt: "Wild Goose Island on Saint Mary Lake in Glacier National Park, representing Northwest Bail Bonds' Missoula, Kalispell, and Western Montana service area.",
     caption: "Northwest Bail Bonds serves Missoula, Flathead, Ravalli, Lake, Lincoln, Sanders, Mineral, Powell, and Glacier counties.",
+    counties: ["Missoula", "Flathead", "Ravalli", "Lake", "Lincoln", "Sanders", "Mineral", "Powell", "Glacier"] as CountyName[],
   },
   {
     title: "Miles City & Eastern Montana",
@@ -64,6 +73,7 @@ const regions = [
     height: 1024,
     alt: "Layered badlands and hoodoos in Makoshika State Park, representing Northwest Bail Bonds' Miles City and Eastern Montana service area.",
     caption: "Northwest Bail Bonds serves Custer, Rosebud, Powder River, Carter, Fallon, Prairie, Dawson, Wibaux, and Richland counties.",
+    counties: ["Custer", "Rosebud", "Powder River", "Carter", "Fallon", "Prairie", "Dawson", "Wibaux", "Richland"] as CountyName[],
   },
   {
     title: "Hi-Line & Northeast",
@@ -74,6 +84,7 @@ const regions = [
     height: 1254,
     alt: "Fort Peck Dam and reservoir in northeastern Montana, representing Northwest Bail Bonds' Hi-Line and Northeast Montana service area.",
     caption: "Northwest Bail Bonds serves Hill, Blaine, Liberty, Toole, Pondera, Phillips, Valley, Daniels, Sheridan, Roosevelt, McCone, and Garfield counties.",
+    counties: ["Hill", "Blaine", "Liberty", "Toole", "Pondera", "Phillips", "Valley", "Daniels", "Sheridan", "Roosevelt", "McCone", "Garfield"] as CountyName[],
   },
 ];
 
@@ -98,6 +109,10 @@ const serviceAreaSchema = {
   })),
 };
 
+function getResourceUrl(facility: DetentionFacility) {
+  return facility.rosterUrl ?? facility.officialUrl;
+}
+
 export default function ServiceAreasPage() {
   return (
     <main>
@@ -107,20 +122,20 @@ export default function ServiceAreasPage() {
       />
       <SiteHeader />
       <PageHero
-        eyebrow="All 56 Montana counties"
-        title="Serving all 56 Montana counties."
+        eyebrow="Statewide Bail Bonds Service"
+        title="Serving all 56 Montana counties"
         intro="Northwest Bail Bonds is based in Billings and works statewide. Search for the county below and select its actual boundary on the map."
         variant="coverage"
       />
       <MontanaCoverage />
       <MontanaSceneBand scene="river" />
-      <section className="content-section region-section">
+      <section className="content-section region-section" id="regions">
         <div className="content-heading">
-          <h2>Montana service regions.</h2>
+          <h2>Montana service regions</h2>
           <p>Each landmark marks a part of the state Northwest serves. Use the map above for the county, facility, and contact path you need.</p>
         </div>
         <div className="region-landmarks">
-          {regions.map((region) => (
+          {regions.map((region, regionIndex) => (
             <article className="region-landmark" key={region.title}>
               <figure className="region-landmark-art">
                 <img
@@ -137,6 +152,30 @@ export default function ServiceAreasPage() {
               <div className="region-landmark-copy">
                 <h3>{region.title}</h3>
                 <p>{region.caption}</p>
+                <div className="region-resource-directory" id={regionIndex === 0 ? "regional-jail-resources" : undefined}>
+                  <span className="region-resource-heading">County jail and detention resources</span>
+                  <div className="region-resource-list">
+                    {region.counties.map((county) => (
+                      <div className="region-resource-county" key={county}>
+                        <strong>{county} County</strong>
+                        {getCountyDetention(county).facilities.map((facility) => {
+                          const href = getResourceUrl(facility);
+                          return href ? (
+                            <a href={href} target="_blank" rel="noreferrer" key={facility.id}>
+                              <span>{facility.name}</span>
+                              <small>{facility.kind} ↗</small>
+                            </a>
+                          ) : (
+                            <div className="region-resource-unlinked" key={facility.id}>
+                              <span>{facility.name}</span>
+                              <small>{facility.kind} · Call Northwest to confirm</small>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </article>
           ))}
@@ -144,7 +183,7 @@ export default function ServiceAreasPage() {
         <p className="legal-note">Coverage availability can depend on the bond, court, facility, underwriting, and circumstances. Call for a case-specific answer.</p>
       </section>
       <InquirySection
-        title="Ask about a person or county."
+        title="Ask about a person or county"
         intro="Share the person’s name and the county or facility if you know it. Northwest can confirm the next step."
         id="service-area-request-help"
       />

@@ -124,7 +124,7 @@ export const FAQS = [
     answer: "The person’s full name, county or detention facility, bond amount if known, and your callback number are enough to start. Call even if you do not have every detail.",
   },
   {
-    question: "How much does a Bail Bond cost in Montana?",
+    question: "How much does a bail bond cost in Montana?",
     answer: "The exact fee and any collateral requirements depend on the bond and circumstances. Ask the agent to explain the full written terms and your responsibilities before you sign.",
   },
   {

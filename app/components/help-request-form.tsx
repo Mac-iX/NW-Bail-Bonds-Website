@@ -10,7 +10,7 @@ export function HelpRequestForm() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const message = [
-      "Hello Northwest Bail Bonds — I need help with a Montana Bail Bond.",
+      "Hello Northwest Bail Bonds — I need help with a Montana bail bond.",
       `My name: ${data.get("contactName") || "Not provided"}`,
       `Best callback: ${data.get("phone") || "Not provided"}`,
       `Person in custody: ${data.get("defendantName") || "Not provided"}`,
@@ -18,7 +18,7 @@ export function HelpRequestForm() {
       `Bond amount: ${data.get("amount") || "Not sure"}`,
     ].join("\n");
 
-    const subject = "Montana Bail Bond inquiry";
+    const subject = "Montana bail bond inquiry";
     setEmailReady(true);
     window.location.href = `mailto:${EMAIL_ADDRESS}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
   }

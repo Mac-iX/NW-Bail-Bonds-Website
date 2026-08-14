@@ -8,16 +8,14 @@ import { SiteHeader } from "@/app/components/site-header";
 import {
   BASE_URL,
   EMAIL_ADDRESS,
-  FACEBOOK_REVIEW_URL,
   FACEBOOK_URL,
-  GOOGLE_BUSINESS_URL,
   PHONE_DISPLAY,
   PHONE_LINK,
 } from "@/app/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact Northwest Bail Bonds",
-  description: `Call or email Northwest Bail Bonds at ${PHONE_DISPLAY} or ${EMAIL_ADDRESS} for 24-hour Bail Bond help in Billings and throughout Montana.`,
+  description: `Call or email Northwest Bail Bonds at ${PHONE_DISPLAY} or ${EMAIL_ADDRESS} for 24-hour bail bond help in Billings and throughout Montana.`,
   alternates: { canonical: "/contact" },
 };
 
@@ -43,7 +41,7 @@ export default function ContactPage() {
       <SiteHeader />
       <PageHero
         eyebrow="Phone · email · Facebook"
-        title="Contact Northwest Bail Bonds."
+        title="Contact Northwest Bail Bonds"
         intro="Call (406) 601-1225, email northwestbailbond@gmail.com, or message Northwest on Facebook. The person’s name and county or detention facility are enough to begin."
         variant="contact"
         cta={false}
@@ -63,7 +61,7 @@ export default function ContactPage() {
         <h2>Helpful if available</h2>
         <div><strong>Person&apos;s full name</strong><strong>County or facility</strong><strong>Bond amount</strong><strong>Your callback number</strong></div>
       </section>
-      <section className="social-contact-section" id="facebook">
+      <section className="contact-closing-section" id="facebook">
         <figure className="contact-community-photo">
           <img
             src="/images/real/joel-graf-my-1059-radio-studio.jpeg"
@@ -76,18 +74,25 @@ export default function ContactPage() {
           />
           <figcaption>Northwest in the Billings community · MY 105.9 Classic Hits</figcaption>
         </figure>
-        <article>
-          <h2>Prefer Facebook?</h2>
-          <p>Follow Northwest, send a message, or check recent community updates on the official Facebook page.</p>
-          <a href={FACEBOOK_URL} target="_blank" rel="noreferrer">Reach us on Facebook <span>↗</span></a>
-        </article>
-        <article id="reviews">
-          <h2>Had a good experience? Leave a review.</h2>
-          <p>A short, honest review helps Montana families know who they are calling during a stressful moment.</p>
-          <div className="review-links">
-            <a href={FACEBOOK_REVIEW_URL} target="_blank" rel="noreferrer">Review on Facebook <span>↗</span></a>
-            <a href={GOOGLE_BUSINESS_URL} target="_blank" rel="noreferrer">Find Northwest on Google <span>↗</span></a>
+        <article className="contact-closing-copy">
+          <span className="section-label">Ready when you are</span>
+          <h2>Choose the next useful step</h2>
+          <p>Call for the quickest response, send the basic details by email, or look up the county and jail resource before you contact Northwest.</p>
+          <div className="contact-closing-actions">
+            <a className="contact-closing-primary" href={`tel:${PHONE_LINK}`}>
+              <strong>Call Northwest</strong>
+              <span>{PHONE_DISPLAY}</span>
+            </a>
+            <a href={`mailto:${EMAIL_ADDRESS}?subject=Montana%20Bail%20Bond%20help`}>
+              <strong>Email Northwest</strong>
+              <span>{EMAIL_ADDRESS}</span>
+            </a>
+            <a href="/service-areas">
+              <strong>County and jail resources</strong>
+              <span>Search all 56 counties →</span>
+            </a>
           </div>
+          <a className="contact-facebook-link" href={FACEBOOK_URL} target="_blank" rel="noreferrer">Facebook community updates ↗</a>
         </article>
       </section>
       <SiteFooter />

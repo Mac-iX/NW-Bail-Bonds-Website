@@ -29,10 +29,10 @@ test("uses the configured public URL for canonical and Open Graph metadata", asy
 
 test("renders the approved homepage lead, concise help form, and a visible Home navigation link", async () => {
   const html = await render("/");
-  assert.match(html, /A Bail Bond company built around customer service\./);
+  assert.match(html, /A bail bond company built around customer service/);
   assert.match(html, /Northwest believes urgent service can still be personal\./);
   assert.match(html, /<a[^>]+href="\/"[^>]*>Home<\/a>/);
-  assert.match(html, /We&#x27;re here to help\./);
+  assert.match(html, /We&#x27;re here to help/);
   assert.match(html, /Ask Northwest for help/);
   assert.doesNotMatch(html, /form opens an email/i);
   assert.doesNotMatch(html, /Here&#x27;s what happens when you call/);
@@ -42,10 +42,10 @@ test("renders the approved homepage lead, concise help form, and a visible Home 
 
 test("gives supporting pages distinct, literal headings", async () => {
   const expectations = new Map([
-    ["/about", "About Northwest Bail Bonds."],
-    ["/service-areas", "Serving all 56 Montana counties."],
-    ["/resources", "Montana Bail Bond resources."],
-    ["/contact", "Contact Northwest Bail Bonds."],
+    ["/about", "About Northwest Bail Bonds"],
+    ["/service-areas", "Serving all 56 Montana counties"],
+    ["/resources", "Montana bail bond resources"],
+    ["/contact", "Contact Northwest Bail Bonds"],
   ]);
   for (const [pathname, heading] of expectations) {
     assert.match(await render(pathname), new RegExp(`<h1>${heading.replaceAll(".", "\\.")}</h1>`));
@@ -97,7 +97,8 @@ test("renders the county jail directory and private email intake entry point", a
     html,
     /href="https:\/\/www\.yellowstonecountymt\.gov\/Sheriff\/Detention\/dcsearch\.asp" target="_blank"/,
   );
-  assert.match(html, /Ask Northwest about someone in/);
+  assert.match(html, /Get help with a [\s\S]{0,40}Yellowstone[\s\S]{0,40}County bail bond/);
+  assert.match(html, /Contact Joel now/);
   assert.match(html, /Facility assignments and rosters can change/);
   assert.doesNotMatch(html, /Person(?:&apos;|')s full legal name/);
 });
@@ -105,7 +106,7 @@ test("renders the county jail directory and private email intake entry point", a
 test("renders the urgent call and email prompt across the site", async () => {
   for (const pathname of ["/", "/about", "/service-areas", "/contact"]) {
     const html = await render(pathname);
-    assert.match(html, /Need a Bail Bondsman right now\?/);
+    assert.match(html, /Need a bail bondsman right now\?/);
     assert.match(html, /href="tel:\+14066011225"/);
     assert.match(html, /href="mailto:northwestbailbond@gmail\.com/);
     assert.doesNotMatch(html, /href="sms:/);
@@ -116,7 +117,7 @@ test("publishes Northwest's story on Home and Joel Graf's full story on About", 
   const home = await render("/");
   const about = await render("/about");
   assert.match(home, /Our Story/);
-  assert.match(home, /Built in Billings\. Grown across Montana\./);
+  assert.match(home, /Built in Billings, grown across Montana/);
   assert.match(home, /We started Northwest Bail Bonds/);
   assert.doesNotMatch(home, /Joel Graf&#x27;s story began/);
   assert.match(home, /href="\/about#joel-story"/);
@@ -130,7 +131,7 @@ test("publishes Northwest's story on Home and Joel Graf's full story on About", 
 
 test("replaces repetitive About copy with concrete work and community commitments", async () => {
   const html = await render("/about");
-  assert.match(html, /A Bond gets someone out\. What happens next matters, too\./);
+  assert.match(html, /A bond gets someone out—what happens next matters, too/);
   assert.match(html, /rides home from jail and transportation to court/);
   assert.match(html, /supports youth programs and puts resources back/);
   assert.match(html, /police K-9 units and orphanages in Kenya/);
@@ -180,7 +181,7 @@ test("places real Northwest photography by narrative purpose with descriptive me
   const contact = await render("/contact");
 
   assert.match(home, /title="A human moment during Northwest Bail Bonds work"/);
-  assert.match(home, /A quiet moment of support\./);
+  assert.match(home, /A quiet moment of support/);
 
   for (const asset of [
     "northwest-bail-bonds-field-agent-paperwork.jpeg",
@@ -225,21 +226,67 @@ test("keeps the inquiry form on every primary page and removes stranded guide li
 test("renders source-backed Montana facts without unsourced crime claims", async () => {
   const home = await render("/");
   const resources = await render("/resources");
-  assert.doesNotMatch(home, /Montana facts worth knowing\./);
-  assert.match(resources, /Montana facts worth knowing\./);
+  assert.doesNotMatch(home, /Montana facts worth knowing/);
+  assert.match(resources, /Montana facts worth knowing/);
   assert.match(resources, /MCA 33-26-109/);
   assert.match(resources, /courts\.mt\.gov\/cao\/pretrial/);
-  assert.match(resources, /Retains the decision/);
+  assert.match(resources, /Decides release conditions/);
   assert.doesNotMatch(resources, /crime rate/i);
 });
 
-test("capitalizes Bail Bond terminology in page copy", async () => {
+test("uses sentence case for generic bail bond terminology", async () => {
   for (const pathname of ["/", "/about", "/service-areas", "/resources", "/contact"]) {
     const html = await render(pathname);
     const visibleText = html
       .replace(/<script[\s\S]*?<\/script>/g, " ")
       .replace(/<style[\s\S]*?<\/style>/g, " ")
       .replace(/<[^>]+>/g, " ");
-    assert.doesNotMatch(visibleText, /\bbail bondsman\b|\bbail bonds\b|\bbail bond\b|\bbondsman\b/);
+    assert.doesNotMatch(visibleText, /\bBail Bond company\b|\bCommon Bail Bond questions\b|\bNeed a Bail Bondsman\b|\bMontana Bail Bonds ·/);
   }
+});
+
+test("removes terminal periods from short page and section headings", async () => {
+  for (const pathname of ["/", "/about", "/service-areas", "/resources", "/contact", "/privacy"]) {
+    const html = await render(pathname);
+    const headings = [...html.matchAll(/<h[1-3][^>]*>([\s\S]*?)<\/h[1-3]>/g)].map((match) =>
+      match[1]
+        .replace(/<[^>]+>/g, " ")
+        .replace(/&(?:#x27|apos);/g, "'")
+        .replace(/&amp;/g, "&")
+        .replace(/\s+/g, " ")
+        .trim(),
+    );
+    for (const heading of headings) assert.doesNotMatch(heading, /\.$/, `${pathname}: ${heading}`);
+  }
+});
+
+test("surfaces one detention data source in the map and all regional listings", async () => {
+  const html = await render("/service-areas");
+  const source = await readFile(new URL("../app/service-areas/page.tsx", import.meta.url), "utf8");
+
+  assert.equal((html.match(/class="region-resource-list"/g) ?? []).length, 6);
+  assert.equal((html.match(/class="region-resource-county"/g) ?? []).length, 56);
+  assert.match(html, /Wibaux County[\s\S]*?Call Northwest to confirm/);
+  assert.match(source, /getCountyDetention\(county\)/);
+  assert.doesNotMatch(source, /\.gov\b|mt\.gov/);
+  assert.doesNotMatch(html, /Directory reviewed|reviewed August/i);
+});
+
+test("renders the focused About, Resources, and Contact conversion blocks", async () => {
+  const about = await render("/about");
+  const resources = await render("/resources");
+  const contact = await render("/contact");
+
+  assert.match(about, /class="joel-story-cta"/);
+  assert.match(about, /Joel and his team answer 24\/7/);
+  assert.doesNotMatch(about, /class="joel-story-path"/);
+
+  assert.match(resources, /class="resource-contact-cta"/);
+  assert.match(resources, /Need clarity\? Northwest Bail Bonds is one call away/);
+  assert.match(resources, /Ask Northwest for help/);
+
+  assert.match(contact, /class="contact-closing-section"/);
+  assert.match(contact, /Choose the next useful step/);
+  assert.match(contact, /County and jail resources/);
+  assert.doesNotMatch(contact, /class="social-contact-section"/);
 });

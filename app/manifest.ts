@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Northwest Bail Bonds",
     short_name: "Northwest Bail",
-    description: "Customer-service-first Bail Bonds from Billings across all 56 Montana counties.",
+    description: "Customer-service-first bail bonds from Billings across all 56 Montana counties.",
     start_url: "/",
     display: "standalone",
     background_color: "#04080b",

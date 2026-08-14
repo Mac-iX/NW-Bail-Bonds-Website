@@ -57,7 +57,7 @@ export function UrgentContactPrompt() {
         <span aria-hidden="true">×</span>
       </button>
       <div className="urgent-contact-copy">
-        <strong id="urgent-contact-title">Need a Bail Bondsman right now?</strong>
+        <strong id="urgent-contact-title">Need a bail bondsman right now?</strong>
         <span>Call Northwest directly. Available 24/7 throughout Montana.</span>
       </div>
       <div className="urgent-contact-actions">

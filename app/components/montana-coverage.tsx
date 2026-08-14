@@ -89,7 +89,7 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
   return (
     <section className={`coverage-section ${compact ? "coverage-compact" : ""}`} id="coverage">
       <div className="coverage-copy">
-        <h2>{compact ? "Serving all 56 Montana counties." : "Find your Montana county."}</h2>
+        <h2>{compact ? "Serving all 56 Montana counties" : "Find your Montana county"}</h2>
         <p>
           Search for a county or choose it directly on the map. The highlighted
           boundary shows the county you selected—not an estimated nearby hub.
@@ -227,14 +227,22 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
             </div>
           ) : (
             <div className="facility-routing-note">
-              <strong>Facility location needs to be confirmed.</strong>
+              <strong>Facility location needs to be confirmed</strong>
               <p>{countyDetention.routingNote}</p>
             </div>
           )}
 
-          <button className="facility-intake-button" type="button" onClick={openIntake}>
-            Ask Northwest about someone in {selectedCounty} County <span>→</span>
-          </button>
+          <div className="county-help-cta" id="county-help">
+            <div className="county-help-copy">
+              <span>Need help now?</span>
+              <strong>Get help with a {selectedCounty} County bail bond</strong>
+              <p>Call Northwest 24/7 or send the basic details you have. Joel and his team can help confirm the next step.</p>
+            </div>
+            <div className="county-help-actions">
+              <a href={`tel:${PHONE_LINK}`}>Call {PHONE_DISPLAY}</a>
+              <button type="button" onClick={openIntake}>Contact Joel now <span>→</span></button>
+            </div>
+          </div>
           <p className="directory-disclaimer">
             Facility assignments and rosters can change. Confirm custody before relying on this directory.
             Tribal, federal, juvenile, and state-prison custody may follow different release procedures.
@@ -263,7 +271,7 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
             <button className="custody-intake-close" type="button" onClick={closeIntake} aria-label="Close custody inquiry form">×</button>
             <div className="custody-intake-heading">
               <span>Email Northwest</span>
-              <h2 id="custody-intake-title">Ask about someone in custody.</h2>
+              <h2 id="custody-intake-title">Ask about someone in custody</h2>
               <p id="custody-intake-description">
                 Tell us who is in custody. Northwest can help confirm the county, facility, and next step.
               </p>
