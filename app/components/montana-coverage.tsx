@@ -3,12 +3,19 @@
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import {
-  CountyName,
-  DETENTION_DIRECTORY_REVIEWED,
+  type CountyName,
+  type DetentionFacility,
   getCountyDetention,
 } from "@/app/data/montana-detention";
 import { MONTANA_COUNTY_PATHS, MONTANA_STATE_OUTLINE } from "@/app/data/montana-counties";
 import { COUNTIES, EMAIL_ADDRESS, PHONE_DISPLAY, PHONE_LINK } from "@/app/lib/site";
+
+function getOfficialLinkLabel(facility: DetentionFacility) {
+  if (facility.officialLinkLabel) return facility.officialLinkLabel;
+  if (facility.kind === "Sheriff's office") return "Sheriff's Office Information";
+  if (facility.kind === "Temporary hold facility") return "Sheriff & Holding Information";
+  return "Detention & Sheriff Information";
+}
 
 export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
   const [selectedCounty, setSelectedCounty] = useState<CountyName>("Yellowstone");
@@ -53,7 +60,7 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
       "Hi Northwest Bail Bonds — I’m trying to locate or ask about someone in custody.",
       `Person: ${data.get("personName") || "Not provided"}`,
       `County: ${selectedCounty} County`,
-      `Facility: ${selectedFacility?.name || "Please help me confirm the facility"}`,
+      `Resource or facility: ${selectedFacility?.name || "Please help me confirm the facility"}`,
       `My name: ${data.get("callerName") || "Not provided"}`,
       `Best callback: ${data.get("callback") || "Not provided"}`,
       `Bond amount: ${data.get("bondAmount") || "Not sure"}`,
@@ -82,7 +89,7 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
   return (
     <section className={`coverage-section ${compact ? "coverage-compact" : ""}`} id="coverage">
       <div className="coverage-copy">
-        <h2>{compact ? "Serving all 56 Montana counties." : "Find your Montana county."}</h2>
+        <h2>{compact ? "Serving all 56 Montana counties" : "Find your Montana county"}</h2>
         <p>
           Search for a county or choose it directly on the map. The highlighted
           boundary shows the county you selected—not an estimated nearby hub.
@@ -177,13 +184,12 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
           <div className="detention-heading">
             <div>
               <span>Selected county</span>
-              <h3>Detention facilities in {selectedCounty} County</h3>
+              <h3>Jail and detention resources for {selectedCounty} County</h3>
             </div>
-            <small>Directory reviewed {DETENTION_DIRECTORY_REVIEWED}</small>
           </div>
 
           {countyDetention.facilities.length > 0 ? (
-            <div className="facility-list" role="radiogroup" aria-label={`Detention facilities in ${selectedCounty} County`}>
+            <div className="facility-list" role="radiogroup" aria-label={`Jail and detention resources for ${selectedCounty} County`}>
               {countyDetention.facilities.map((facility) => (
                 <article
                   className={selectedFacilityId === facility.id ? "facility-card selected" : "facility-card"}
@@ -197,27 +203,46 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
                   >
                     <span>{facility.kind}</span>
                     <strong>{facility.name}</strong>
-                    <small>{facility.city}, Montana{facility.phone ? ` · ${facility.phone}` : ""}</small>
-                  </button>
-                  <div className="facility-links">
-                    <a href={facility.officialUrl} target="_blank" rel="noreferrer">Official facility information ↗</a>
-                    {facility.rosterUrl && (
-                      <a href={facility.rosterUrl} target="_blank" rel="noreferrer">Official custody search ↗</a>
+                    {(facility.city || facility.phone) && (
+                      <small>
+                        {facility.city ? `${facility.city}, Montana` : ""}
+                        {facility.city && facility.phone ? " · " : ""}
+                        {facility.phone || ""}
+                      </small>
                     )}
-                  </div>
+                    {facility.note && <small>{facility.note}</small>}
+                  </button>
+                  {(facility.rosterUrl || facility.officialUrl) && (
+                    <div className="facility-links">
+                      {facility.rosterUrl && (
+                        <a href={facility.rosterUrl} target="_blank" rel="noreferrer">Search Current Inmates ↗</a>
+                      )}
+                      {facility.officialUrl && facility.officialUrl !== facility.rosterUrl && (
+                        <a href={facility.officialUrl} target="_blank" rel="noreferrer">{getOfficialLinkLabel(facility)} ↗</a>
+                      )}
+                    </div>
+                  )}
                 </article>
               ))}
             </div>
           ) : (
             <div className="facility-routing-note">
-              <strong>Facility location needs to be confirmed.</strong>
+              <strong>Facility location needs to be confirmed</strong>
               <p>{countyDetention.routingNote}</p>
             </div>
           )}
 
-          <button className="facility-intake-button" type="button" onClick={openIntake}>
-            Ask Northwest about someone in {selectedCounty} County <span>→</span>
-          </button>
+          <div className="county-help-cta" id="county-help">
+            <div className="county-help-copy">
+              <span>Need help now?</span>
+              <strong>Get help with a {selectedCounty} County bail bond</strong>
+              <p>Call Northwest 24/7 or send the basic details you have. Joel and his team can help confirm the next step.</p>
+            </div>
+            <div className="county-help-actions">
+              <a href={`tel:${PHONE_LINK}`}>Call {PHONE_DISPLAY}</a>
+              <button type="button" onClick={openIntake}>Contact Joel now <span>→</span></button>
+            </div>
+          </div>
           <p className="directory-disclaimer">
             Facility assignments and rosters can change. Confirm custody before relying on this directory.
             Tribal, federal, juvenile, and state-prison custody may follow different release procedures.
@@ -246,7 +271,7 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
             <button className="custody-intake-close" type="button" onClick={closeIntake} aria-label="Close custody inquiry form">×</button>
             <div className="custody-intake-heading">
               <span>Email Northwest</span>
-              <h2 id="custody-intake-title">Ask about someone in custody.</h2>
+              <h2 id="custody-intake-title">Ask about someone in custody</h2>
               <p id="custody-intake-description">
                 Tell us who is in custody. Northwest can help confirm the county, facility, and next step.
               </p>
@@ -254,7 +279,7 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
             <div className="custody-intake-location">
               <span>County</span>
               <strong>{selectedCounty} County</strong>
-              <span>Facility</span>
+              <span>Resource / facility</span>
               <strong>{selectedFacility?.name || "To be confirmed by Northwest"}</strong>
             </div>
             <form onSubmit={prepareEmail}>

@@ -1,59 +1,85 @@
 # Northwest Bail Bonds Website
 
-A fast, mobile-first website for Northwest Bail Bonds in Billings, Montana. The site is designed around three customer needs: immediate human response, plain-language terms, and trustworthy statewide coverage.
+A mobile-first marketing website for Northwest Bail Bonds in Billings, Montana. It is a conventional Next.js App Router application with no database, authentication layer, or hosting adapter.
 
-## Current experience
+## Application architecture
 
-- Conversion-focused homepage with call and email actions
-- Interactive Montana coverage overview and searchable list of all 56 counties
-- About, resources, contact, licensing/disclosures, and privacy pages
-- Organization and FAQ structured data
-- Per-page metadata, canonical URLs, sitemap, and robots rules
-- Email help-request form on every primary page; no site database required
-- Responsive dark charcoal, silver, and Montana-sunset visual system
+- Next.js 16 App Router, React 19, and TypeScript
+- Tailwind CSS through PostCSS, plus the existing site stylesheet
+- Static assets in `public/`
+- Static Montana county data in `app/data/`
+- Browser `mailto:` contact workflow; no form API or stored submissions
+- Standard Node.js lifecycle that can run on Replit or another Node host
+
+There is no required Vercel, Cloudflare, Vite, Vinext, Worker, D1, Drizzle, or OpenAI Sites runtime.
 
 ## Routes
 
 | Route | Purpose |
 | --- | --- |
 | `/` | Primary 24/7 conversion landing page |
-| `/service-areas` | Montana map, county search, and regional coverage |
-| `/about` | Customer-service positioning and trust principles |
-| `/resources` | FAQs, internal guides, and official Montana sources |
-| `/contact` | Direct call, email, Facebook, and inquiry workflow |
-| `/licensing` | Verification guidance and service disclosures |
+| `/service-areas` | Montana map, county search, detention links, and regional coverage |
+| `/about` | Company and founder story |
+| `/resources` | FAQs, disclosures, and official Montana sources |
+| `/contact` | Direct call, email, Facebook, and email-draft workflow |
 | `/privacy` | Website privacy notice |
+| `/licensing` | Redirects to `/resources#licensing` |
+| `/how-bail-works` | Permanent redirect to `/resources#faq` |
+| `/sitemap.xml` | Generated XML sitemap |
+| `/robots.txt` | Generated crawler rules and sitemap URL |
 
-## Local development
+## Requirements and commands
 
-Requirements: Node.js 22.13 or later.
-
-```bash
-npm install
-npm run dev -- --host 0.0.0.0
-```
-
-Build verification:
+- Node.js 22.13 or newer (Node 22 LTS is recommended and recorded in `.nvmrc`)
+- npm 11
 
 ```bash
-npm run build
+npm ci
+npm run dev
 ```
+
+The normal project lifecycle is:
+
+| Task | Command |
+| --- | --- |
+| Development server | `npm run dev` |
+| Type check | `npm run typecheck` |
+| Lint | `npm run lint` |
+| Portable production build | `npm run build` |
+| Deployment build with URL validation | `npm run build:production` |
+| Production server | `npm run start` |
+| Build and integration tests | `npm test` |
+
+`npm run start` listens on `0.0.0.0` and respects the `PORT` environment variable.
+
+## Production URL configuration
+
+Production deployments require one public environment variable:
+
+```text
+NEXT_PUBLIC_SITE_URL=https://www.example.com
+```
+
+Use the exact HTTPS origin with no trailing slash or path. It controls canonical links, Open Graph URLs, JSON-LD, `sitemap.xml`, and `robots.txt`.
+
+`npm run build` remains usable for local verification when the variable is missing; it warns and uses `http://localhost:3000`. `npm run build:production` fails unless a valid HTTPS origin is configured, so use that command for deployment builds. Copy `.env.example` to `.env.local` for local production-URL testing. Never commit `.env.local` or secrets.
+
+## Contact workflow
+
+The help-request form in `app/components/help-request-form.tsx` assembles a draft and opens the visitor's own email application with a `mailto:` link. The visitor must review and send the email; the website does not claim or record a successful submission. The form and privacy page warn visitors not to include sensitive financial or identity information. Call and email links remain available throughout the site.
+
+## Common business settings
+
+Phone, email, social links, company name, FAQs, county names, and coverage hubs live in `app/lib/site.ts`. Page-specific content remains in the corresponding file under `app/`.
 
 ## Replit handoff
 
-Import this repository into the client's Replit account, set `NEXT_PUBLIC_SITE_URL` to the final `https://` domain, and run the included development command. The project intentionally has no database, authentication, or complex backend.
+The current approved handoff source is the `repo-cleanup-replit-handoff` branch in PR #1. The repository's default `main` branch is intentionally unchanged until review is complete, so select the handoff branch after importing or make that branch the default in the destination repository before import.
 
-See [docs/replit-handoff.md](docs/replit-handoff.md) for the complete owner handoff and [docs/launch-content-checklist.md](docs/launch-content-checklist.md) for the verified business assets still required before public launch.
+Add `NEXT_PUBLIC_SITE_URL` in Replit, then use the ordinary npm commands above. The committed `.replit` file defines the Preview command, production build and start commands, required import files, and port mapping. The root `replit.md` gives Replit Agent the architecture and preservation rules for future work.
 
-## Important configuration
-
-- Primary phone and brand constants live in `app/lib/site.ts`.
-- The canonical site URL uses `NEXT_PUBLIC_SITE_URL` and currently falls back to the private prototype URL.
-- The email request form lives in `app/components/help-request-form.tsx` and is reused across the primary pages.
-- Do not publish license numbers, legal affiliations, pricing claims, payment plans, testimonials, or team biographies until the client verifies them.
+See [docs/replit-handoff.md](docs/replit-handoff.md) for import, preview, publishing, domain, and owner-verification instructions. See [docs/launch-content-checklist.md](docs/launch-content-checklist.md) for business facts and assets that still require owner approval before launch.
 
 ## SEO approach
 
-The site uses natural, intent-led language for Montana bail bond searches instead of keyword stuffing. It provides clear entity facts, answer-first FAQs, official Montana references, semantic page structure, and consistent service-area information that can be understood by traditional search and AI answer systems.
-
-See [docs/seo-content-plan.md](docs/seo-content-plan.md) for the page-to-intent map and future content roadmap.
+The site provides consistent service-area information, answer-first FAQs, official Montana references, semantic page structure, canonical metadata, and structured data. See [docs/seo-content-plan.md](docs/seo-content-plan.md) for the page-to-intent map and future content roadmap.

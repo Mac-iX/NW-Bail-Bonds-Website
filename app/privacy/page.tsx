@@ -15,7 +15,7 @@ export default function PrivacyPage() {
       <SiteHeader />
       <PageHero
         eyebrow="Website privacy notice"
-        title="Website privacy policy."
+        title="Website privacy policy"
         intro="This notice explains how the current website handles contact actions and the practical limits of online privacy."
         variant="privacy"
         cta={false}
@@ -23,7 +23,7 @@ export default function PrivacyPage() {
       <section className="prose-page">
         <p className="updated-date">Last updated: August 7, 2026</p>
         <h2>Information you choose to provide</h2>
-        <p>The website lets you enter basic details—such as your name, callback number, the name of the person in custody, location, and Bond amount—to prepare an email. In the current version, that information is assembled in your device&apos;s email application so you can review it before sending. The website does not submit that form to a website database.</p>
+        <p>The website lets you enter basic details—such as your name, callback number, the name of the person in custody, location, and bond amount—to prepare an email. In the current version, that information is assembled in your device&apos;s email application so you can review it before sending. The website does not submit that form to a website database.</p>
         <h2>Calls and email</h2>
         <p>When you tap a phone or email link, your device, telephone carrier, and email application may process the action under their own terms and privacy practices. Standard calling or data charges may apply.</p>
         <h2>Hosting and technical information</h2>

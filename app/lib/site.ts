@@ -2,15 +2,40 @@ export const SITE_NAME = "Northwest Bail Bonds";
 export const PHONE_DISPLAY = "(406) 601-1225";
 export const PHONE_LINK = "+14066011225";
 export const EMAIL_ADDRESS = "northwestbailbond@gmail.com";
+export const BUSINESS_STREET_ADDRESS = "711 Central Ave Ste. 111";
+export const BUSINESS_CITY_LINE = "Billings, MT 59102";
+export const BUSINESS_POSTAL_CODE = "59102";
 export const FACEBOOK_URL = "https://www.facebook.com/p/Northwest-Bail-Bonds-LLC-100063740815259/";
 export const FACEBOOK_REVIEW_URL = "https://www.facebook.com/100063740815259/reviews/";
 export const GOOGLE_BUSINESS_URL =
   "https://www.google.com/maps/search/?api=1&query=Northwest+Bail+Bonds+Billings+Montana";
-export const MONTANA_LAWYER_REFERRAL_URL =
-  "https://www.montanabar.org/For-the-Public/Hiring-an-Attorney-in-Montana";
-export const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://north-west-bail-bondsman.yogamac.chatgpt.site";
+export const RECOMMENDED_ATTORNEY_URL = "https://lplawpc.com";
+
+const LOCAL_SITE_URL = "http://localhost:3000";
+
+function getBaseUrl() {
+  const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+
+  if (!configuredUrl) return LOCAL_SITE_URL;
+
+  let url: URL;
+  try {
+    url = new URL(configuredUrl);
+  } catch {
+    throw new Error("NEXT_PUBLIC_SITE_URL must be a valid absolute URL.");
+  }
+
+  if (!["http:", "https:"].includes(url.protocol)) {
+    throw new Error("NEXT_PUBLIC_SITE_URL must use http:// or https://.");
+  }
+  if (url.pathname !== "/" || url.search || url.hash || url.username || url.password) {
+    throw new Error("NEXT_PUBLIC_SITE_URL must be an origin only, without a path, credentials, query, or hash.");
+  }
+
+  return url.origin;
+}
+
+export const BASE_URL = getBaseUrl();
 
 export const COUNTIES = [
   "Beaverhead", "Big Horn", "Blaine", "Broadwater", "Carbon", "Carter",
@@ -101,7 +126,7 @@ export const FAQS = [
     answer: "The person’s full name, county or detention facility, bond amount if known, and your callback number are enough to start. Call even if you do not have every detail.",
   },
   {
-    question: "How much does a Bail Bond cost in Montana?",
+    question: "How much does a bail bond cost in Montana?",
     answer: "The exact fee and any collateral requirements depend on the bond and circumstances. Ask the agent to explain the full written terms and your responsibilities before you sign.",
   },
   {

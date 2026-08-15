@@ -29,14 +29,20 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
-.vercel
+/.vercel/
 
 # typescript
-next-env.d.ts
+*.tsbuildinfo
+
+# generated build and platform output
+/.vinext/
 /dist/
 /.wrangler/
 /.sites-runtime/
+/.turbo/
+/.cache/
 /outputs/
 /work/

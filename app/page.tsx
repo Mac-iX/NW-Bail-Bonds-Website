@@ -6,6 +6,8 @@ import { SiteFooter } from "@/app/components/site-footer";
 import { SiteHeader } from "@/app/components/site-header";
 import {
   BASE_URL,
+  BUSINESS_POSTAL_CODE,
+  BUSINESS_STREET_ADDRESS,
   EMAIL_ADDRESS,
   FAQS,
   FACEBOOK_URL,
@@ -49,15 +51,17 @@ const organizationSchema = {
   telephone: PHONE_LINK,
   email: EMAIL_ADDRESS,
   description:
-    "A Billings-based Montana Bail Bond company serving all 56 counties.",
+    "A Billings-based Montana bail bond company serving all 56 counties.",
   areaServed: {
     "@type": "State",
     name: "Montana",
   },
   address: {
     "@type": "PostalAddress",
+    streetAddress: BUSINESS_STREET_ADDRESS,
     addressLocality: "Billings",
     addressRegion: "MT",
+    postalCode: BUSINESS_POSTAL_CODE,
     addressCountry: "US",
   },
   openingHoursSpecification: [
@@ -116,10 +120,10 @@ export default function Home() {
       <section className="hero" id="top">
         <div className="hero-copy">
           <p className="eyebrow">
-            <span className="live-dot" /> Montana Bail Bonds · phones answered 24/7
+            <span className="live-dot" /> Montana bail bonds · phones answered 24/7
           </p>
           <h1>
-            A Bail Bond company built around customer service.
+            A Bail Bond Company Built Around Customer Service
           </h1>
           <p className="hero-lede">
             Northwest believes urgent service can still be personal. Every call
@@ -140,7 +144,7 @@ export default function Home() {
 
       <section className="help-section home-intake" aria-labelledby="home-intake-title">
         <div className="help-copy">
-          <h2 id="home-intake-title">We&apos;re here to help.</h2>
+          <h2 id="home-intake-title">We&apos;re here to help</h2>
           <p>Tell us who is in custody and where. If that is all you know, that is enough to start.</p>
           <div className="direct-line">
             <span>For the quickest response</span>
@@ -165,16 +169,16 @@ export default function Home() {
             decoding="async"
           />
           <figcaption>
-            <strong>A quiet moment of support.</strong>
+            <strong>A quiet moment of support</strong>
             <span>Real people · Real moments · Montana</span>
           </figcaption>
         </figure>
         <div className="people-copy">
           <span className="section-label">Our Story</span>
-          <h2>Built in Billings. Grown across Montana.</h2>
+          <h2>Built in Billings, grown across Montana</h2>
           <div className="company-story-copy">
             <p>We started Northwest Bail Bonds because we saw how cold the process could feel from the other side. A late-night arrest does not come with a handbook. It lands on a family all at once.</p>
-            <p>Our work grew beyond Billings through the relationships we built across Montana. The job is still simple: answer the phone, be straight about the Bond in front of us, and help people handle what comes next. When we can, that has also meant a ride home, a trip to court, or a hand finding the next opportunity.</p>
+            <p>Our work grew beyond Billings through the relationships we built across Montana. The job is still simple: answer the phone, be straight about the bond in front of us, and help people handle what comes next. When we can, that has also meant a ride home, a trip to court, or a hand finding the next opportunity.</p>
             <p>We are still writing our story. It is built from the people who call us, the communities we serve, and the belief that one bad night does not have to become the whole story.</p>
           </div>
           <p className="founder-story-callout">Northwest began with Joel Graf&apos;s own experience of second chances, faith, and service.</p>
@@ -191,13 +195,13 @@ export default function Home() {
 
       <section className="credibility-section">
         <div className="credential-heading">
-          <h2>Know who you&apos;re dealing with before you sign.</h2>
+          <h2>Know who you&apos;re dealing with before you sign</h2>
           <figure className="credential-landmark">
             <img
               className="credential-scene-art"
               src="/scene-courthouse-stencil.png"
               alt="Layered courthouse and Montana landscape illustration representing producer licensing and Bond agreements."
-              title="Montana Bail Bond licensing and written agreements"
+              title="Montana bail bond licensing and written agreements"
               width="2172"
               height="724"
               loading="lazy"
@@ -208,7 +212,7 @@ export default function Home() {
         </div>
         <div className="credential-copy">
           <p>
-            Montana regulates surety Bail Bond producers through the Commissioner
+            Montana regulates surety bail bond producers through the Commissioner
             of Securities and Insurance. You can ask for current license details,
             review every obligation, and verify a producer before signing.
           </p>
@@ -227,7 +231,7 @@ export default function Home() {
 
       <section className="help-section" id="contact">
         <div className="help-copy">
-          <h2>Choose the way you want to reach us.</h2>
+          <h2>Choose the way you want to reach us</h2>
           <p>Call for the quickest response, send an email, or use Facebook Messenger. The Contact page keeps every verified option in one place.</p>
           <div className="direct-line">
             <span>Direct line</span>
@@ -244,7 +248,7 @@ export default function Home() {
 
       <section className="faq-section" id="faq">
         <div className="heading-block">
-          <h2>Montana Bail Bond answers.</h2>
+          <h2>Montana bail bond answers</h2>
         </div>
         <div className="faq-list">
           {FAQS.slice(0, 6).map((faq) => (
@@ -259,7 +263,7 @@ export default function Home() {
 
       <section className="closing-cta">
         <div>
-          <h2>Speak with Northwest when you&apos;re ready.</h2>
+          <h2>Speak with Northwest when you&apos;re ready</h2>
         </div>
         <div className="closing-actions">
           <a href={`tel:${PHONE_LINK}`}>Call {PHONE_DISPLAY}</a>

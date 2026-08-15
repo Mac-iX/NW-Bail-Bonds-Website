@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s | Northwest Bail Bonds",
   },
   description:
-    "A customer-service-first Bail Bond company based in Billings and serving all 56 Montana counties, 24 hours a day.",
+    "A customer-service-first bail bond company based in Billings and serving all 56 Montana counties, 24 hours a day.",
   applicationName: SITE_NAME,
   keywords: [
     "Montana Bail Bonds",
@@ -34,17 +34,16 @@ export const metadata: Metadata = {
     url: "/",
     siteName: SITE_NAME,
     title: "Northwest Bail Bondsman | 24/7 Montana Bail Bonds",
-    description: "A Bail Bond company built around customer service, based in Billings and serving all 56 Montana counties.",
+    description: "A bail bond company built around customer service, based in Billings and serving all 56 Montana counties.",
     images: [{ url: "/montana-city-hero.jpeg", width: 1536, height: 658, alt: "Montana mountain community at sunset, representing Northwest Bail Bonds statewide service area" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Northwest Bail Bondsman | 24/7 Montana Bail Bonds",
-    description: "Personal, professional Bail Bond service throughout Montana—day or night.",
+    description: "Personal, professional bail bond service throughout Montana—day or night.",
     images: ["/montana-city-hero.jpeg"],
   },
   other: {
-    "codex-preview": "development",
     "geo.region": "US-MT",
     "geo.placename": "Billings, Montana",
     "business:contact_data:phone_number": "+1-406-601-1225",
