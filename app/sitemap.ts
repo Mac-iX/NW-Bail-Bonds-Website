@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { BASE_URL } from "@/app/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/service-areas", "/about", "/resources", "/contact", "/privacy"];
+  const routes = ["", "/service-areas", "/jails/yellowstone-county-detention-facility", "/about", "/resources", "/contact", "/privacy"];
   return routes.map((route, index) => ({
     url: `${BASE_URL}${route}`,
     lastModified: new Date(),
