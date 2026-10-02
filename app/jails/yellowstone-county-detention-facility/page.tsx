@@ -134,7 +134,7 @@ export default function YellowstoneJailPage() {
           <article>
             <strong>Address</strong>
             <h3>{FACTS.street}</h3>
-            <p>{FACTS.city}. East of downtown on King Avenue East, near the I-90 interchange.</p>
+            <p>{FACTS.city}. Confirm the public entrance with booking before you drive out.</p>
           </article>
           <article>
             <strong>Booking · 24 hrs</strong>
@@ -150,7 +150,7 @@ export default function YellowstoneJailPage() {
           <article>
             <strong>Northwest</strong>
             <h3><a href={`tel:${PHONE_LINK}`}>{PHONE_DISPLAY}</a></h3>
-            <p>Our office is downtown on Central Avenue. We post bonds at this jail more than anywhere else in Montana.</p>
+            <p>Our office is in downtown Billings on Central Avenue. Answered 24 hours a day.</p>
           </article>
         </div>
       </section>
@@ -187,7 +187,7 @@ export default function YellowstoneJailPage() {
           brief="Joel Graf (and agents on staff) at the Northwest office, 711 Central Ave, Billings. Natural light, real work setting, signage visible. Landscape, 1600px+."
           caption="Joel Graf at the Northwest Bail Bonds office in downtown Billings."
         />
-        <p>When a bond needs to be posted at 2 a.m., the agent has to drive to King Avenue East. Our office is about ten minutes away. Out-of-state agencies with a Billings mailing address route your call to whoever is closest, and that can be hours.</p>
+        <p>When a bond needs to be posted at 2 a.m., the agent has to drive to King Avenue East. Our office is in Billings, a short drive away. Out-of-state agencies with a Billings mailing address route your call to whoever is closest, and that can be hours.</p>
         <p>Ask any bondsman where their agent is right now and how long it takes them to reach the jail. You deserve a straight answer.</p>
       </section>
 
