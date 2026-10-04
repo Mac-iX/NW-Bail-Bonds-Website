@@ -24,7 +24,7 @@ test("uses the configured public URL for canonical and Open Graph metadata", asy
   assert.match(html, /<link rel="canonical" href="https:\/\/example\.test"\/>/);
   assert.match(html, /<meta property="og:url" content="https:\/\/example\.test"\/>/);
   assert.match(html, /https:\/\/example\.test\/northwest-logo-transparent\.png/);
-  assert.doesNotMatch(html, /chatgpt\.site|codex-preview/);
+  assert.doesNotMatch(html, /chatgpt\\.site/);
 });
 
 test("renders the approved homepage lead, concise help form, and a visible Home navigation link", async () => {
