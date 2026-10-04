@@ -46,6 +46,11 @@ test("gives supporting pages distinct, literal headings", async () => {
     ["/service-areas", "Serving all 56 Montana counties"],
     ["/resources", "Montana Bail Bond Resources"],
     ["/contact", "Contact Northwest Bail Bonds"],
+    ["/jails", "Jail-specific bail bond guides"],
+    ["/locations", "Bail bond help by city"],
+    ["/how-to-bail-someone-out", "How to bail someone out of jail in Montana"],
+    ["/digital-bail-bonds", "Digital bail bonds without unnecessary driving"],
+    ["/faq", "Bail bond FAQ"],
   ]);
   for (const [pathname, heading] of expectations) {
     assert.match(await render(pathname), new RegExp(`<h1>${heading.replaceAll(".", "\\.")}</h1>`));
@@ -53,7 +58,22 @@ test("gives supporting pages distinct, literal headings", async () => {
 });
 
 test("serves every public route and metadata endpoint", async () => {
-  for (const pathname of ["/", "/service-areas", "/about", "/resources", "/contact", "/privacy"]) {
+  for (const pathname of [
+    "/",
+    "/service-areas",
+    "/jails",
+    "/jails/yellowstone-county-detention-facility",
+    "/jails/cascade-county-detention-center",
+    "/locations",
+    "/locations/billings-bail-bonds",
+    "/how-to-bail-someone-out",
+    "/digital-bail-bonds",
+    "/faq",
+    "/about",
+    "/resources",
+    "/contact",
+    "/privacy",
+  ]) {
     assert.equal((await request(pathname)).status, 200, pathname);
   }
 
@@ -310,4 +330,37 @@ test("renders the focused About, Resources, and Contact conversion blocks", asyn
   assert.match(contact, /Choose the next useful step/);
   assert.match(contact, /County and jail resources/);
   assert.doesNotMatch(contact, /class="social-contact-section"/);
+});
+
+
+test("publishes the new SEO pages without reviewer bylines or review schema", async () => {
+  for (const pathname of [
+    "/jails/yellowstone-county-detention-facility",
+    "/jails/cascade-county-detention-center",
+    "/locations/billings-bail-bonds",
+    "/how-to-bail-someone-out",
+    "/digital-bail-bonds",
+    "/faq",
+  ]) {
+    const html = await render(pathname);
+    assert.doesNotMatch(html, /Reviewed by/i);
+    assert.doesNotMatch(html, /"@type":"FAQPage"/);
+    assert.doesNotMatch(html, /AggregateRating|reviewCount/);
+  }
+});
+
+test("includes jail, city, how-to, digital, and FAQ pages in the sitemap", async () => {
+  const response = await request("/sitemap.xml");
+  assert.equal(response.status, 200);
+  const sitemap = await response.text();
+  for (const path of [
+    "/jails",
+    "/jails/yellowstone-county-detention-facility",
+    "/jails/cascade-county-detention-center",
+    "/locations",
+    "/locations/billings-bail-bonds",
+    "/how-to-bail-someone-out",
+    "/digital-bail-bonds",
+    "/faq",
+  ]) assert.match(sitemap, new RegExp(path.replaceAll("/", "\\/")));
 });
