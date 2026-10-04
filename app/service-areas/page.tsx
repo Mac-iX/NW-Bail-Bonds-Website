@@ -11,6 +11,7 @@ import {
   type DetentionFacility,
   getCountyDetention,
 } from "@/app/data/montana-detention";
+import { hasJailGuide } from "@/app/data/seo-pages";
 import { BASE_URL } from "@/app/lib/site";
 
 export const metadata: Metadata = {
@@ -92,7 +93,7 @@ const serviceAreaSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   name: "Northwest Bail Bonds Montana Service Areas",
-  url: `${BASE_URL}/service-areas`,
+  url: BASE_URL + "/service-areas",
   description: "Six regional views of Northwest Bail Bonds' statewide service across all 56 Montana counties.",
   hasPart: regions.map((region) => ({
     "@type": "WebPageElement",
@@ -101,7 +102,7 @@ const serviceAreaSchema = {
     image: {
       "@type": "ImageObject",
       name: region.imageTitle,
-      url: `${BASE_URL}${region.image}`,
+      url: BASE_URL + region.image,
       width: region.width,
       height: region.height,
       caption: region.caption,
@@ -159,6 +160,15 @@ export default function ServiceAreasPage() {
                       <div className="region-resource-county" key={county}>
                         <strong>{county} County</strong>
                         {getCountyDetention(county).facilities.map((facility) => {
+                          if (hasJailGuide(facility.id)) {
+                            return (
+                              <a href={"/jails/" + facility.id} key={facility.id}>
+                                <span>{facility.name}</span>
+                                <small>Jail-specific bail guide →</small>
+                              </a>
+                            );
+                          }
+
                           const href = getResourceUrl(facility);
                           return href ? (
                             <a href={href} target="_blank" rel="noreferrer" key={facility.id}>
@@ -184,7 +194,7 @@ export default function ServiceAreasPage() {
       </section>
       <InquirySection
         title="Ask about a person or county"
-        intro="Share the person’s name and the county or facility if you know it. Northwest can confirm the next step."
+        intro="Share the person's name and the county or facility if you know it. Northwest can confirm the next step."
         id="service-area-request-help"
       />
       <SiteFooter />

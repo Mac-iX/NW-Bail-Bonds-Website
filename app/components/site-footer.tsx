@@ -24,7 +24,12 @@ export function SiteFooter() {
       </div>
       <nav className="footer-nav" aria-label="Footer navigation">
         <a href="/">Home</a>
+        <a href="/jails">Jail guides</a>
+        <a href="/locations">Locations</a>
         <a href="/service-areas">Service areas</a>
+        <a href="/how-to-bail-someone-out">How bail works</a>
+        <a href="/digital-bail-bonds">Digital bail bonds</a>
+        <a href="/faq">FAQ</a>
         <a href="/about">About</a>
         <a href="/resources">Resources</a>
         <a href="/contact">Contact</a>
@@ -32,8 +37,8 @@ export function SiteFooter() {
         <a href={FACEBOOK_URL} target="_blank" rel="noreferrer">Facebook ↗</a>
       </nav>
       <div className="footer-contact">
-        <a href={`tel:${PHONE_LINK}`}>{PHONE_DISPLAY}</a>
-        <a className="footer-email" href={`mailto:${EMAIL_ADDRESS}`}>{EMAIL_ADDRESS}</a>
+        <a href={"tel:" + PHONE_LINK}>{PHONE_DISPLAY}</a>
+        <a className="footer-email" href={"mailto:" + EMAIL_ADDRESS}>{EMAIL_ADDRESS}</a>
         <address className="footer-address">
           {BUSINESS_STREET_ADDRESS}<br />
           {BUSINESS_CITY_LINE}

@@ -830,3 +830,11 @@ img { max-width: 100%; }
   .montana-scene img { animation: none !important; transform: none; }
   .urgent-contact-prompt { transform: none; }
 }
+
+.photo-slot { margin: 0 0 32px; }
+.photo-slot-frame { aspect-ratio: 16 / 9; padding: 28px; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; border: 1px dashed rgba(255,196,45,.5); background: repeating-linear-gradient(135deg,#0b151d 0 14px,#0d1922 14px 28px); }
+.photo-slot-frame span { color: var(--sunset); font-size: 11px; font-weight: 650; letter-spacing: .11em; text-transform: uppercase; }
+.photo-slot-frame strong { font-family: var(--display); font-size: 26px; font-weight: 500; }
+.photo-slot-frame small { max-width: 620px; color: #8f9aa0; font-size: 12px; line-height: 1.6; }
+.photo-slot figcaption { margin-top: 10px; color: #8d999f; font-size: 12px; }
+.prose-page .check-list li { color: #c3ccd1; font-size: 15px; line-height: 1.7; }

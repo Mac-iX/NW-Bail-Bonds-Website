@@ -1,12 +1,39 @@
 import type { MetadataRoute } from "next";
+import { CITY_GUIDES, JAIL_GUIDES } from "@/app/data/seo-pages";
 import { BASE_URL } from "@/app/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/service-areas", "/about", "/resources", "/contact", "/privacy"];
-  return routes.map((route, index) => ({
-    url: `${BASE_URL}${route}`,
+  const coreRoutes = [
+    "",
+    "/jails",
+    "/locations",
+    "/service-areas",
+    "/how-to-bail-someone-out",
+    "/digital-bail-bonds",
+    "/faq",
+    "/about",
+    "/resources",
+    "/contact",
+    "/privacy",
+  ];
+
+  const routes = [
+    ...coreRoutes,
+    ...JAIL_GUIDES.map((guide) => "/jails/" + guide.slug),
+    ...CITY_GUIDES.map((guide) => "/locations/" + guide.slug),
+  ];
+
+  return routes.map((route) => ({
+    url: BASE_URL + route,
     lastModified: new Date(),
-    changeFrequency: index === 0 ? "weekly" : "monthly",
-    priority: index === 0 ? 1 : route === "/contact" ? .9 : route === "/resources" || route === "/service-areas" ? .85 : .75,
+    changeFrequency: route === "" ? "weekly" : "monthly",
+    priority:
+      route === ""
+        ? 1
+        : route === "/contact"
+          ? 0.9
+          : route.startsWith("/jails/") || route.startsWith("/locations/") || route === "/service-areas"
+            ? 0.85
+            : 0.75,
   }));
 }
