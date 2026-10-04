@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages, react/no-unescaped-entities */
 import type { Metadata } from "next";
 import { InquirySection } from "@/app/components/inquiry-section";
 import { MontanaSceneBand } from "@/app/components/montana-scene-band";

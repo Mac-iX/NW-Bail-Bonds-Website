@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import type { Metadata } from "next";
 import { InquirySection } from "@/app/components/inquiry-section";
 import { PageHero } from "@/app/components/page-hero";
