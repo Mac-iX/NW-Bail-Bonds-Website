@@ -364,3 +364,18 @@ test("includes jail, city, how-to, digital, and FAQ pages in the sitemap", async
     "/faq",
   ]) assert.match(sitemap, new RegExp(path.replaceAll("/", "\\/")));
 });
+
+
+test("redirects the deployment hostname to the owned domain", async () => {
+  const response = await fetch(`${testBaseUrl}/jails`, {
+    redirect: "manual",
+    headers: {
+      accept: "text/html",
+      host: "bail-bonds-production.replit.app",
+      "x-forwarded-host": "bail-bonds-production.replit.app",
+    },
+  });
+
+  assert.equal(response.status, 308);
+  assert.equal(response.headers.get("location"), "https://nwbailbonds.com/jails");
+});
