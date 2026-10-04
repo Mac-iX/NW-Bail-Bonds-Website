@@ -223,7 +223,7 @@ test("places real Northwest photography by narrative purpose with descriptive me
 test("redirects the legacy How Bail Works address to the current guide", async () => {
   const response = await request("/how-bail-works", { headers: { accept: "text/html" } });
   assert.equal(response.status, 308);
-  assert.match(response.headers.get("location") ?? "", /\\/how-to-bail-someone-out$/);
+  assert.match(response.headers.get("location") ?? "", /\/how-to-bail-someone-out$/);
 });
 
 test("redirects the licensing shortcut to the verified disclosure section", async () => {
