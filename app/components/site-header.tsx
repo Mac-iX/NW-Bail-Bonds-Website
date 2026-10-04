@@ -3,21 +3,23 @@ import { PHONE_DISPLAY, PHONE_LINK, SITE_NAME } from "@/app/lib/site";
 
 const links = [
   { href: "/", label: "Home" },
+  { href: "/jails", label: "Jail guides" },
   { href: "/service-areas", label: "Service areas" },
   { href: "/about", label: "About" },
 ];
 
 const resourceLinks = [
-  { href: "/resources#guides", label: "Guides" },
+  { href: "/how-to-bail-someone-out", label: "How bail works" },
+  { href: "/digital-bail-bonds", label: "Digital bail bonds" },
+  { href: "/faq", label: "FAQ" },
   { href: "/resources#licensing", label: "Licensing" },
   { href: "/resources#attorney", label: "Legal help" },
-  { href: "/resources#faq", label: "FAQ" },
 ];
 
 export function SiteHeader() {
   return (
     <header className="site-header">
-      <a className="brand" href="/" aria-label={`${SITE_NAME} home`}>
+      <a className="brand" href="/" aria-label={SITE_NAME + " home"}>
         <img
           className="brand-logo"
           src="/northwest-logo-transparent.png"
@@ -36,7 +38,7 @@ export function SiteHeader() {
         </div>
         <a href="/contact">Contact</a>
       </nav>
-      <a className="header-call" href={`tel:${PHONE_LINK}`}>
+      <a className="header-call" href={"tel:" + PHONE_LINK}>
         <span>24/7 direct line</span>
         <strong>{PHONE_DISPLAY}</strong>
       </a>

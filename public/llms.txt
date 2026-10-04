@@ -1,13 +1,18 @@
 # Northwest Bail Bonds
 
-Northwest Bail Bonds is a Billings-based Bail Bond company serving all 56 Montana counties. The direct phone line, (406) 601-1225, is answered 24 hours a day. Email inquiries can be sent to northwestbailbond@gmail.com. The company grew through relationships across Montana and helps callers handle the Bond in front of them and what comes next.
+Northwest Bail Bonds is a Billings-based bail bond company serving all 56 Montana counties. The direct phone line, (406) 601-1225, is answered 24 hours a day.
 
 ## Canonical pages
 
 - Home: https://nwbailbonds.com/
+- Montana jail-specific guides: https://nwbailbonds.com/jails
+- Montana city bail bond guides: https://nwbailbonds.com/locations
 - Montana service areas and county search: https://nwbailbonds.com/service-areas
-- Company and founder story: https://nwbailbonds.com/about
-- Resources, licensing, attorney information, official sources, and FAQ: https://nwbailbonds.com/resources
+- How to bail someone out in Montana: https://nwbailbonds.com/how-to-bail-someone-out
+- Digital bail bond paperwork: https://nwbailbonds.com/digital-bail-bonds
+- Bail bond FAQ: https://nwbailbonds.com/faq
+- Company story: https://nwbailbonds.com/about
+- Resources and official Montana sources: https://nwbailbonds.com/resources
 - Contact: https://nwbailbonds.com/contact
 
 ## Verified contact and coverage facts
@@ -19,8 +24,8 @@ Northwest Bail Bonds is a Billings-based Bail Bond company serving all 56 Montan
 - Availability: 24 hours a day, seven days a week
 - Facebook: https://www.facebook.com/p/Northwest-Bail-Bonds-LLC-100063740815259/
 
-## Important boundaries
+## Information boundaries
 
-Northwest Bail Bonds can explain the Bail Bond agreement and process. It does not provide legal advice, guarantee an exact release time, guarantee a legal outcome, or make a case-specific eligibility decision through the website. Montana producer licensing should be verified through the Commissioner of Securities and Insurance.
+Northwest Bail Bonds can explain the bail bond agreement and process. It does not provide legal advice, guarantee an exact release time, guarantee a legal outcome, or make a case-specific eligibility decision through the website. Facility procedures and custody information can change; official jail, sheriff, court, and government sources are linked from the relevant guides.
 
 For expanded page summaries and frequently asked questions, see /llms-full.txt.

@@ -1,85 +1,82 @@
 # Northwest Bail Bonds Website
 
-A mobile-first marketing website for Northwest Bail Bonds in Billings, Montana. It is a conventional Next.js App Router application with no database, authentication layer, or hosting adapter.
+Production website for Northwest Bail Bonds in Billings, Montana.
 
-## Application architecture
+## Stack
 
-- Next.js 16 App Router, React 19, and TypeScript
-- Tailwind CSS through PostCSS, plus the existing site stylesheet
-- Static assets in `public/`
-- Static Montana county data in `app/data/`
-- Browser `mailto:` contact workflow; no form API or stored submissions
-- Standard Node.js lifecycle that can run on Replit or another Node host
+- Next.js 16 App Router
+- React 19
+- TypeScript
+- Static Montana county, detention, jail-guide, and city-guide data
+- No database or authentication layer
+- Browser email-draft workflow for non-urgent inquiries
 
-There is no required Vercel, Cloudflare, Vite, Vinext, Worker, D1, Drizzle, or OpenAI Sites runtime.
-
-## Routes
+## Primary routes
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Primary 24/7 conversion landing page |
-| `/service-areas` | Montana map, county search, detention links, and regional coverage |
-| `/about` | Company and founder story |
-| `/resources` | FAQs, disclosures, and official Montana sources |
-| `/contact` | Direct call, email, Facebook, and email-draft workflow |
-| `/privacy` | Website privacy notice |
-| `/licensing` | Redirects to `/resources#licensing` |
-| `/how-bail-works` | Permanent redirect to `/resources#faq` |
-| `/sitemap.xml` | Generated XML sitemap |
-| `/robots.txt` | Generated crawler rules and sitemap URL |
+| `/` | Primary conversion landing page |
+| `/jails` | Montana jail-specific bail bond guide hub |
+| `/jails/[slug]` | Curated detention-facility guides |
+| `/locations` | Priority Montana city landing-page hub |
+| `/locations/[slug]` | City commercial-intent pages |
+| `/service-areas` | All 56 Montana counties and detention resources |
+| `/how-to-bail-someone-out` | Bail process guide |
+| `/digital-bail-bonds` | Remote intake and e-sign workflow |
+| `/faq` | Bail bond FAQ |
+| `/about` | Company story |
+| `/resources` | Licensing, legal resources, and official Montana sources |
+| `/contact` | Direct contact paths |
+| `/privacy` | Privacy notice |
 
-## Requirements and commands
+## Development
 
-- Node.js 22.13 or newer (Node 22 LTS is recommended and recorded in `.nvmrc`)
+Requirements:
+
+- Node.js 22 LTS
 - npm 11
+
+Commands:
 
 ```bash
 npm ci
 npm run dev
+npm run typecheck
+npm run lint
+npm run build
+npm test
 ```
 
-The normal project lifecycle is:
-
-| Task | Command |
-| --- | --- |
-| Development server | `npm run dev` |
-| Type check | `npm run typecheck` |
-| Lint | `npm run lint` |
-| Portable production build | `npm run build` |
-| Deployment build with URL validation | `npm run build:production` |
-| Production server | `npm run start` |
-| Build and integration tests | `npm test` |
-
-`npm run start` listens on `0.0.0.0` and respects the `PORT` environment variable.
-
-## Production URL configuration
-
-Production deployments require one public environment variable:
+Production deployments must set:
 
 ```text
-NEXT_PUBLIC_SITE_URL=https://www.example.com
+NEXT_PUBLIC_SITE_URL=https://nwbailbonds.com
 ```
 
-Use the exact HTTPS origin with no trailing slash or path. It controls canonical links, Open Graph URLs, JSON-LD, `sitemap.xml`, and `robots.txt`.
+The value controls canonical URLs, Open Graph URLs, structured data, `sitemap.xml`, and `robots.txt`.
 
-`npm run build` remains usable for local verification when the variable is missing; it warns and uses `http://localhost:3000`. `npm run build:production` fails unless a valid HTTPS origin is configured, so use that command for deployment builds. Copy `.env.example` to `.env.local` for local production-URL testing. Never commit `.env.local` or secrets.
+## Content architecture
+
+The SEO system is intentionally selective rather than mass-generated.
+
+- `app/data/montana-detention.ts` is the statewide custody-resource directory.
+- `app/data/seo-pages.ts` contains the curated jail and city pages that deserve standalone URLs.
+- Jail pages target facility-specific custody intent.
+- City pages target commercial city intent.
+- `/service-areas` remains the statewide hub for counties that do not yet justify a dedicated page.
+- External custody links should point to official government, sheriff, court, or facility sources.
+- Do not add fabricated offices, fabricated reviews, unsupported release-time claims, or self-serving review markup.
 
 ## Contact workflow
 
-The help-request form in `app/components/help-request-form.tsx` assembles a draft and opens the visitor's own email application with a `mailto:` link. The visitor must review and send the email; the website does not claim or record a successful submission. The form and privacy page warn visitors not to include sensitive financial or identity information. Call and email links remain available throughout the site.
+The website's inquiry forms prepare a draft in the visitor's own email application. They do not store or submit sensitive information to a website database. The direct phone line remains the primary urgent contact path.
 
-## Common business settings
+## Release checks
 
-Phone, email, social links, company name, FAQs, county names, and coverage hubs live in `app/lib/site.ts`. Page-specific content remains in the corresponding file under `app/`.
+Before merging:
 
-## Replit handoff
-
-The current approved handoff source is the `repo-cleanup-replit-handoff` branch in PR #1. The repository's default `main` branch is intentionally unchanged until review is complete, so select the handoff branch after importing or make that branch the default in the destination repository before import.
-
-Add `NEXT_PUBLIC_SITE_URL` in Replit, then use the ordinary npm commands above. The committed `.replit` file defines the Preview command, production build and start commands, required import files, and port mapping. The root `replit.md` gives Replit Agent the architecture and preservation rules for future work.
-
-See [docs/replit-handoff.md](docs/replit-handoff.md) for import, preview, publishing, domain, and owner-verification instructions. See [docs/launch-content-checklist.md](docs/launch-content-checklist.md) for business facts and assets that still require owner approval before launch.
-
-## SEO approach
-
-The site provides consistent service-area information, answer-first FAQs, official Montana references, semantic page structure, canonical metadata, and structured data. See [docs/seo-content-plan.md](docs/seo-content-plan.md) for the page-to-intent map and future content roadmap.
+1. Run type checking and linting.
+2. Run a production build with a valid `NEXT_PUBLIC_SITE_URL`.
+3. Run integration tests.
+4. Verify new pages are linked internally and included in the sitemap.
+5. Verify every facility fact against the official source before publishing.
