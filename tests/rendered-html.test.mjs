@@ -220,7 +220,7 @@ test("places real Northwest photography by narrative purpose with descriptive me
   assert.match(contact, /MY 105\.9 Classic Hits/);
 });
 
-test("removes the How Bail Works page and redirects its old address", async () => {
+test("redirects the legacy How Bail Works address to the current guide", async () => {
   const response = await request("/how-bail-works", { headers: { accept: "text/html" } });
   assert.equal(response.status, 308);
   assert.match(response.headers.get("location") ?? "", /\/resources#faq$/);
