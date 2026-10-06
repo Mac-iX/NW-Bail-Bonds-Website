@@ -26,7 +26,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/:path*",
-        has: [{ type: "host", value: "*.replit.app" }],
+        has: [{ type: "host", value: "(?<subdomain>.+)\\.replit\\.app" }],
         destination: `https://${PRODUCTION_HOST}/:path*`,
         permanent: true,
       },
