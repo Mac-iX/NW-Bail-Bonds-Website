@@ -157,6 +157,10 @@ export default function Home() {
 
       <MontanaSceneBand scene="detention" />
 
+      <MontanaCoverage compact />
+
+      <MontanaSceneBand scene="city" />
+
       <section className="people-section" id="about">
         <figure className="people-visual home-story-visual">
           <img
@@ -188,10 +192,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <MontanaSceneBand scene="city" />
-
-      <MontanaCoverage compact />
 
       <section className="credibility-section">
         <div className="credential-heading">

@@ -17,6 +17,7 @@ export type DetentionFacility = {
   officialLinkLabel?: string;
   rosterUrl?: string;
   note?: string;
+  pagePath?: string;
 };
 
 export type CountyDetention = {
@@ -571,6 +572,7 @@ const COUNTY_RESOURCES = {
       phone: "(406) 256-6881",
       officialUrl: "https://www.yellowstonecountymt.gov/Sheriff/Detention/",
       rosterUrl: "https://www.yellowstonecountymt.gov/Sheriff/Detention/dcsearch.asp",
+      pagePath: "/jails/yellowstone-county-detention-facility",
     },
   ],
 } satisfies Record<CountyName, NonEmptyFacilities>;

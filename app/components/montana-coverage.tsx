@@ -212,7 +212,12 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
                     )}
                     {facility.note && <small>{facility.note}</small>}
                   </button>
-                  {(facility.rosterUrl || facility.officialUrl) && (
+                  {facility.pagePath && (
+                    <a className="facility-page-link" href={facility.pagePath}>
+                      Bail bonds at {facility.name} <span>→</span>
+                    </a>
+                  )}
+                  {!compact && (facility.rosterUrl || facility.officialUrl) && (
                     <div className="facility-links">
                       {facility.rosterUrl && (
                         <a href={facility.rosterUrl} target="_blank" rel="noreferrer">Search Current Inmates ↗</a>

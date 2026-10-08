@@ -25,6 +25,7 @@ export function SiteFooter() {
       <nav className="footer-nav" aria-label="Footer navigation">
         <a href="/">Home</a>
         <a href="/service-areas">Service areas</a>
+        <a href="/jails/yellowstone-county-detention-facility">Jails</a>
         <a href="/about">About</a>
         <a href="/resources">Resources</a>
         <a href="/contact">Contact</a>

@@ -4,6 +4,7 @@ import { PHONE_DISPLAY, PHONE_LINK, SITE_NAME } from "@/app/lib/site";
 const links = [
   { href: "/", label: "Home" },
   { href: "/service-areas", label: "Service areas" },
+  { href: "/jails/yellowstone-county-detention-facility", label: "Jails" },
   { href: "/about", label: "About" },
 ];
 

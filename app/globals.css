@@ -198,6 +198,9 @@ img { max-width: 100%; }
 .facility-links { padding: 0 20px 16px; display: flex; flex-wrap: wrap; gap: 6px 22px; }
 .facility-links a { color: #dce2e5; font-size: 10px; font-weight: 650; letter-spacing: .045em; text-transform: uppercase; text-decoration: underline; text-decoration-color: rgba(255,196,45,.48); text-underline-offset: 4px; }
 .facility-links a:hover, .facility-links a:focus-visible { color: var(--sunset); }
+.facility-page-link { margin: 0 20px 16px; display: inline-flex; align-items: center; gap: 8px; color: var(--sunset); font-size: 12px; font-weight:700; letter-spacing: .05em; text-transform: uppercase; text-decoration: none; }
+.facility-page-link span { color: var(--copper); font-size: 16px; }
+.facility-page-link:hover, .facility-page-link:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
 .facility-routing-note { margin-top: 19px; padding: 20px; border-left: 3px solid var(--sunset); background: rgba(255,255,255,.035); }
 .facility-routing-note strong { font-family: var(--display); font-size: 22px; font-weight: 480; }
 .facility-routing-note p { margin: 8px 0 0; color: #aeb8bd; font-size: 12px; line-height: 1.65; }
@@ -733,6 +736,7 @@ img { max-width: 100%; }
   .detention-heading > small { max-width: none; text-align: left; }
   .facility-card > button { padding: 17px 16px 14px; }
   .facility-links { padding: 0 16px 16px; flex-direction: column; align-items: flex-start; gap: 11px; }
+  .facility-page-link { margin: 0 16px 16px; }
   .county-help-cta { grid-template-columns: 1fr; gap: 19px; padding: 22px 18px; }
   .county-help-actions { grid-template-columns: 1fr; }
   .custody-intake-backdrop { padding: 0; place-items: end center; }
