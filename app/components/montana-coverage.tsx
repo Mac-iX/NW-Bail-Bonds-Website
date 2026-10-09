@@ -7,6 +7,7 @@ import {
   type DetentionFacility,
   getCountyDetention,
 } from "@/app/data/montana-detention";
+import { CITY_GUIDES, hasJailGuide } from "@/app/data/seo-pages";
 import { MONTANA_COUNTY_PATHS, MONTANA_STATE_OUTLINE } from "@/app/data/montana-counties";
 import { COUNTIES, EMAIL_ADDRESS, PHONE_DISPLAY, PHONE_LINK } from "@/app/lib/site";
 
@@ -31,6 +32,9 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
     return COUNTIES.filter((county) => county.toLowerCase().includes(cleanQuery));
   }, [query]);
   const countyDetention = getCountyDetention(selectedCounty);
+  const selectedCityGuide = CITY_GUIDES.find(
+    (guide) => guide.county === selectedCounty + " County",
+  );
   const selectedFacility = countyDetention.facilities.find(
     (facility) => facility.id === selectedFacilityId,
   );
@@ -114,6 +118,11 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
           <small>{selectedCounty === "Yellowstone" ? "Billings home county" : "Montana statewide service area"}</small>
         </div>
         <a className="coverage-call" href={`tel:${PHONE_LINK}`}>Ask about {selectedCounty} County <span>→</span></a>
+        {selectedCityGuide && (
+          <a className="coverage-city-link" href={"/locations/" + selectedCityGuide.slug}>
+            {selectedCityGuide.city} bail bonds guide <span>→</span>
+          </a>
+        )}
       </div>
 
       <div className="map-panel">
@@ -212,12 +221,12 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
                     )}
                     {facility.note && <small>{facility.note}</small>}
                   </button>
-                  {facility.pagePath && (
-                    <a className="facility-page-link" href={facility.pagePath}>
+                  {(facility.pagePath || hasJailGuide(facility.id)) && (
+                    <a className="facility-page-link" href={facility.pagePath ?? "/jails/" + facility.id}>
                       Bail bonds at {facility.name} <span>→</span>
                     </a>
                   )}
-                  {!compact && (facility.rosterUrl || facility.officialUrl) && (
+                  {(facility.rosterUrl || facility.officialUrl) && (
                     <div className="facility-links">
                       {facility.rosterUrl && (
                         <a href={facility.rosterUrl} target="_blank" rel="noreferrer">Search Current Inmates ↗</a>

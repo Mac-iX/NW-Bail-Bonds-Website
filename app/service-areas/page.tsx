@@ -11,7 +11,7 @@ import {
   type DetentionFacility,
   getCountyDetention,
 } from "@/app/data/montana-detention";
-import { hasJailGuide } from "@/app/data/seo-pages";
+import { CITY_GUIDES, hasJailGuide } from "@/app/data/seo-pages";
 import { BASE_URL } from "@/app/lib/site";
 
 export const metadata: Metadata = {
@@ -114,6 +114,11 @@ function getResourceUrl(facility: DetentionFacility) {
   return facility.rosterUrl ?? facility.officialUrl;
 }
 
+function getRegionCityGuides(counties: readonly CountyName[]) {
+  const countySet = new Set(counties.map((county) => county + " County"));
+  return CITY_GUIDES.filter((guide) => countySet.has(guide.county));
+}
+
 export default function ServiceAreasPage() {
   return (
     <main>
@@ -153,6 +158,15 @@ export default function ServiceAreasPage() {
               <div className="region-landmark-copy">
                 <h3>{region.title}</h3>
                 <p>{region.caption}</p>
+                {getRegionCityGuides(region.counties).length > 0 && (
+                  <div className="region-city-links">
+                    {getRegionCityGuides(region.counties).map((guide) => (
+                      <a className="text-link" href={"/locations/" + guide.slug} key={guide.slug}>
+                        {guide.city} bail bonds <span>→</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
                 <div className="region-resource-directory" id={regionIndex === 0 ? "regional-jail-resources" : undefined}>
                   <span className="region-resource-heading">County jail and detention resources</span>
                   <div className="region-resource-list">

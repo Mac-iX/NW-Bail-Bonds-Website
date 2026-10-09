@@ -4,6 +4,7 @@ import { PHONE_DISPLAY, PHONE_LINK, SITE_NAME } from "@/app/lib/site";
 const links = [
   { href: "/", label: "Home" },
   { href: "/jails", label: "Jail guides" },
+  { href: "/locations", label: "Locations" },
   { href: "/service-areas", label: "Service areas" },
   { href: "/about", label: "About" },
 ];
