@@ -192,7 +192,7 @@ export default function AboutPage() {
         </div>
         <div className="k9-support">
           <h3>Supporting the Missoula County Sheriff&apos;s Office K9</h3>
-          <p>A couple of years ago, Northwest helped buy a protective vest for a K9 with the Missoula County Sheriff&apos;s Office. The dog and its handler work the same Montana communities Northwest serves.</p>
+          <p>Northwest helped fund a protective vest for a K9 with the Missoula County Sheriff&apos;s Office. The dog and its handler serve the same Montana communities Northwest does.</p>
           <div className="k9-support-photos">
             <figure>
               <img
@@ -204,7 +204,7 @@ export default function AboutPage() {
                 loading="lazy"
                 decoding="async"
               />
-              <figcaption>Northwest helped buy a protective vest for this Missoula County Sheriff&apos;s Office K9.</figcaption>
+              <figcaption>Northwest helped fund the protective vest for this Missoula County Sheriff&apos;s Office K9.</figcaption>
             </figure>
             <figure>
               <img
