@@ -1,4 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/no-unescaped-entities, @next/next/no-img-element */
 import type { Metadata } from "next";
 import { InquirySection } from "@/app/components/inquiry-section";
 import { MontanaSceneBand } from "@/app/components/montana-scene-band";
@@ -145,6 +145,32 @@ export default function YellowstoneJailPage() {
           <li><strong>The bond is coordinated with the court or facility.</strong> Yellowstone County says bonds are handled through the appropriate court during regular business hours and can be handled at detention after hours.</li>
           <li><strong>Detention staff process release.</strong> The facility controls the release queue and timing.</li>
         </ol>
+        <div className="process-phone-row">
+          <figure>
+            <img
+              src="/images/marketing/northwest-bail-bonds-digital-process.jpg"
+              alt="A phone screen walking through the four steps to bail someone out of the Yellowstone County jail: jail alert, call 24/7, post bond from your phone, and out by morning."
+              title="Digital bail process from your phone"
+              width="1008"
+              height="1792"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>The four steps, done from a phone</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="/images/marketing/northwest-bail-bonds-esignature.jpg"
+              alt="A phone screen showing a bail bond being signed by e-signature."
+              title="Sign bail bond paperwork by e-signature"
+              width="1008"
+              height="1792"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Sign by e-signature, from anywhere</figcaption>
+          </figure>
+        </div>
         <p className="legal-note">General information only. Bond status and release timing can change and cannot be guaranteed.</p>
       </section>
 
@@ -158,6 +184,18 @@ export default function YellowstoneJailPage() {
       <section className="content-section prose-page" aria-labelledby="ycdf-local-title">
         <h2 id="ycdf-local-title">Billings-based help for YCDF</h2>
         <p>Northwest is based in Billings. For a Yellowstone County detention call, the first job is simple: verify the person, verify every bond or hold, explain the agreement, and coordinate the correct posting path without making the family guess.</p>
+        <figure className="process-desk-visual">
+          <img
+            src="/images/marketing/northwest-bail-bonds-contract-desk.jpg"
+            alt="A desk with bail bond paperwork and a contract, the work Northwest handles after the call."
+            title="Bail bond paperwork at the Northwest office"
+            width="1792"
+            height="1008"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>The paperwork, handled from the office</figcaption>
+        </figure>
       </section>
 
       <section className="faq-section" id="faq">

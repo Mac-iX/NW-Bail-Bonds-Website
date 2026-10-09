@@ -52,7 +52,7 @@ img { max-width: 100%; }
 .hero {
   position: relative; min-height: 720px; overflow: hidden; padding: 92px clamp(24px, 7vw, 112px) 108px;
   display: flex; align-items: center;
-  background: linear-gradient(90deg, rgba(3, 7, 10, .94) 0%, rgba(3, 7, 10, .78) 38%, rgba(3, 7, 10, .28) 62%, rgba(3, 7, 10, .04) 100%), linear-gradient(180deg, rgba(2,8,12,.02), rgba(2,8,12,.38)), url("/montana-city-hero.jpeg") center/cover no-repeat;
+  background: linear-gradient(90deg, rgba(3, 7, 10, .94) 0%, rgba(3, 7, 10, .78) 38%, rgba(3, 7, 10, .28) 62%, rgba(3, 7, 10, .04) 100%), linear-gradient(180deg, rgba(2,8,12,.02), rgba(2,8,12,.38)), url("/images/marketing/northwest-bail-bonds-phone-hero.jpg") center/cover no-repeat;
 }
 .hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, transparent 52%, var(--ink)); }
 .hero::after { content: ""; position: absolute; inset: -12%; pointer-events: none; background: radial-gradient(circle at 18% 48%, rgba(255,196,45,.16), transparent 24%); opacity: .55; animation: mountain-light 12s ease-in-out infinite alternate; }
@@ -198,6 +198,9 @@ img { max-width: 100%; }
 .facility-links { padding: 0 20px 16px; display: flex; flex-wrap: wrap; gap: 6px 22px; }
 .facility-links a { color: #dce2e5; font-size: 10px; font-weight: 650; letter-spacing: .045em; text-transform: uppercase; text-decoration: underline; text-decoration-color: rgba(255,196,45,.48); text-underline-offset: 4px; }
 .facility-links a:hover, .facility-links a:focus-visible { color: var(--sunset); }
+.facility-page-link { margin: 0 20px 16px; display: inline-flex; align-items: center; gap: 8px; color: var(--sunset); font-size: 12px; font-weight:700; letter-spacing: .05em; text-transform: uppercase; text-decoration: none; }
+.facility-page-link span { color: var(--copper); font-size: 16px; }
+.facility-page-link:hover, .facility-page-link:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
 .facility-routing-note { margin-top: 19px; padding: 20px; border-left: 3px solid var(--sunset); background: rgba(255,255,255,.035); }
 .facility-routing-note strong { font-family: var(--display); font-size: 22px; font-weight: 480; }
 .facility-routing-note p { margin: 8px 0 0; color: #aeb8bd; font-size: 12px; line-height: 1.65; }
@@ -489,6 +492,13 @@ img { max-width: 100%; }
 .about-impact-links { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px 30px; }
 .about-impact-links a { display: inline-flex; align-items: center; gap: 10px; color: #e5eaec; font-size: 12px; font-weight: 650; letter-spacing: .055em; text-transform: uppercase; }
 .about-impact-links span { color: var(--sunset); font-size: 18px; }
+.k9-support { margin-top: 58px; padding-top: 44px; border-top: 1px solid rgba(255,196,45,.32); }
+.k9-support h3 { margin: 0; font-family: var(--display); font-size: clamp(26px,3vw,36px); font-weight: 500; line-height: 1.05; }
+.k9-support > p { max-width: 720px; margin: 16px 0 30px; color: #98a4aa; font-size: 14px; line-height: 1.72; }
+.k9-support-photos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; max-width: 620px; }
+.k9-support-photos figure { margin: 0; border: 1px solid var(--line); border-top: 3px solid rgba(255,196,45,.74); background: #0c161e; }
+.k9-support-photos img { display: block; width: 100%; height: auto; }
+.k9-support-photos figcaption { padding: 13px 16px 14px; border-top: 1px solid var(--line); color: #cbd3d7; font-size: 10px; font-weight: 650; letter-spacing: .06em; line-height: 1.5; text-transform: uppercase; }
 .resource-section { display: grid; grid-template-columns: .65fr 1.35fr; gap: clamp(55px,8vw,120px); }
 .resource-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; border: 1px solid var(--line); background: var(--line); }
 .resource-grid > a { min-height: 330px; padding: 28px; display: flex; flex-direction: column; background: linear-gradient(145deg,#1c2328,#111519); }
@@ -692,6 +702,7 @@ img { max-width: 100%; }
   .about-impact-grid { grid-template-columns: 1fr; }
   .about-impact-grid article { min-height: 240px; }
   .about-impact-grid h3 { margin-bottom: 45px; }
+  .k9-support-photos { grid-template-columns: 1fr; }
   .resource-contact-cta, .contact-closing-section { grid-template-columns: 1fr; }
   .contact-community-photo { grid-column: auto; min-height: 460px; }
 }
@@ -733,6 +744,7 @@ img { max-width: 100%; }
   .detention-heading > small { max-width: none; text-align: left; }
   .facility-card > button { padding: 17px 16px 14px; }
   .facility-links { padding: 0 16px 16px; flex-direction: column; align-items: flex-start; gap: 11px; }
+  .facility-page-link { margin: 0 16px 16px; }
   .county-help-cta { grid-template-columns: 1fr; gap: 19px; padding: 22px 18px; }
   .county-help-actions { grid-template-columns: 1fr; }
   .custody-intake-backdrop { padding: 0; place-items: end center; }
@@ -838,3 +850,147 @@ img { max-width: 100%; }
 .photo-slot-frame small { max-width: 620px; color: #8f9aa0; font-size: 12px; line-height: 1.6; }
 .photo-slot figcaption { margin-top: 10px; color: #8d999f; font-size: 12px; }
 .prose-page .check-list li { color: #c3ccd1; font-size: 15px; line-height: 1.7; }
+
+/* Trust strip: crawlable credentials (mirrors the brand badge card). */
+.trust-strip {
+  margin: 0;
+  padding: 24px clamp(24px, 7vw, 112px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px 34px;
+  list-style: none;
+  border-top: 1px solid rgba(255,196,45,.16);
+  border-bottom: 1px solid var(--line);
+  background: #04080b;
+}
+.trust-strip li {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #e6ecee;
+  font-family: var(--display);
+  font-size: 12px;
+  font-weight: 520;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+.trust-strip li::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--sunset);
+  box-shadow: 0 0 12px rgba(255,196,45,.6);
+}
+.trust-strip .trust-rating { color: var(--sunset); }
+
+/* Digital bail reel section. */
+.digital-bail-section {
+  display: grid;
+  grid-template-columns: minmax(220px, .6fr) minmax(0, 1.4fr);
+  gap: clamp(40px, 7vw, 100px);
+  align-items: center;
+  padding: clamp(92px, 9vw, 142px) clamp(24px, 7vw, 112px);
+  background: radial-gradient(circle at 85% 12%, rgba(255,196,45,.1), transparent 28%), #05090c;
+}
+.digital-bail-visual { margin: 0; }
+.digital-bail-visual video {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 9/16;
+  margin: 0 auto;
+  border: 1px solid rgba(255,196,45,.28);
+  border-radius: 16px;
+  background: #000;
+  object-fit: cover;
+  box-shadow: 0 32px 70px rgba(0,0,0,.55);
+}
+.digital-bail-visual figcaption {
+  max-width: 400px;
+  margin: 16px auto 0;
+  color: #8d999f;
+  font-size: 11px;
+  line-height: 1.6;
+  text-align: center;
+}
+.digital-bail-copy h2 {
+  margin: 15px 0 0;
+  font-family: var(--display);
+  font-size: clamp(38px, 4.4vw, 62px);
+  font-weight: 420;
+  line-height: 1.02;
+  letter-spacing: -.008em;
+  text-wrap: balance;
+}
+.digital-bail-copy > p {
+  max-width: 560px;
+  margin: 27px 0 0;
+  color: #a5b0b5;
+  font-size: 16px;
+  line-height: 1.75;
+}
+.digital-bail-steps {
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+.digital-bail-steps li {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  color: #c9d1d5;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.digital-bail-steps li strong {
+  min-width: 26px;
+  color: var(--sunset);
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* Paired portrait phone graphics (jail page). */
+.process-phone-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin: 38px 0 8px;
+}
+.process-phone-row figure,
+.process-desk-visual {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-top: 3px solid rgba(255,196,45,.74);
+  background: #0c161e;
+}
+.process-phone-row img,
+.process-desk-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.process-phone-row figcaption,
+.process-desk-visual figcaption {
+  padding: 14px 16px 15px;
+  border-top: 1px solid var(--line);
+  color: #cbd3d7;
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: .06em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+.process-desk-visual {
+  margin: 34px 0 8px;
+}
+
+@media (max-width: 720px) {
+  .digital-bail-section { grid-template-columns: 1fr; padding: 78px 21px; }
+  .process-phone-row { grid-template-columns: 1fr; }
+}
