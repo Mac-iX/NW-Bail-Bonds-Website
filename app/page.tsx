@@ -33,11 +33,11 @@ const organizationSchema = {
   image: [
     {
       "@type": "ImageObject",
-      name: "Northwest Bail Bonds statewide Montana service",
-      url: `${BASE_URL}/montana-city-hero.jpeg`,
-      width: 1536,
-      height: 658,
-      caption: "Montana mountain community at sunset",
+      name: "Northwest Bail Bonds 24/7 digital bail service",
+      url: `${BASE_URL}/images/marketing/northwest-bail-bonds-phone-hero.jpg`,
+      width: 1792,
+      height: 1008,
+      caption: "Northwest Bail Bonds 24/7 phone answered around the clock, out by morning",
     },
     {
       "@type": "ImageObject",
@@ -139,6 +139,42 @@ export default function Home() {
             </a>
           </div>
           <p className="hero-note">Based in Billings · Serving all 56 Montana counties</p>
+        </div>
+      </section>
+
+      <ul className="trust-strip" aria-label="Northwest Bail Bonds credentials">
+        <li>Licensed</li>
+        <li>Bonded</li>
+        <li>Insured</li>
+        <li>24/7</li>
+        <li className="trust-rating">4.9★ Google reviews</li>
+        <li className="trust-rating">ThreeBestRated · Top 3</li>
+      </ul>
+
+      <section className="digital-bail-section" aria-labelledby="digital-bail-title">
+        <figure className="digital-bail-visual">
+          <video
+            src="/videos/northwest-bail-bonds-2am-call.mp4"
+            poster="/images/marketing/northwest-bail-bonds-answer-call.jpg"
+            playsInline
+            muted
+            loop
+            autoPlay
+            preload="metadata"
+            aria-label="Northwest Bail Bonds 2 a.m. call: from arrest to release on your phone"
+          />
+          <figcaption>The 2 a.m. call: how a bond gets posted from your phone</figcaption>
+        </figure>
+        <div className="digital-bail-copy">
+          <span className="section-label">Digital bail bonds</span>
+          <h2 id="digital-bail-title">Most of the work happens from your phone</h2>
+          <p>You don&apos;t have to drive anywhere. Call, sign by e-signature, and we post the bond at the jail. Most families never set foot in the facility.</p>
+          <ol className="digital-bail-steps">
+            <li><strong>1</strong> Tell us who is in custody and where.</li>
+            <li><strong>2</strong> We confirm the bond and explain the terms.</li>
+            <li><strong>3</strong> You sign by e-signature from anywhere.</li>
+            <li><strong>4</strong> We post bond and stay with you until release.</li>
+          </ol>
         </div>
       </section>
 

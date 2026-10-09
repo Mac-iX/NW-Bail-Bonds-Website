@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
 import { InquirySection } from "@/app/components/inquiry-section";
 import { MontanaSceneBand } from "@/app/components/montana-scene-band";
@@ -166,6 +167,32 @@ export default function YellowstoneJailPage() {
           <li><strong>We post the bond at the facility.</strong> If there are Justice Court charges, each case gets its own bond. That is county policy, and we handle it.</li>
           <li><strong>Jail staff process the release.</strong> We stay on the phone with you until it is done, then walk through court dates so the bond stays in good standing.</li>
         </ol>
+        <div className="process-phone-row">
+          <figure>
+            <img
+              src="/images/marketing/northwest-bail-bonds-digital-process.jpg"
+              alt="A phone screen walking through the four steps to bail someone out of the Yellowstone County jail: jail alert, call 24/7, post bond from your phone, and out by morning."
+              title="Digital bail process from your phone"
+              width="1008"
+              height="1792"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>The four steps, done from a phone</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="/images/marketing/northwest-bail-bonds-esignature.jpg"
+              alt="A phone screen showing a bail bond being signed by e-signature."
+              title="Sign bail bond paperwork by e-signature"
+              width="1008"
+              height="1792"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Sign by e-signature, from anywhere</figcaption>
+          </figure>
+        </div>
         <p className="legal-note">General information only. Release timing is controlled by the detention facility and cannot be guaranteed.</p>
       </section>
 
@@ -189,6 +216,18 @@ export default function YellowstoneJailPage() {
         />
         <p>When a bond needs to be posted at 2 a.m., the agent has to drive to King Avenue East. Our office is in Billings, a short drive away. Out-of-state agencies with a Billings mailing address route your call to whoever is closest, and that can be hours.</p>
         <p>Ask any bondsman where their agent is right now and how long it takes them to reach the jail. You deserve a straight answer.</p>
+        <figure className="process-desk-visual">
+          <img
+            src="/images/marketing/northwest-bail-bonds-contract-desk.jpg"
+            alt="A desk with bail bond paperwork and a contract, the work Northwest handles after the call."
+            title="Bail bond paperwork at the Northwest office"
+            width="1792"
+            height="1008"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>The paperwork, handled from the office</figcaption>
+        </figure>
       </section>
 
       <section className="faq-section" id="faq">
