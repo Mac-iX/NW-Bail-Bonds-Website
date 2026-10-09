@@ -190,6 +190,36 @@ export default function AboutPage() {
           <a href={FACEBOOK_URL} target="_blank" rel="noreferrer">See Northwest in the community <span>↗</span></a>
           <a href="/resources#licensing">Licensing, legal resources, and disclosures <span>→</span></a>
         </div>
+        <div className="k9-support">
+          <h3>Supporting the Missoula County Sheriff&apos;s Office K9</h3>
+          <p>A couple of years ago, Northwest helped buy a protective vest for a K9 with the Missoula County Sheriff&apos;s Office. The dog and its handler work the same Montana communities Northwest serves.</p>
+          <div className="k9-support-photos">
+            <figure>
+              <img
+                src="/images/real/missoula-county-sheriff-k9.jpg"
+                alt="A Missoula County Sheriff's Office K9 wearing a protective vest in a grassy field."
+                title="Missoula County Sheriff's Office K9 in a Northwest-funded vest"
+                width="738"
+                height="1600"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Northwest helped buy a protective vest for this Missoula County Sheriff&apos;s Office K9.</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="/images/real/missoula-county-sheriff-k9-training.jpg"
+                alt="A Missoula County Sheriff's Office K9 doing bite-work training with a handler in a field."
+                title="Missoula County Sheriff's Office K9 training"
+                width="738"
+                height="1600"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>A Missoula County Sheriff&apos;s Office K9 during training.</figcaption>
+            </figure>
+          </div>
+        </div>
       </section>
       <InquirySection
         title="Need help with a bond?"
