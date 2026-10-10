@@ -166,21 +166,21 @@ test("uses only the new layered transition artwork across visible pages", async 
     const html = await render(route);
     assert.doesNotMatch(html, /scene-(?:billings|helena|missoula|prairie)\.svg/);
   }
-  assert.match(await render("/"), /scene-detention-stencil\.png/);
-  assert.match(await render("/about"), /scene-city-stencil\.png/);
-  assert.match(await render("/service-areas"), /scene-river-stencil\.png/);
-  assert.match(await render("/resources"), /scene-courthouse-stencil\.png/);
+  assert.match(await render("/"), /scene-detention-stencil\.webp/);
+  assert.match(await render("/about"), /scene-city-stencil\.webp/);
+  assert.match(await render("/service-areas"), /scene-river-stencil\.webp/);
+  assert.match(await render("/resources"), /scene-courthouse-stencil\.webp/);
 });
 
 test("renders all six Montana regional assets and purposeful Home placements", async () => {
   const serviceAreas = await render("/service-areas");
   const regionalAssets = [
-    "northwest-bail-bonds-billings-rimrocks.png",
-    "northwest-bail-bonds-butte-mining-headframe.png",
-    "northwest-bail-bonds-helena-montana-state-capitol.png",
-    "northwest-bail-bonds-glacier-wild-goose-island.png",
-    "northwest-bail-bonds-makoshika-badlands.png",
-    "northwest-bail-bonds-fort-peck-dam.png",
+    "northwest-bail-bonds-billings-rimrocks.webp",
+    "northwest-bail-bonds-butte-mining-headframe.webp",
+    "northwest-bail-bonds-helena-montana-state-capitol.webp",
+    "northwest-bail-bonds-glacier-wild-goose-island.webp",
+    "northwest-bail-bonds-makoshika-badlands.webp",
+    "northwest-bail-bonds-fort-peck-dam.webp",
   ];
   for (const asset of regionalAssets) assert.match(serviceAreas, new RegExp(asset.replaceAll(".", "\\.")));
   assert.equal((serviceAreas.match(/class="region-landmark"/g) ?? []).length, 6);
@@ -189,9 +189,9 @@ test("renders all six Montana regional assets and purposeful Home placements", a
   assert.match(serviceAreas, /alt="Fort Peck Dam and reservoir in northeastern Montana/);
 
   const home = await render("/");
-  assert.match(home, /northwest-bail-bonds-glacier-wild-goose-island\.png/);
+  assert.match(home, /northwest-bail-bonds-glacier-wild-goose-island\.webp/);
   assert.match(home, /northwest-bail-bonds-support-at-detention-facility\.jpeg/);
-  assert.doesNotMatch(home, /northwest-bail-bonds-butte-mining-headframe\.png/);
+  assert.doesNotMatch(home, /northwest-bail-bonds-butte-mining-headframe\.webp/);
 });
 
 test("places real Northwest photography by narrative purpose with descriptive metadata", async () => {

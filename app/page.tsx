@@ -160,7 +160,7 @@ export default function Home() {
             muted
             loop
             autoPlay
-            preload="metadata"
+            preload="auto"
             aria-label="Northwest Bail Bonds 2 a.m. call: from arrest to release on your phone"
           />
           <figcaption>The 2 a.m. call: how a bond gets posted from your phone</figcaption>
@@ -235,7 +235,7 @@ export default function Home() {
           <figure className="credential-landmark">
             <img
               className="credential-scene-art"
-              src="/scene-courthouse-stencil.png"
+              src="/scene-courthouse-stencil.webp"
               alt="Layered courthouse and Montana landscape illustration representing producer licensing and Bond agreements."
               title="Montana bail bond licensing and written agreements"
               width="2172"

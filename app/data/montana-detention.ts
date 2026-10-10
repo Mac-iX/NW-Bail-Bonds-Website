@@ -49,7 +49,7 @@ const COUNTY_RESOURCES = {
       kind: "County detention center",
       phone: "(406) 665-9792",
       officialUrl: "https://www.bighorncountymt.gov/239/Detention",
-      rosterUrl: "https://www.bighorncountymt.gov/240/Current-Inmate-List",
+      rosterUrl: "https://www.bighorncountymt.gov/239/Detention",
     },
   ],
   Blaine: [

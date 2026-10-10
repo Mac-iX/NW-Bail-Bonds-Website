@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities, @next/next/no-img-element */
 import type { Metadata } from "next";
+import Link from "next/link";
 import { InquirySection } from "@/app/components/inquiry-section";
 import { MontanaSceneBand } from "@/app/components/montana-scene-band";
 import { PageHero } from "@/app/components/page-hero";
@@ -216,6 +217,7 @@ export default function YellowstoneJailPage() {
           <a href={FACTS.inmateSearch} target="_blank" rel="noreferrer"><span>Detention</span><strong>Inmate search</strong><small>Current custody information at the Yellowstone County Detention Facility.</small></a>
           <a href={FACTS.courtDate} target="_blank" rel="noreferrer"><span>Justice Court</span><strong>Find a court date</strong><small>Look up the next appearance after release.</small></a>
           <a href={FACTS.justiceCourt} target="_blank" rel="noreferrer"><span>Justice Court</span><strong>Bond posting policy</strong><small>Official Yellowstone County Justice Court policy.</small></a>
+          <Link href="/locations/billings-bail-bonds"><span>Northwest Bail Bonds</span><strong>Billings bail bonds</strong><small>City guide with 24/7 local help and the remote-start process.</small></Link>
         </div>
       </section>
 

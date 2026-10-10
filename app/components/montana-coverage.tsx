@@ -101,7 +101,7 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
         {compact && (
           <figure className="coverage-landmark">
             <img
-              src="/images/regions/northwest-bail-bonds-glacier-wild-goose-island.png"
+              src="/images/regions/northwest-bail-bonds-glacier-wild-goose-island.webp"
               alt="Wild Goose Island on Saint Mary Lake in Glacier National Park, representing Northwest Bail Bonds' Missoula, Kalispell, and Western Montana service area."
               title="Missoula, Kalispell & Western Montana Service Area"
               width="1254"

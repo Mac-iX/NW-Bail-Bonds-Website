@@ -6,7 +6,7 @@ import { MontanaSceneBand } from "@/app/components/montana-scene-band";
 import { PageHero } from "@/app/components/page-hero";
 import { SiteFooter } from "@/app/components/site-footer";
 import { SiteHeader } from "@/app/components/site-header";
-import { JAIL_GUIDES, getJailGuide } from "@/app/data/seo-pages";
+import { CITY_GUIDES, JAIL_GUIDES, getJailGuide } from "@/app/data/seo-pages";
 import { BASE_URL, PHONE_DISPLAY, PHONE_LINK, SITE_NAME } from "@/app/lib/site";
 
 export function generateStaticParams() {
@@ -38,6 +38,7 @@ export default async function JailGuidePage({ params }: { params: Promise<{ slug
   if (!guide) notFound();
 
   const path = "/jails/" + guide.slug;
+  const cityGuide = CITY_GUIDES.find((city) => city.facilitySlug === guide.slug);
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -193,6 +194,13 @@ export default async function JailGuidePage({ params }: { params: Promise<{ slug
             <strong>Montana jail directory</strong>
             <small>Open other jail-specific bail bond guides.</small>
           </a>
+          {cityGuide && (
+            <a href={"/locations/" + cityGuide.slug}>
+              <span>{cityGuide.county}</span>
+              <strong>{cityGuide.city} bail bonds</strong>
+              <small>City guide with 24/7 local help and the remote-start process.</small>
+            </a>
+          )}
         </div>
       </section>
 
