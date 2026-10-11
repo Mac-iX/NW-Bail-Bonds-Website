@@ -1016,7 +1016,17 @@ img { max-width: 100%; }
   padding: clamp(92px, 9vw, 142px) clamp(24px, 7vw, 112px);
   background: radial-gradient(circle at 85% 12%, rgba(255,196,45,.1), transparent 28%), #05090c;
 }
-.digital-bail-visual { margin: 0; }
+.digital-bail-visual { margin: 0; display: flex; justify-content: center; }
+.digital-bail-visual img {
+  display: block;
+  width: min(280px, 32vw);
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border: 1px solid rgba(255,196,45,.28);
+  border-radius: 16px;
+  background: #000;
+  box-shadow: 0 32px 70px rgba(0,0,0,.55);
+}
 .digital-bail-visual video {
   display: block;
   width: 100%;
