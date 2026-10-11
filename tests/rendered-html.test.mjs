@@ -29,8 +29,8 @@ test("uses the configured public URL for canonical and Open Graph metadata", asy
 
 test("renders the approved homepage lead, concise help form, and a visible Home navigation link", async () => {
   const html = await render("/");
-  assert.match(html, /A Bail Bond Company Built Around Customer Service/);
-  assert.match(html, /Northwest believes urgent service can still be personal\./);
+  assert.match(html, /Montana bail bonds, out by morning/);
+  assert.match(html, /Start with a call\. Northwest confirms custody/);
   assert.match(html, /<a[^>]+href="\/"[^>]*>Home<\/a>/);
   assert.match(html, /We&#x27;re here to help/);
   assert.match(html, /Ask Northwest for help/);
@@ -226,10 +226,13 @@ test("redirects the legacy How Bail Works address to the current guide", async (
   assert.match(response.headers.get("location") ?? "", /\/how-to-bail-someone-out$/);
 });
 
-test("redirects the licensing shortcut to the verified disclosure section", async () => {
+test("renders the licensing page with verification content", async () => {
   const response = await request("/licensing", { headers: { accept: "text/html" } });
-  assert.equal(response.status, 307);
-  assert.match(response.headers.get("location") ?? "", /\/resources#licensing$/);
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Know who you&#x27;re dealing with before you sign/);
+  assert.match(html, /Montana regulates surety bail bond producers/);
+  assert.match(html, /csimt\.gov\/insurance\/licensing\//);
 });
 
 test("keeps the inquiry form on every primary page and removes stranded guide links", async () => {
