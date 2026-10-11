@@ -4,7 +4,7 @@ import { MontanaSceneBand } from "@/app/components/montana-scene-band";
 import { PageHero } from "@/app/components/page-hero";
 import { SiteFooter } from "@/app/components/site-footer";
 import { SiteHeader } from "@/app/components/site-header";
-import { BASE_URL, PHONE_DISPLAY, PHONE_LINK, SITE_NAME } from "@/app/lib/site";
+import { BASE_URL, EMAIL_ADDRESS, PHONE_DISPLAY, PHONE_LINK, SITE_NAME } from "@/app/lib/site";
 
 export const metadata: Metadata = {
   title: "Montana Bail Bond Licensing & Producer Verification",
