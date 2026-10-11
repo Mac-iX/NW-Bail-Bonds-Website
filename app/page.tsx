@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+/* eslint-disable @next/next/no-img-element, @next/next/no-html-link-for-pages */
 import { HelpRequestForm } from "@/app/components/help-request-form";
 import { MontanaSceneBand } from "@/app/components/montana-scene-band";
 import { MontanaCoverage } from "@/app/components/montana-coverage";
@@ -141,7 +141,7 @@ export default function Home() {
         <div className="hero-reel">
           <video
             src="/videos/northwest-bail-bonds-2am-call.mp4"
-            poster="/images/marketing/northwest-bail-bonds-answer-call.jpg"
+            poster="/images/marketing/northwest-bail-bonds-2am-call-poster.jpg"
             playsInline
             muted
             loop
@@ -176,8 +176,9 @@ export default function Home() {
           <figcaption>24/7 phone service · From the first call to release</figcaption>
         </figure>
         <div className="digital-bail-copy">
-          <span className="section-label">Digital bail bonds</span>
-          <h2 id="digital-bail-title">Most of the work happens from your phone</h2>
+                  <span className="promo-tag">24/7 phone service</span>
+                  <span className="section-label">Digital bail bonds</span>
+                  <h2 id="digital-bail-title">Most of the work happens from your phone</h2>
           <p>You don&apos;t have to drive anywhere. Call, sign by e-signature, and we post the bond at the jail. Most families never set foot in the facility.</p>
           <ol className="digital-bail-steps">
             <li><strong>1</strong> Tell us who is in custody and where.</li>
@@ -223,7 +224,7 @@ export default function Home() {
         <figure className="mobile-hero-visual">
           <video
             src="/videos/northwest-bail-bonds-2am-call.mp4"
-            poster="/images/marketing/northwest-bail-bonds-answer-call.jpg"
+            poster="/images/marketing/northwest-bail-bonds-2am-call-poster.jpg"
             playsInline
             muted
             loop
@@ -261,27 +262,29 @@ export default function Home() {
           </div>
           <p className="founder-story-callout">Northwest began with Joel Graf&apos;s own experience of second chances, faith, and service.</p>
           <div className="people-links">
-            <a className="text-link" href="/about#joel-story">Meet Joel and read the founder story <span>→</span></a>
-            <a className="text-link" href={FACEBOOK_URL} target="_blank" rel="noreferrer">Follow on Facebook <span>↗</span></a>
-          </div>
+                      <a className="text-link" href="/about#joel-story">Meet Joel and read the founder story <span>→</span></a>
+                      <a className="text-link" href="/jails">Montana jail and detention guides <span>→</span></a>
+                    </div>
         </div>
       </section>
 
       <section className="help-section" id="contact">
         <div className="help-copy">
           <h2>Choose the way you want to reach us</h2>
-          <p>Call for the quickest response, send an email, or use Facebook Messenger. The Contact page keeps every verified option in one place.</p>
-          <div className="direct-line">
-            <span>Direct line</span>
-            <a href={`tel:${PHONE_LINK}`}>{PHONE_DISPLAY}</a>
-            <small>Answered 24 hours a day</small>
-          </div>
-        </div>
-        <div className="contact-choice-card">
-          <a href={`mailto:${EMAIL_ADDRESS}?subject=Montana%20Bail%20Bond%20help`}><strong>Email Northwest</strong><span>{EMAIL_ADDRESS} →</span></a>
-          <a href={FACEBOOK_URL} target="_blank" rel="noreferrer"><strong>Facebook Messenger</strong><span>Open the official page ↗</span></a>
-          <a href="/contact"><strong>Contact & reviews</strong><span>See every option →</span></a>
-        </div>
+          <p>Call for the quickest response, send an email, or jump straight to the jail, city, and county pages that answer the most common questions.</p>
+                    <div className="direct-line">
+                      <span>Direct line</span>
+                      <a href={`tel:${PHONE_LINK}`}>{PHONE_DISPLAY}</a>
+                      <small>Answered 24 hours a day</small>
+                    </div>
+                  </div>
+                  <div className="contact-choice-card">
+                    <a href={`mailto:${EMAIL_ADDRESS}?subject=Montana%20Bail%20Bond%20help`}><strong>Email Northwest</strong><span>{EMAIL_ADDRESS} →</span></a>
+                    <a href="/jails"><strong>Jail guides</strong><span>Every Montana facility →</span></a>
+                    <a href="/locations/billings-bail-bonds"><strong>City bail bonds</strong><span>Billings and beyond →</span></a>
+                    <a href="/service-areas"><strong>Service areas</strong><span>All 56 counties →</span></a>
+                    <a href="/contact"><strong>Contact &amp; reviews</strong><span>See every option →</span></a>
+                  </div>
       </section>
 
       <section className="faq-section" id="faq">

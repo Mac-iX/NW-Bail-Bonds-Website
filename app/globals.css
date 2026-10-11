@@ -58,7 +58,7 @@ img { max-width: 100%; }
   grid-template-columns: minmax(0, 1fr) minmax(240px, .9fr);
   align-items: center;
   gap: clamp(36px, 5vw, 80px);
-  background: linear-gradient(90deg, rgba(3, 7, 10, .94) 0%, rgba(3, 7, 10, .78) 38%, rgba(3, 7, 10, .28) 62%, rgba(3, 7, 10, .04) 100%), linear-gradient(180deg, rgba(2,8,12,.02), rgba(2,8,12,.38)), url('/images/marketing/northwest-bail-bonds-phone-hero.jpg') center/cover no-repeat;
+  background: linear-gradient(90deg, rgba(3, 7, 10, .94) 0%, rgba(3, 7, 10, .78) 38%, rgba(3, 7, 10, .28) 62%, rgba(3, 7, 10, .04) 100%), linear-gradient(180deg, rgba(2,8,12,.02), rgba(2,8,12,.38)), url('/northwest-hero-art.png') center/cover no-repeat;
 }
 .hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, transparent 52%, var(--ink)); }
 .hero::after { content: ""; position: absolute; inset: -12%; pointer-events: none; background: radial-gradient(circle at 18% 48%, rgba(255,196,45,.16), transparent 24%); opacity: .55; animation: mountain-light 12s ease-in-out infinite alternate; }
@@ -831,7 +831,7 @@ img { max-width: 100%; }
   .brand { width: 148px; min-height: 70px; }
   .brand-logo { width: 140px; height: auto; }
   .header-call { display: none; }
-  .hero { min-height: 650px; padding: 67px 21px 82px; background: linear-gradient(180deg, rgba(3,7,10,.82) 0%, rgba(3,7,10,.78) 45%, rgba(3,7,10,.88) 100%), url("/images/marketing/northwest-bail-bonds-phone-hero.jpg") 68% center/cover no-repeat; }
+  .hero { min-height: 650px; padding: 67px 21px 82px; background: linear-gradient(180deg, rgba(3,7,10,.82) 0%, rgba(3,7,10,.78) 45%, rgba(3,7,10,.88) 100%), url("/northwest-hero-art.png") 68% center/cover no-repeat; }
   .hero-copy { width: 100%; }
   .hero-lede, .hero-note { text-shadow: 0 2px 14px rgba(0,0,0,.75); }
   .eyebrow { text-shadow: 0 2px 12px rgba(0,0,0,.8); }
@@ -1019,8 +1019,8 @@ img { max-width: 100%; }
 .digital-bail-visual { margin: 0; display: flex; justify-content: center; }
 .digital-bail-visual img {
   display: block;
-  width: min(280px, 32vw);
-  aspect-ratio: 9 / 16;
+  width: min(520px, 58vw);
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   border: 1px solid rgba(255,196,45,.28);
   border-radius: 16px;
@@ -1118,8 +1118,68 @@ img { max-width: 100%; }
   text-transform: uppercase;
 }
 .process-desk-visual {
-  margin: 34px 0 8px;
+  margin: 34px auto 8px;
+  max-width: min(560px, 72vw);
 }
+
+/* Portrait phone graphic, kept small (jail/city pages). */
+.process-phone-visual {
+  margin: 34px auto 8px;
+  max-width: min(280px, 46vw);
+  border: 1px solid var(--line);
+  border-top: 3px solid rgba(255,196,45,.74);
+  background: #0c161e;
+}
+.process-phone-visual img { display: block; width: 100%; height: auto; }
+.process-phone-visual figcaption {
+  padding: 14px 16px 15px;
+  border-top: 1px solid var(--line);
+  color: #cbd3d7;
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: .06em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+/* Promo tag for the dedicated 24/7 advertisement section. */
+.promo-tag {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 5px 12px;
+  border: 1px solid rgba(255,196,45,.45);
+  color: var(--sunset);
+  font-family: var(--display);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+/* External resource links (jail, location, service-area pages). */
+.external-links-row { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 18px; }
+.external-links-row a {
+  color: #dce2e5;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-decoration-color: rgba(255,196,45,.48);
+  text-underline-offset: 4px;
+}
+
+/* Facility cards under the map: name links to its page. */
+.facility-card { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; padding: 18px 20px 15px; cursor: pointer; }
+.facility-card > button { width: auto; padding: 0; }
+.facility-card > button span { margin: 0; }
+.facility-name-link { display: inline-flex; align-items: center; gap: 8px; color: #f2f5f6; }
+.facility-name-link strong { font-family: var(--display); font-size: 24px; font-weight: 480; line-height: 1.08; }
+.facility-name-link > span { color: var(--sunset); font-size: 18px; }
+.facility-name-link:hover strong, .facility-name-link:focus-visible strong { color: var(--sunset); text-decoration: underline; text-decoration-color: rgba(255,196,45,.5); text-underline-offset: 4px; }
+.facility-name-static { font-family: var(--display); font-size: 24px; font-weight: 480; line-height: 1.08; color: #f2f5f6; }
+.facility-card > small { color: #a2adb2; font-size: 11px; line-height: 1.5; }
+.facility-card .facility-links { padding: 6px 0 0; }
 
 /* Mobile hero band: reel + copy for home and jail/location pages. */
 .mobile-hero-band {

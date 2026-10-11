@@ -201,31 +201,42 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
             <div className="facility-list" role="radiogroup" aria-label={`Jail and detention resources for ${selectedCounty} County`}>
               {countyDetention.facilities.map((facility) => (
                 <article
-                  className={selectedFacilityId === facility.id ? "facility-card selected" : "facility-card"}
-                  key={facility.id}
-                >
-                  <button
-                    type="button"
-                    role="radio"
-                    aria-checked={selectedFacilityId === facility.id}
-                    onClick={() => setSelectedFacilityId(facility.id)}
-                  >
-                    <span>{facility.kind}</span>
-                    <strong>{facility.name}</strong>
-                    {(facility.city || facility.phone) && (
-                      <small>
-                        {facility.city ? `${facility.city}, Montana` : ""}
-                        {facility.city && facility.phone ? " · " : ""}
-                        {facility.phone || ""}
-                      </small>
-                    )}
-                    {facility.note && <small>{facility.note}</small>}
-                  </button>
-                  {(facility.pagePath || hasJailGuide(facility.id)) && (
-                    <a className="facility-page-link" href={facility.pagePath ?? "/jails/" + facility.id}>
-                      Bail bonds at {facility.name} <span>→</span>
-                    </a>
-                  )}
+                                  className={selectedFacilityId === facility.id ? "facility-card selected" : "facility-card"}
+                                  key={facility.id}
+                                  onClick={() => setSelectedFacilityId(facility.id)}
+                                >
+                                  <button
+                                    type="button"
+                                    role="radio"
+                                    aria-checked={selectedFacilityId === facility.id}
+                                    aria-label={`Select ${facility.name}`}
+                                    onClick={(event) => {
+                                      event.stopPropagation();
+                                      setSelectedFacilityId(facility.id);
+                                    }}
+                                  >
+                                    <span>{facility.kind}</span>
+                                  </button>
+                                  {(() => {
+                                    const jailPage = facility.pagePath ?? (hasJailGuide(facility.id) ? "/jails/" + facility.id : null);
+                                    const locationPage = selectedCityGuide ? "/locations/" + selectedCityGuide.slug : null;
+                                    const nameHref = jailPage ?? locationPage;
+                                    return nameHref ? (
+                                      <a className="facility-name-link" href={nameHref}>
+                                        <strong>{facility.name}</strong><span>→</span>
+                                      </a>
+                                    ) : (
+                                      <strong className="facility-name-static">{facility.name}</strong>
+                                    );
+                                  })()}
+                                  {(facility.city || facility.phone) && (
+                                    <small>
+                                      {facility.city ? `${facility.city}, Montana` : ""}
+                                      {facility.city && facility.phone ? " · " : ""}
+                                      {facility.phone || ""}
+                                    </small>
+                                  )}
+                                  {facility.note && <small>{facility.note}</small>}
                   {(facility.rosterUrl || facility.officialUrl) && (
                     <div className="facility-links">
                       {facility.rosterUrl && (

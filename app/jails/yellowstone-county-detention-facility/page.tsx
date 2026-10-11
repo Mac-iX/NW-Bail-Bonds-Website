@@ -55,7 +55,20 @@ export const metadata: Metadata = {
   title: "Yellowstone County Jail Bail Bonds | Billings, MT",
   description: "How to bail someone out of the Yellowstone County Detention Facility at " + FACTS.street + ", Billings. Inmate search, booking phone, and 24/7 help from Northwest Bail Bonds: " + PHONE_DISPLAY + ".",
   alternates: { canonical: PATH },
-  openGraph: { url: PATH, title: "Bail Bonds at the " + FACILITY },
+  openGraph: {
+    url: PATH,
+    title: "Bail Bonds at the " + FACILITY,
+    description:
+      "Digital bail bonds for the Yellowstone County Detention Facility: call " + PHONE_DISPLAY + " 24/7, sign by e-signature, and post bond from your phone.",
+    images: [
+      {
+        url: "/images/marketing/northwest-bail-bonds-digital-process.jpg",
+        width: 1008,
+        height: 1792,
+        alt: "Digital bail from your phone at the Yellowstone County Detention Facility: call 24/7, sign by e-signature, and post bond.",
+      },
+    ],
+  },
 };
 
 const schema = {
@@ -150,36 +163,24 @@ export default function YellowstoneJailPage() {
           <li><strong>The bond is coordinated with the court or facility.</strong> Yellowstone County says bonds are handled through the appropriate court during regular business hours and can be handled at detention after hours.</li>
           <li><strong>Detention staff process release.</strong> The facility controls the release queue and timing.</li>
         </ol>
-        <figure className="process-desk-visual">
-          <img
-            src="/images/marketing/northwest-bail-bonds-digital-process.jpg"
-            alt="Four steps to bail someone out of the Yellowstone County jail from your phone: jail alert, call 24/7, post bond from your phone, and out by morning."
-            title="Digital bail process from your phone"
-            width="1008"
-            height="1792"
-            loading="lazy"
-            decoding="async"
-          />
-          <figcaption>The four steps, done from your phone</figcaption>
-        </figure>
+        <figure className="process-phone-visual">
+                  <img
+                    src="/images/marketing/northwest-bail-bonds-digital-process.jpg"
+                    alt="Four steps to bail someone out of the Yellowstone County jail from your phone: get the jail alert, call Northwest 24/7, sign the paperwork by e-signature, and post bond from your phone."
+                    title="Digital bail from your phone: call, e-signature, post bond"
+                    width="1008"
+                    height="1792"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption>Digital bail from your phone: call, e-sign, post bond</figcaption>
+                </figure>
         <p className="legal-note">General information only. Bond status and release timing can change and cannot be guaranteed.</p>
       </section>
 
       <section className="content-section prose-page" aria-labelledby="ycdf-arrive-title">
         <h2 id="ycdf-arrive-title">Before you drive to the facility</h2>
         <p>Call first. Have the person&apos;s full name and booking number if you have it. Northwest can tell you whether the customer side of the bond can begin remotely and whether your physical presence is actually needed.</p>
-        <figure className="process-desk-visual">
-          <img
-            src="/images/marketing/northwest-bail-bonds-esignature.jpg"
-            alt="A phone screen showing a bail bond being signed by e-signature from anywhere."
-            title="Sign bail bond paperwork by e-signature"
-            width="1008"
-            height="1792"
-            loading="lazy"
-            decoding="async"
-          />
-          <figcaption>Sign by e-signature, from anywhere — no drive to the jail required</figcaption>
-        </figure>
         <p>Visiting rules are separate from bail. See the county&apos;s <a href={FACTS.visitation} target="_blank" rel="noreferrer">visitation page</a> and <a href={FACTS.faq} target="_blank" rel="noreferrer">detention FAQ</a>.</p>
         <p><a className="text-link" href="/digital-bail-bonds">How digital bail bond paperwork works <span>→</span></a></p>
       </section>

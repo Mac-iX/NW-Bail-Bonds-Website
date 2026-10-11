@@ -114,18 +114,18 @@ export default async function CityBailBondsPage({ params }: { params: Promise<{ 
       <section className="content-section prose-page">
         <h2>Starting the bond remotely</h2>
         <p>You do not need to drive to a jail before you know whether your presence is required. Call first. Northwest can gather the basic information, explain the agreement, and use electronic paperwork when appropriate.</p>
-        <figure className="process-desk-visual">
-          <img
-            src="/images/marketing/northwest-bail-bonds-phone-hero.jpg"
-            alt="Northwest Bail Bonds 24/7 phone answered around the clock, out by morning"
-            title="24/7 phone service"
-            width="1792"
-            height="1008"
-            loading="lazy"
-            decoding="async"
-          />
-          <figcaption>24/7 phone service · From the first call to release</figcaption>
-        </figure>
+        <figure className="process-phone-visual">
+                  <img
+                    src="/images/marketing/northwest-bail-bonds-esignature.jpg"
+                    alt="A Montana bail bond agreement being signed by e-signature from a phone, no drive to the jail required."
+                    title="Sign the bail bond agreement by e-signature"
+                    width="1008"
+                    height="1792"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption>Sign by e-signature, from anywhere</figcaption>
+                </figure>
         <p><a className="text-link" href="/digital-bail-bonds">See how digital bail bond paperwork works <span>→</span></a></p>
       </section>
 

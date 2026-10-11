@@ -11,6 +11,7 @@ type PageHeroProps = {
   cta?: boolean;
   visualSrc?: string;
   visualType?: "reel" | "image";
+  visualPoster?: string;
   visualAlt?: string;
   visualCaption?: string;
 };
@@ -23,6 +24,7 @@ export function PageHero({
   cta = true,
   visualSrc,
   visualType = "image",
+  visualPoster,
   visualAlt = "",
   visualCaption = "",
 }: PageHeroProps) {
@@ -45,7 +47,7 @@ export function PageHero({
           {visualType === "reel" ? (
             <video
               src={visualSrc}
-              poster="/images/marketing/northwest-bail-bonds-answer-call.jpg"
+              poster={visualPoster ?? "/images/marketing/northwest-bail-bonds-2am-call-poster.jpg"}
               playsInline
               muted
               loop

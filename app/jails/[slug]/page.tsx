@@ -164,17 +164,17 @@ export default async function JailGuidePage({ params }: { params: Promise<{ slug
         <h2>Starting the bond remotely</h2>
         <p>You do not need to drive to a jail before you know whether your presence is required. Call first. Northwest can gather the basic information, explain the agreement, and use electronic paperwork when appropriate.</p>
         <figure className="process-desk-visual">
-          <img
-            src="/images/marketing/northwest-bail-bonds-phone-hero.jpg"
-            alt="Northwest Bail Bonds 24/7 phone answered around the clock, out by morning"
-            title="24/7 phone service"
-            width="1792"
-            height="1008"
-            loading="lazy"
-            decoding="async"
-          />
-          <figcaption>24/7 phone service · From the first call to release</figcaption>
-        </figure>
+                  <img
+                    src="/images/marketing/northwest-bail-bonds-answer-call.jpg"
+                    alt="A Northwest Bail Bonds agent answering a 24/7 call to start a Montana bail bond."
+                    title="Every call answered, day or night"
+                    width="1792"
+                    height="1008"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption>Every call answered · Digital bail starts with one phone call</figcaption>
+                </figure>
         <p><a className="text-link" href="/digital-bail-bonds">See how digital bail bond paperwork works <span>→</span></a></p>
       </section>
 
