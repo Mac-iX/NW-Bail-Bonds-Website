@@ -11,7 +11,7 @@ import {
   type DetentionFacility,
   getCountyDetention,
 } from "@/app/data/montana-detention";
-import { hasJailGuide } from "@/app/data/seo-pages";
+import { CITY_GUIDES, hasJailGuide } from "@/app/data/seo-pages";
 import { BASE_URL } from "@/app/lib/site";
 
 export const metadata: Metadata = {
@@ -25,7 +25,7 @@ const regions = [
     title: "Billings & South Central",
     imageTitle: "Billings & South Central Montana Service Area",
     landmark: "Billings Rimrocks and the Yellowstone River",
-    image: "/images/regions/northwest-bail-bonds-billings-rimrocks.png",
+    image: "/images/regions/northwest-bail-bonds-billings-rimrocks.webp",
     width: 1536,
     height: 1024,
     alt: "Billings Rimrocks above the Yellowstone River, representing Northwest Bail Bonds' Billings and South Central Montana service area.",
@@ -36,7 +36,7 @@ const regions = [
     title: "Bozeman, Butte & Southwest",
     imageTitle: "Bozeman, Butte & Southwest Montana Service Area",
     landmark: "Historic Butte mining headframe",
-    image: "/images/regions/northwest-bail-bonds-butte-mining-headframe.png",
+    image: "/images/regions/northwest-bail-bonds-butte-mining-headframe.webp",
     width: 1536,
     height: 1024,
     alt: "Historic Butte mine headframe set against southwest Montana mountains, representing Northwest Bail Bonds' Bozeman, Butte, and Southwest Montana service area.",
@@ -47,7 +47,7 @@ const regions = [
     title: "Helena & Central Montana",
     imageTitle: "Helena & Central Montana Service Area",
     landmark: "Montana State Capitol, Helena",
-    image: "/images/regions/northwest-bail-bonds-helena-montana-state-capitol.png",
+    image: "/images/regions/northwest-bail-bonds-helena-montana-state-capitol.webp",
     width: 1254,
     height: 1254,
     alt: "Montana State Capitol in Helena, representing Northwest Bail Bonds' Helena and Central Montana service area.",
@@ -58,7 +58,7 @@ const regions = [
     title: "Missoula, Kalispell & West",
     imageTitle: "Missoula, Kalispell & Western Montana Service Area",
     landmark: "Wild Goose Island, Glacier National Park",
-    image: "/images/regions/northwest-bail-bonds-glacier-wild-goose-island.png",
+    image: "/images/regions/northwest-bail-bonds-glacier-wild-goose-island.webp",
     width: 1254,
     height: 1254,
     alt: "Wild Goose Island on Saint Mary Lake in Glacier National Park, representing Northwest Bail Bonds' Missoula, Kalispell, and Western Montana service area.",
@@ -69,7 +69,7 @@ const regions = [
     title: "Miles City & Eastern Montana",
     imageTitle: "Miles City & Eastern Montana Service Area",
     landmark: "Makoshika State Park badlands near Glendive",
-    image: "/images/regions/northwest-bail-bonds-makoshika-badlands.png",
+    image: "/images/regions/northwest-bail-bonds-makoshika-badlands.webp",
     width: 1536,
     height: 1024,
     alt: "Layered badlands and hoodoos in Makoshika State Park, representing Northwest Bail Bonds' Miles City and Eastern Montana service area.",
@@ -80,7 +80,7 @@ const regions = [
     title: "Hi-Line & Northeast",
     imageTitle: "Hi-Line & Northeast Montana Service Area",
     landmark: "Fort Peck Dam and reservoir",
-    image: "/images/regions/northwest-bail-bonds-fort-peck-dam.png",
+    image: "/images/regions/northwest-bail-bonds-fort-peck-dam.webp",
     width: 1254,
     height: 1254,
     alt: "Fort Peck Dam and reservoir in northeastern Montana, representing Northwest Bail Bonds' Hi-Line and Northeast Montana service area.",
@@ -112,6 +112,11 @@ const serviceAreaSchema = {
 
 function getResourceUrl(facility: DetentionFacility) {
   return facility.rosterUrl ?? facility.officialUrl;
+}
+
+function getRegionCityGuides(counties: readonly CountyName[]) {
+  const countySet = new Set(counties.map((county) => county + " County"));
+  return CITY_GUIDES.filter((guide) => countySet.has(guide.county));
 }
 
 export default function ServiceAreasPage() {
@@ -153,6 +158,15 @@ export default function ServiceAreasPage() {
               <div className="region-landmark-copy">
                 <h3>{region.title}</h3>
                 <p>{region.caption}</p>
+                {getRegionCityGuides(region.counties).length > 0 && (
+                  <div className="region-city-links">
+                    {getRegionCityGuides(region.counties).map((guide) => (
+                      <a className="text-link" href={"/locations/" + guide.slug} key={guide.slug}>
+                        {guide.city} bail bonds <span>→</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
                 <div className="region-resource-directory" id={regionIndex === 0 ? "regional-jail-resources" : undefined}>
                   <span className="region-resource-heading">County jail and detention resources</span>
                   <div className="region-resource-list">

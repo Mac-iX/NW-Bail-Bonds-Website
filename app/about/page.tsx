@@ -166,6 +166,31 @@ export default function AboutPage() {
           <p className="story-ending">He may come from a small town.<br /><strong>But his mission? Eternal.</strong></p>
         </article>
       </section>
+      <section className="content-section gallery-section" aria-labelledby="gallery-title">
+        <div className="content-heading">
+          <h2 id="gallery-title">Northwest in the field and the community</h2>
+          <p>Real moments from the work and the communities Northwest serves across Montana.</p>
+        </div>
+        <div className="gallery-grid">
+          {[
+            { src: "/images/real/gallery/1-1.jpg", alt: "Northwest Bail Bonds community moment in Montana." },
+            { src: "/images/real/gallery/2-1.jpg", alt: "Northwest Bail Bonds field and community work." },
+            { src: "/images/real/gallery/3-1.jpg", alt: "Joel Graf and the Northwest team with community members." },
+            { src: "/images/real/gallery/4.jpg", alt: "Northwest Bail Bonds supporting a Montana community event." },
+            { src: "/images/real/gallery/5.jpg", alt: "Northwest Bail Bonds team moment in Montana." },
+            { src: "/images/real/gallery/6.jpg", alt: "Community outreach connected to Northwest Bail Bonds." },
+            { src: "/images/real/gallery/7.jpg", alt: "Northwest Bail Bonds in the Montana community." },
+            { src: "/images/real/gallery/8.jpg", alt: "Northwest Bail Bonds field work moment." },
+            { src: "/images/real/gallery/9.jpg", alt: "Northwest Bail Bonds community gathering." },
+            { src: "/images/real/gallery/10.jpg", alt: "Northwest Bail Bonds team and community photo." },
+            { src: "/images/real/gallery/11.jpg", alt: "Northwest Bail Bonds Montana community work." },
+          ].map((photo) => (
+            <figure key={photo.src}>
+              <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" />
+            </figure>
+          ))}
+        </div>
+      </section>
       <MontanaSceneBand scene="city" />
       <section className="about-impact-section" id="beyond-the-bond">
         <header>
@@ -185,6 +210,28 @@ export default function AboutPage() {
             <h3>Supporting work beyond bail</h3>
             <p>Part of what the business earns supports police K-9 units and orphanages in Kenya. These are community commitments, separate from Northwest&apos;s bail bond services.</p>
           </article>
+        </div>
+        <div className="about-community-photos">
+          <figure>
+            <img
+              src="/images/real/northwest-africa-school.jpg"
+              alt="Children and adults gathered outside a school in Kenya supported through Northwest's giving."
+              title="School in Kenya supported through Northwest's giving"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Part of what the business earns helps fund orphanages and schools in Kenya.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="/images/real/veterans-skydive.jpg"
+              alt="A group of veterans and supporters after a community skydive event in Montana."
+              title="Veterans community skydive event"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Community work in Montana, beyond the bond.</figcaption>
+          </figure>
         </div>
         <div className="about-impact-links">
           <a href={FACEBOOK_URL} target="_blank" rel="noreferrer">See Northwest in the community <span>↗</span></a>
