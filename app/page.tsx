@@ -140,6 +140,19 @@ export default function Home() {
           </div>
           <p className="hero-note">Based in Billings · Serving all 56 Montana counties</p>
         </div>
+        <div className="hero-reel">
+          <video
+            src="/videos/northwest-bail-bonds-2am-call.mp4"
+            poster="/images/marketing/northwest-bail-bonds-answer-call.jpg"
+            playsInline
+            muted
+            loop
+            autoPlay
+            preload="metadata"
+            aria-label="Northwest Bail Bonds 2 a.m. call: from arrest to release on your phone"
+          />
+          <figcaption>The 2 a.m. call: how a bond gets posted from your phone</figcaption>
+        </div>
       </section>
 
       <ul className="trust-strip" aria-label="Northwest Bail Bonds credentials">
@@ -153,17 +166,16 @@ export default function Home() {
 
       <section className="digital-bail-section" aria-labelledby="digital-bail-title">
         <figure className="digital-bail-visual">
-          <video
-            src="/videos/northwest-bail-bonds-2am-call.mp4"
-            poster="/images/marketing/northwest-bail-bonds-answer-call.jpg"
-            playsInline
-            muted
-            loop
-            autoPlay
-            preload="metadata"
-            aria-label="Northwest Bail Bonds 2 a.m. call: from arrest to release on your phone"
+          <img
+            src="/images/marketing/northwest-bail-bonds-phone-hero.jpg"
+            alt="Northwest Bail Bonds 24/7 phone answered around the clock, out by morning"
+            title="24/7 phone service"
+            width="1792"
+            height="1008"
+            loading="lazy"
+            decoding="async"
           />
-          <figcaption>The 2 a.m. call: how a bond gets posted from your phone</figcaption>
+          <figcaption>24/7 phone service · From the first call to release</figcaption>
         </figure>
         <div className="digital-bail-copy">
           <span className="section-label">Digital bail bonds</span>
@@ -197,6 +209,34 @@ export default function Home() {
 
       <MontanaSceneBand scene="city" />
 
+      <section className="mobile-hero-band" aria-labelledby="mobile-hero-title">
+        <div className="mobile-hero-copy">
+          <span className="section-label">From arrest to release</span>
+          <h2 id="mobile-hero-title">The 2 a.m. call handled from your phone</h2>
+          <p>You do not need to drive to a jail before you know whether your presence is required. Call first. Northwest can gather the basic information, explain the agreement, and use electronic paperwork when appropriate.</p>
+          <ol className="digital-bail-steps">
+            <li><strong>1</strong> Tell us who is in custody and where.</li>
+            <li><strong>2</strong> We confirm the bond and explain the terms.</li>
+            <li><strong>3</strong> You sign by e-signature from anywhere.</li>
+            <li><strong>4</strong> We post bond and stay with you until release.</li>
+          </ol>
+          <a className="text-link" href="/digital-bail-bonds">See the full digital bail bond process <span>→</span></a>
+        </div>
+        <figure className="mobile-hero-visual">
+          <video
+            src="/videos/northwest-bail-bonds-2am-call.mp4"
+            poster="/images/marketing/northwest-bail-bonds-answer-call.jpg"
+            playsInline
+            muted
+            loop
+            autoPlay
+            preload="metadata"
+            aria-label="Northwest Bail Bonds 2 a.m. call: from arrest to release on your phone"
+          />
+          <figcaption>The 2 a.m. call: how a bond gets posted from your phone</figcaption>
+        </figure>
+      </section>
+
       <section className="people-section" id="about">
         <figure className="people-visual home-story-visual">
           <img
@@ -226,42 +266,6 @@ export default function Home() {
             <a className="text-link" href="/about#joel-story">Meet Joel and read the founder story <span>→</span></a>
             <a className="text-link" href={FACEBOOK_URL} target="_blank" rel="noreferrer">Follow on Facebook <span>↗</span></a>
           </div>
-        </div>
-      </section>
-
-      <section className="credibility-section">
-        <div className="credential-heading">
-          <h2>Know who you&apos;re dealing with before you sign</h2>
-          <figure className="credential-landmark">
-            <img
-              className="credential-scene-art"
-              src="/scene-courthouse-stencil.png"
-              alt="Layered courthouse and Montana landscape illustration representing producer licensing and Bond agreements."
-              title="Montana bail bond licensing and written agreements"
-              width="2172"
-              height="724"
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>Montana licensing · Independent verification</figcaption>
-          </figure>
-        </div>
-        <div className="credential-copy">
-          <p>
-            Montana regulates surety bail bond producers through the Commissioner
-            of Securities and Insurance. You can ask for current license details,
-            review every obligation, and verify a producer before signing.
-          </p>
-          <ul className="check-list">
-            <li>Request current producer and agency license information.</li>
-            <li>Ask for fees, collateral terms, and signer obligations in writing.</li>
-            <li>Confirm court-date and release-condition responsibilities.</li>
-          </ul>
-          <div className="credential-links">
-            <a href="https://csimt.gov/insurance/licensing/" target="_blank" rel="noreferrer">Montana CSI licensing <span>↗</span></a>
-            <a href="/resources#licensing">Read our licensing & disclosure guide <span>→</span></a>
-          </div>
-          <p className="legal-note">General information only. This website does not provide legal advice or guarantee release timing.</p>
         </div>
       </section>
 

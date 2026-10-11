@@ -50,13 +50,31 @@ img { max-width: 100%; }
 .mobile-nav { display: none; }
 
 .hero {
-  position: relative; min-height: 720px; overflow: hidden; padding: 92px clamp(24px, 7vw, 112px) 108px;
-  display: flex; align-items: center;
-  background: linear-gradient(90deg, rgba(3, 7, 10, .94) 0%, rgba(3, 7, 10, .78) 38%, rgba(3, 7, 10, .28) 62%, rgba(3, 7, 10, .04) 100%), linear-gradient(180deg, rgba(2,8,12,.02), rgba(2,8,12,.38)), url("/images/marketing/northwest-bail-bonds-phone-hero.jpg") center/cover no-repeat;
+  position: relative;
+  min-height: 720px;
+  overflow: hidden;
+  padding: 92px clamp(24px, 7vw, 112px) 108px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, .9fr);
+  align-items: center;
+  gap: clamp(36px, 5vw, 80px);
+  background: linear-gradient(90deg, rgba(3, 7, 10, .94) 0%, rgba(3, 7, 10, .78) 38%, rgba(3, 7, 10, .28) 62%, rgba(3, 7, 10, .04) 100%), linear-gradient(180deg, rgba(2,8,12,.02), rgba(2,8,12,.38)), url('/images/marketing/northwest-bail-bonds-phone-hero.jpg') center/cover no-repeat;
 }
 .hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, transparent 52%, var(--ink)); }
 .hero::after { content: ""; position: absolute; inset: -12%; pointer-events: none; background: radial-gradient(circle at 18% 48%, rgba(255,196,45,.16), transparent 24%); opacity: .55; animation: mountain-light 12s ease-in-out infinite alternate; }
-.hero-copy { position: relative; z-index: 2; width: min(660px, 55vw); }
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+.hero-reel {
+  position: relative;
+  z-index: 2;
+  justify-self: end;
+  width: min(280px, 32vw);
+  flex-shrink: 0;
+}
 .eyebrow { display: flex; align-items: center; gap: 12px; margin: 0; color: var(--sunset); font-family: var(--display); font-size: 14px; font-weight: 500; letter-spacing: .13em; text-transform: uppercase; }
 .live-dot { flex: 0 0 auto; width: 8px; height: 8px; border-radius: 50%; background: var(--sunset); box-shadow: 0 0 0 6px rgba(255,196,45,.14), 0 0 22px rgba(255,196,45,.7); }
 .hero h1 { max-width: 660px; margin: 27px 0 25px; font-family: var(--display); font-size: clamp(48px, 4.7vw, 70px); font-weight: 420; line-height: .98; letter-spacing: -.01em; text-wrap: balance; text-shadow: 0 6px 24px rgba(0,0,0,.52); }
@@ -71,6 +89,32 @@ img { max-width: 100%; }
 .button-secondary { border-color: rgba(236,241,243,.42); background: rgba(8,10,12,.42); }
 .button-secondary:hover { border-color: white; background: rgba(255,255,255,.08); }
 .hero-note { margin: 22px 0 0; color: #d2d9dc; font-size: 15px; font-weight: 600; line-height: 1.55; letter-spacing: .015em; }
+.hero-reel {
+  position: relative;
+  z-index: 2;
+  width: min(280px, 32vw);
+  align-self: center;
+  justify-self: end;
+  flex-shrink: 0;
+}
+.hero-reel video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border: 1px solid rgba(255,196,45,.28);
+  border-radius: 16px;
+  background: #000;
+  box-shadow: 0 32px 70px rgba(0,0,0,.55);
+}
+.hero-reel figcaption {
+  margin-top: 12px;
+  color: #8d999f;
+  font-size: 11px;
+  line-height: 1.55;
+  text-align: center;
+}
 .section-label { color: var(--sunset); font-family: var(--display); font-size: 15px; font-weight: 500; letter-spacing: .13em; text-transform: uppercase; }
 .section-label.light { color: var(--sunset); }
 .text-link, .credential-links a, .map-more { display: inline-flex; align-items: center; gap: 11px; color: #e4e9eb; font-size: 12px; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; }
@@ -348,17 +392,63 @@ img { max-width: 100%; }
 .urgent-contact-actions a:hover, .urgent-contact-actions a:focus-visible { border-color: white; outline: none; transform: translateY(-1px); }
 
 /* Supporting pages */
-.page-hero { position: relative; min-height: 545px; overflow: hidden; padding: 105px clamp(24px, 9vw, 145px); display: flex; align-items: center; background: linear-gradient(90deg,rgba(4,8,11,.98) 0%,rgba(4,8,11,.91) 42%,rgba(4,8,11,.38) 72%,rgba(4,8,11,.58) 100%), url("/northwest-hero-art.png") 67% center/cover no-repeat; }
+.page-hero {
+  position: relative;
+  min-height: 545px;
+  overflow: hidden;
+  padding: 105px clamp(24px, 9vw, 145px);
+  display: flex;
+  align-items: center;
+  background: linear-gradient(90deg,rgba(4,8,11,.98) 0%,rgba(4,8,11,.91) 42%,rgba(4,8,11,.38) 72%,rgba(4,8,11,.58) 100%), url("/northwest-hero-art.png") 67% center/cover no-repeat;
+}
 .page-hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg,transparent 55%,rgba(4,8,11,.8)); }
 .page-hero::after { display: none; }
+.page-hero > div { position: relative; z-index: 2; max-width: 780px; }
+.page-hero h1 { max-width: 760px; margin: 20px 0 24px; font-family: var(--display); font-size: clamp(46px,5.6vw,72px); font-weight: 420; line-height: 1; letter-spacing: -.008em; text-wrap: balance; }
+.page-hero p { max-width: 700px; margin: 0; color: #c2cbcf; font-size: clamp(16px,1.5vw,20px); line-height: 1.7; }
 .page-hero-about, .page-hero-contact { background-image: linear-gradient(90deg,rgba(4,8,11,.98) 0%,rgba(4,8,11,.9) 42%,rgba(4,8,11,.34) 72%,rgba(4,8,11,.48) 100%), url("/montana-city-hero.jpeg"); background-position: 66% center; }
 .page-hero-coverage { background-image: linear-gradient(90deg,rgba(4,8,11,.98) 0%,rgba(4,8,11,.9) 42%,rgba(4,8,11,.26) 72%,rgba(4,8,11,.42) 100%), url("/montana-city-hero.jpeg"); background-position: 58% center; }
 .page-hero-process { background-position: 70% center; }
 .page-hero-resources { background-position: 76% 47%; }
 .page-hero-privacy { background-position: 61% 52%; }
-.page-hero > div { position: relative; z-index: 2; max-width: 780px; }
-.page-hero h1 { max-width: 760px; margin: 20px 0 24px; font-family: var(--display); font-size: clamp(46px,5.6vw,72px); font-weight: 420; line-height: 1; letter-spacing: -.008em; text-wrap: balance; }
-.page-hero p { max-width: 700px; margin: 0; color: #c2cbcf; font-size: clamp(16px,1.5vw,20px); line-height: 1.7; }
+.page-hero-copy { display: flex; flex-direction: column; }
+.page-hero .hero-actions { display: flex; gap: 12px; margin-top: 35px; flex-wrap: wrap; }
+
+/* PageHero with visual (jail / location pages) */
+.page-hero-with-visual {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(240px, .85fr);
+  gap: clamp(36px, 6vw, 80px);
+  align-items: center;
+}
+.page-hero-with-visual > .page-hero-copy {
+  max-width: 720px;
+}
+.page-hero-with-visual > .page-hero-visual {
+  position: relative;
+  justify-self: end;
+  width: min(380px, 42vw);
+  flex-shrink: 0;
+}
+.page-hero-visual video,
+.page-hero-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border: 1px solid rgba(255,196,45,.28);
+  border-radius: 16px;
+  background: #000;
+  box-shadow: 0 28px 64px rgba(0,0,0,.55);
+}
+.page-hero-visual figcaption {
+  margin-top: 12px;
+  color: #8d999f;
+  font-size: 11px;
+  line-height: 1.55;
+  text-align: center;
+}
 .content-section { padding: clamp(92px,9vw,145px) clamp(24px,8vw,128px); background: var(--ink); }
 .content-heading h2, .info-split h2, .story-copy h2 { margin: 15px 0 0; font-family: var(--display); font-size: clamp(38px,4.4vw,62px); font-weight: 420; line-height: 1.02; letter-spacing: -.008em; text-wrap: balance; }
 .process-walkthrough { padding-bottom: 34px; background: radial-gradient(circle at 93% 7%,rgba(255,196,45,.07),transparent 25%),var(--ink); }
@@ -675,6 +765,19 @@ img { max-width: 100%; }
   .mobile-subnav > a { padding-left: 28px !important; color: #aeb8bd; }
   .hero { background-position: 62% center; }
   .hero-copy { width: min(650px, 72vw); }
+.hero-reel {
+    position: absolute;
+    right: 4vw;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(180px, 28vw);
+    z-index: 1;
+    opacity: .85;
+  }
+  .hero-reel figcaption { display: none; }
+  .page-hero-with-visual { grid-template-columns: 1fr; gap: 36px; }
+  .page-hero-with-visual > .page-hero-visual { width: min(280px, 55vw); justify-self: start; }
+  .page-hero { min-height: 480px; padding: 78px 21px 95px; }
   .call-prep { grid-template-columns: 1fr; }
   .call-prep-copy { max-width: 700px; }
   .section-intro, .faq-section { grid-template-columns: minmax(0,1fr); }
@@ -990,7 +1093,79 @@ img { max-width: 100%; }
   margin: 34px 0 8px;
 }
 
+/* Mobile hero band: reel + copy for home and jail/location pages. */
+.mobile-hero-band {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(240px, .9fr);
+  gap: clamp(36px, 7vw, 100px);
+  align-items: center;
+  padding: clamp(92px, 9vw, 142px) clamp(24px, 7vw, 112px);
+  background: radial-gradient(circle at 88% 10%, rgba(255,196,45,.1), transparent 28%), #05090c;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.mobile-hero-copy > span {
+  color: var(--sunset);
+  font-family: var(--display);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.mobile-hero-copy h2 {
+  max-width: 540px;
+  margin: 13px 0 18px;
+  font-family: var(--display);
+  font-size: clamp(38px, 4.4vw, 62px);
+  font-weight: 420;
+  line-height: 1.02;
+  letter-spacing: -.008em;
+}
+.mobile-hero-copy > p {
+  max-width: 560px;
+  margin: 0 0 24px;
+  color: #a5b0b5;
+  font-size: 16px;
+  line-height: 1.75;
+}
+.mobile-hero-copy .digital-bail-steps {
+  margin-bottom: 28px;
+}
+.mobile-hero-visual {
+  position: relative;
+  justify-self: end;
+  width: min(380px, 42vw);
+}
+.mobile-hero-visual video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border: 1px solid rgba(255,196,45,.28);
+  border-radius: 16px;
+  background: #000;
+  box-shadow: 0 32px 70px rgba(0,0,0,.55);
+}
+.mobile-hero-visual figcaption {
+  margin-top: 14px;
+  color: #8d999f;
+  font-size: 11px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+@media (max-width: 1060px) {
+  .page-hero-with-visual { grid-template-columns: 1fr; gap: 36px; }
+  .page-hero-with-visual > .page-hero-visual { width: min(280px, 55vw); justify-self: start; }
+  .page-hero { min-height: 480px; padding: 78px 21px 95px; }
+  .mobile-hero-band { grid-template-columns: 1fr; gap: 36px; padding: 78px 21px; }
+  .mobile-hero-visual { width: min(280px, 55vw); justify-self: start; }
+}
+
 @media (max-width: 720px) {
   .digital-bail-section { grid-template-columns: 1fr; padding: 78px 21px; }
   .process-phone-row { grid-template-columns: 1fr; }
+  .mobile-hero-band { padding: 78px 21px; }
+  .mobile-hero-visual { width: min(260px, 60vw); }
 }

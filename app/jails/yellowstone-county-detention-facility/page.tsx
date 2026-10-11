@@ -101,6 +101,10 @@ export default function YellowstoneJailPage() {
         title={"Bail bonds at the " + FACILITY}
         intro={"If someone is at the jail on King Avenue East, confirm the bond with booking and call " + PHONE_DISPLAY + ". Northwest is based in Billings and answers 24 hours a day."}
         variant="coverage"
+        visualSrc="/videos/northwest-bail-bonds-2am-call.mp4"
+        visualType="reel"
+        visualAlt="Northwest Bail Bonds 2 a.m. call: from arrest to release on your phone"
+        visualCaption="The 2 a.m. call: how a bond gets posted from your phone"
       />
 
       <section className="facts-section" aria-labelledby="ycdf-facts-title">
@@ -145,57 +149,43 @@ export default function YellowstoneJailPage() {
           <li><strong>The bond is coordinated with the court or facility.</strong> Yellowstone County says bonds are handled through the appropriate court during regular business hours and can be handled at detention after hours.</li>
           <li><strong>Detention staff process release.</strong> The facility controls the release queue and timing.</li>
         </ol>
-        <div className="process-phone-row">
-          <figure>
-            <img
-              src="/images/marketing/northwest-bail-bonds-digital-process.jpg"
-              alt="A phone screen walking through the four steps to bail someone out of the Yellowstone County jail: jail alert, call 24/7, post bond from your phone, and out by morning."
-              title="Digital bail process from your phone"
-              width="1008"
-              height="1792"
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>The four steps, done from a phone</figcaption>
-          </figure>
-          <figure>
-            <img
-              src="/images/marketing/northwest-bail-bonds-esignature.jpg"
-              alt="A phone screen showing a bail bond being signed by e-signature."
-              title="Sign bail bond paperwork by e-signature"
-              width="1008"
-              height="1792"
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>Sign by e-signature, from anywhere</figcaption>
-          </figure>
-        </div>
+        <figure className="process-desk-visual">
+          <img
+            src="/images/marketing/northwest-bail-bonds-digital-process.jpg"
+            alt="Four steps to bail someone out of the Yellowstone County jail from your phone: jail alert, call 24/7, post bond from your phone, and out by morning."
+            title="Digital bail process from your phone"
+            width="1008"
+            height="1792"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>The four steps, done from your phone</figcaption>
+        </figure>
         <p className="legal-note">General information only. Bond status and release timing can change and cannot be guaranteed.</p>
       </section>
 
       <section className="content-section prose-page" aria-labelledby="ycdf-arrive-title">
         <h2 id="ycdf-arrive-title">Before you drive to the facility</h2>
-        <p>Call first. Have the person's full name and booking number if you have it. Northwest can tell you whether the customer side of the bond can begin remotely and whether your physical presence is actually needed.</p>
-        <p>Visiting rules are separate from bail. See the county's <a href={FACTS.visitation} target="_blank" rel="noreferrer">visitation page</a> and <a href={FACTS.faq} target="_blank" rel="noreferrer">detention FAQ</a>.</p>
+        <p>Call first. Have the person&apos;s full name and booking number if you have it. Northwest can tell you whether the customer side of the bond can begin remotely and whether your physical presence is actually needed.</p>
+        <figure className="process-desk-visual">
+          <img
+            src="/images/marketing/northwest-bail-bonds-esignature.jpg"
+            alt="A phone screen showing a bail bond being signed by e-signature from anywhere."
+            title="Sign bail bond paperwork by e-signature"
+            width="1008"
+            height="1792"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>Sign by e-signature, from anywhere — no drive to the jail required</figcaption>
+        </figure>
+        <p>Visiting rules are separate from bail. See the county&apos;s <a href={FACTS.visitation} target="_blank" rel="noreferrer">visitation page</a> and <a href={FACTS.faq} target="_blank" rel="noreferrer">detention FAQ</a>.</p>
         <p><a className="text-link" href="/digital-bail-bonds">How digital bail bond paperwork works <span>→</span></a></p>
       </section>
 
       <section className="content-section prose-page" aria-labelledby="ycdf-local-title">
         <h2 id="ycdf-local-title">Billings-based help for YCDF</h2>
         <p>Northwest is based in Billings. For a Yellowstone County detention call, the first job is simple: verify the person, verify every bond or hold, explain the agreement, and coordinate the correct posting path without making the family guess.</p>
-        <figure className="process-desk-visual">
-          <img
-            src="/images/marketing/northwest-bail-bonds-contract-desk.jpg"
-            alt="A desk with bail bond paperwork and a contract, the work Northwest handles after the call."
-            title="Bail bond paperwork at the Northwest office"
-            width="1792"
-            height="1008"
-            loading="lazy"
-            decoding="async"
-          />
-          <figcaption>The paperwork, handled from the office</figcaption>
-        </figure>
       </section>
 
       <section className="faq-section" id="faq">
