@@ -123,12 +123,10 @@ export default function Home() {
             <span className="live-dot" /> Montana bail bonds · phones answered 24/7
           </p>
           <h1>
-            A Bail Bond Company Built Around Customer Service
+            Montana bail bonds, out by morning
           </h1>
           <p className="hero-lede">
-            Northwest believes urgent service can still be personal. Every call
-            should leave a family better informed, more grounded, and clear about
-            the next decision.
+            Start with a call. Northwest confirms custody, explains the bond, and posts fast — 24 hours a day, 7 days a week.
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href={`tel:${PHONE_LINK}`}>
