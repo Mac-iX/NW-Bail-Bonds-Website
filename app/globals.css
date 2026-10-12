@@ -1094,6 +1094,8 @@ img { max-width: 100%; }
   margin: 38px 0 8px;
 }
 .process-phone-row figure,
+.phone-asset-pair figure,
+.phone-asset-wide,
 .process-desk-visual {
   margin: 0;
   border: 1px solid var(--line);
@@ -1101,12 +1103,16 @@ img { max-width: 100%; }
   background: #0c161e;
 }
 .process-phone-row img,
+.phone-asset-pair img,
+.phone-asset-wide img,
 .process-desk-visual img {
   display: block;
   width: 100%;
   height: auto;
 }
 .process-phone-row figcaption,
+.phone-asset-pair figcaption,
+.phone-asset-wide figcaption,
 .process-desk-visual figcaption {
   padding: 14px 16px 15px;
   border-top: 1px solid var(--line);
@@ -1120,6 +1126,18 @@ img { max-width: 100%; }
 .process-desk-visual {
   margin: 34px auto 8px;
   max-width: min(560px, 72vw);
+}
+
+/* Phone-asset placements: a wide hero graphic, or a portrait pair. */
+.phone-asset-wide {
+  margin: 34px auto 8px;
+  max-width: min(620px, 80vw);
+}
+.phone-asset-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin: 38px 0 8px;
 }
 
 /* Portrait phone graphic, kept small (jail/city pages). */
@@ -1254,6 +1272,7 @@ img { max-width: 100%; }
 @media (max-width: 720px) {
   .digital-bail-section { grid-template-columns: 1fr; padding: 78px 21px; }
   .process-phone-row { grid-template-columns: 1fr; }
+  .phone-asset-pair { grid-template-columns: 1fr; }
   .mobile-hero-band { padding: 78px 21px; }
   .mobile-hero-visual { width: min(400px, 78vw); }
 }

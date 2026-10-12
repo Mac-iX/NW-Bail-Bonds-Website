@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-html-link-for-pages, react/no-unescaped-entities */
+/* eslint-disable @next/next/no-html-link-for-pages, @next/next/no-img-element, react/no-unescaped-entities */
 import type { Metadata } from "next";
 import { InquirySection } from "@/app/components/inquiry-section";
 import { MontanaSceneBand } from "@/app/components/montana-scene-band";
@@ -41,11 +41,59 @@ export default function DigitalBailBondsPage() {
         title="Digital bail bonds without unnecessary driving"
         intro={"Start by phone. Review the terms. Sign eligible paperwork electronically. Northwest coordinates the bond with the court or detention facility. Call " + PHONE_DISPLAY + " any hour."}
         variant="coverage"
+        visualSrc="/videos/northwest-bail-bonds-2am-call.mp4"
+        visualType="reel"
+        visualAlt="Northwest Bail Bonds 2 a.m. call: from arrest to release on your phone"
+        visualCaption="The 2 a.m. call: how a bond gets posted from your phone"
       />
 
       <section className="content-section prose-page">
         <h2>What “digital bail bonds” actually means</h2>
         <p>Digital does not mean instant release and it does not mean the jail disappears from the process. It means the customer side can often move faster: phone intake, document review, electronic signatures, and status updates without making a family drive across Montana just to start.</p>
+      </section>
+
+      <section className="content-section prose-page" aria-labelledby="digital-phone-title">
+        <h2 id="digital-phone-title">The whole process starts with the phone you already have</h2>
+        <p>Answer the call, give the name and the county, review the agreement, and sign eligible paperwork electronically. Northwest coordinates the bond with the court or detention facility while you stay where you are.</p>
+        <figure className="phone-asset-wide">
+          <img
+            src="/images/marketing/northwest-bail-bonds-answer-call.jpg"
+            alt="A smartphone showing an incoming Northwest Bail Bonds call with the 24/7 number (406) 601-1225 and an Answer Call button."
+            title="Answer the call: Northwest Bail Bonds 24/7"
+            width={1792}
+            height={1008}
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>Answer the call · Northwest Bail Bonds, any hour</figcaption>
+        </figure>
+        <div className="phone-asset-pair">
+          <figure>
+            <img
+              src="/images/marketing/northwest-bail-bonds-digital-process.jpg"
+              alt="A phone screen showing the four digital bail bond steps: the jail alert, calling Northwest 24/7, posting bond from your phone with an e-signature, and a confirmed release time."
+              title="Digital bail bond steps handled from your phone"
+              width={1008}
+              height={1792}
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Four steps · handled from your phone</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="/images/marketing/northwest-bail-bonds-esignature.jpg"
+              alt="A phone screen showing a secure bail bond application with full name, phone number, and case or booking ID fields above an e-sign and submit button."
+              title="e-Signature bail bond paperwork from your phone"
+              width={1008}
+              height={1792}
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>e-Sign the eligible paperwork</figcaption>
+          </figure>
+        </div>
+        <p>Start with one piece of information. Northwest confirms the rest.</p>
       </section>
 
       <MontanaSceneBand scene="city" />

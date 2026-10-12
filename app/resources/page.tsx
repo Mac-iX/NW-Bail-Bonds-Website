@@ -97,6 +97,32 @@ export default function ResourcesPage() {
           <div className="license-card"><span>02</span><h3>Verify with Montana CSI</h3><p>The Montana Commissioner of Securities and Insurance provides official producer licensing and lookup resources.</p><a href="https://csimt.gov/insurance/licensing/" target="_blank" rel="noreferrer">Open Montana CSI licensing ↗</a></div>
           <div className="license-card"><span>03</span><h3>Read the entire agreement</h3><p>Confirm the fee, collateral, payment schedule, signer obligations, defendant responsibilities, and conditions affecting collateral return.</p></div>
         </div>
+        <div className="phone-asset-pair">
+          <figure>
+            <img
+              src="/images/marketing/northwest-bail-bonds-phone-hero.jpg"
+              alt="A smartphone showing the Northwest Bail Bonds 24/7 call screen with the direct line (406) 601-1225 and an Answer Call button."
+              title="Call Northwest Bail Bonds from your phone, 24/7"
+              width={1792}
+              height={1008}
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Call from your phone · answered 24/7</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="/images/marketing/northwest-bail-bonds-contract-desk.jpg"
+              alt="A printed bail bond application and a bail process checklist on a desk, ready to be reviewed before signing."
+              title="Bail bond paperwork: what you review before signing"
+              width={1792}
+              height={1008}
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>What you review before signing</figcaption>
+          </figure>
+        </div>
         <div className="resource-contact-cta" aria-labelledby="resource-contact-title">
           <div className="resource-contact-copy">
             <span className="section-label">Contact Joel now</span>
