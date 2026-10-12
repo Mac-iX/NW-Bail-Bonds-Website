@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-html-link-for-pages, @next/next/no-img-element */
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { PHONE_DISPLAY, PHONE_LINK } from "@/app/lib/site";

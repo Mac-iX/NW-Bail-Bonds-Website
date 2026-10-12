@@ -1,4 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable @next/next/no-img-element, react/no-unescaped-entities */
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { InquirySection } from "@/app/components/inquiry-section";
