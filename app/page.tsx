@@ -37,7 +37,7 @@ const organizationSchema = {
       url: `${BASE_URL}/images/marketing/northwest-bail-bonds-phone-hero.jpg`,
       width: 1792,
       height: 1008,
-      caption: "Northwest Bail Bonds 24/7 phone answered around the clock, out by morning",
+      caption: "Northwest Bail Bonds 24/7 phone answered around the clock",
     },
     {
       "@type": "ImageObject",
@@ -120,13 +120,13 @@ export default function Home() {
       <section className="hero" id="top">
         <div className="hero-copy">
           <p className="eyebrow">
-            <span className="live-dot" /> Montana bail bonds · phones answered 24/7
+            <span className="live-dot" /> Montana bail bonds · answered 24/7
           </p>
           <h1>
-            Montana bail bonds, out by morning
+            Posted tonight, anywhere in Montana
           </h1>
           <p className="hero-lede">
-            Start with a call. Northwest confirms custody, explains the bond, and posts fast — 24 hours a day, 7 days a week.
+            One call starts it: Northwest confirms custody, explains the bond, and posts it — nights, weekends, and holidays.
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href={`tel:${PHONE_LINK}`}>
@@ -137,19 +137,6 @@ export default function Home() {
             </a>
           </div>
           <p className="hero-note">Based in Billings · Serving all 56 Montana counties</p>
-        </div>
-        <div className="hero-reel">
-          <video
-            src="/videos/northwest-bail-bonds-2am-call.mp4"
-            poster="/images/marketing/northwest-bail-bonds-2am-call-poster.jpg"
-            playsInline
-            muted
-            loop
-            autoPlay
-            preload="metadata"
-            aria-label="Northwest Bail Bonds 2 a.m. call: from arrest to release on your phone"
-          />
-          <figcaption>The 2 a.m. call: how a bond gets posted from your phone</figcaption>
         </div>
       </section>
 
@@ -166,7 +153,7 @@ export default function Home() {
         <figure className="digital-bail-visual">
           <img
             src="/images/marketing/northwest-bail-bonds-phone-hero.jpg"
-            alt="Northwest Bail Bonds 24/7 phone answered around the clock, out by morning"
+            alt="Northwest Bail Bonds 24/7 phone answered around the clock"
             title="24/7 phone service"
             width="1792"
             height="1008"
@@ -213,12 +200,6 @@ export default function Home() {
           <span className="section-label">From arrest to release</span>
           <h2 id="mobile-hero-title">The 2 a.m. call handled from your phone</h2>
           <p>You do not need to drive to a jail before you know whether your presence is required. Call first. Northwest can gather the basic information, explain the agreement, and use electronic paperwork when appropriate.</p>
-          <ol className="digital-bail-steps">
-            <li><strong>1</strong> Tell us who is in custody and where.</li>
-            <li><strong>2</strong> We confirm the bond and explain the terms.</li>
-            <li><strong>3</strong> You sign by e-signature from anywhere.</li>
-            <li><strong>4</strong> We post bond and stay with you until release.</li>
-          </ol>
           <a className="text-link" href="/digital-bail-bonds">See the full digital bail bond process <span>→</span></a>
         </div>
         <figure className="mobile-hero-visual">

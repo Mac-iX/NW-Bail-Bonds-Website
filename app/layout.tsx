@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: "Northwest Bail Bondsman | 24/7 Montana Bail Bonds",
     description: "A bail bond company built around customer service, based in Billings and serving all 56 Montana counties.",
-    images: [{ url: "/images/marketing/northwest-bail-bonds-brand-card.jpg", width: 1792, height: 1008, alt: "Northwest Bail Bonds: 24/7 Montana bail bonds, out by morning. Call (406) 601-1225." }],
+    images: [{ url: "/images/marketing/northwest-bail-bonds-brand-card.jpg", width: 1792, height: 1008, alt: "Northwest Bail Bonds: 24/7 Montana bail bonds. Call (406) 601-1225." }],
   },
   twitter: {
     card: "summary_large_image",
