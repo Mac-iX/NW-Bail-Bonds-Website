@@ -15,6 +15,8 @@ export function SiteFooter() {
         <img
           className="footer-logo"
           src="/northwest-logo-transparent.png"
+          title="Northwest Bail Bonds"
+          decoding="async"
           alt="Northwest Bail Bonds"
           width="779"
           height="491"

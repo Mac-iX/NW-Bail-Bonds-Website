@@ -1,4 +1,4 @@
-export type JailGuide = {
+type JailGuide = {
   slug: string;
   county: string;
   city: string;
@@ -173,7 +173,7 @@ export function hasJailGuide(slug: string) {
   return JAIL_GUIDES.some((guide) => guide.slug === slug);
 }
 
-export type CityGuide = {
+type CityGuide = {
   slug: string;
   city: string;
   county: string;

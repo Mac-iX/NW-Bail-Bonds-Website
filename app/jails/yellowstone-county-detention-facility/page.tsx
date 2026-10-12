@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities, @next/next/no-img-element */
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/app/lib/metadata";
 import Link from "next/link";
 import { InquirySection } from "@/app/components/inquiry-section";
 import { MontanaSceneBand } from "@/app/components/montana-scene-band";
@@ -51,11 +52,17 @@ const FAQS = [
   },
 ] as const;
 
+const pageMetadata = createPageMetadata(
+  "Yellowstone County Jail Bail Bonds | Billings, MT",
+  "How to bail someone out of the Yellowstone County Detention Facility at " + FACTS.street + ", Billings. Inmate search, booking phone, and 24/7 help from Northwest Bail Bonds: " + PHONE_DISPLAY + ".",
+  PATH,
+);
+
 export const metadata: Metadata = {
-  title: "Yellowstone County Jail Bail Bonds | Billings, MT",
-  description: "How to bail someone out of the Yellowstone County Detention Facility at " + FACTS.street + ", Billings. Inmate search, booking phone, and 24/7 help from Northwest Bail Bonds: " + PHONE_DISPLAY + ".",
+  ...pageMetadata,
   alternates: { canonical: PATH },
   openGraph: {
+    ...pageMetadata.openGraph,
     url: PATH,
     title: "Bail Bonds at the " + FACILITY,
     description:

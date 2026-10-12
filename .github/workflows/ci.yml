@@ -44,3 +44,9 @@ jobs:
 
       - name: Run integration tests
         run: npm test
+
+      - name: Install browser for interaction checks
+        run: npx playwright install --with-deps chromium
+
+      - name: Run browser interaction tests
+        run: npm run test:browser

@@ -65,7 +65,10 @@ const server = spawn(process.execPath, [nextCli, "start", "-H", "127.0.0.1", "-p
 let testResult;
 try {
   await waitForServer(baseUrl, server);
-  testResult = await run(process.execPath, ["--test", "tests/rendered-html.test.mjs"], {
+  const testFile = process.argv.includes("--browser")
+    ? "tests/browser-interactions.test.mjs"
+    : "tests/rendered-html.test.mjs";
+  testResult = await run(process.execPath, ["--test", testFile], {
     env: { ...testEnvironment, TEST_BASE_URL: baseUrl },
   });
 } finally {

@@ -1,16 +1,16 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/app/lib/metadata";
 import { InquirySection } from "@/app/components/inquiry-section";
 import { PageHero } from "@/app/components/page-hero";
 import { SiteFooter } from "@/app/components/site-footer";
 import { SiteHeader } from "@/app/components/site-header";
 import { PHONE_DISPLAY } from "@/app/lib/site";
 
-export const metadata: Metadata = {
-  title: "Montana Bail Bonds FAQ",
-  description: "Straight answers to common Montana bail bond questions about cost, collateral, release timing, jail lookup, remote paperwork, court dates, and statewide service.",
-  alternates: { canonical: "/faq" },
-};
+export const metadata = createPageMetadata(
+  "Montana Bail Bonds FAQ",
+  "Straight answers to common Montana bail bond questions about cost, collateral, release timing, jail lookup, remote paperwork, court dates, and statewide service.",
+  "/faq",
+);
 
 const groups = [
   {

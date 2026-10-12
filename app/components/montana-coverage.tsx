@@ -2,6 +2,7 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import {
   type CountyName,
   type DetentionFacility,
@@ -26,6 +27,8 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
   const [emailReady, setEmailReady] = useState(false);
   const returnFocusRef = useRef<HTMLElement | null>(null);
   const firstFieldRef = useRef<HTMLInputElement | null>(null);
+  const backdropRef = useRef<HTMLDivElement | null>(null);
+  const dialogRef = useRef<HTMLElement | null>(null);
   const matches = useMemo(() => {
     const cleanQuery = query.toLowerCase().trim();
     if (!cleanQuery) return [];
@@ -54,7 +57,6 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
 
   function closeIntake() {
     setIntakeOpen(false);
-    window.setTimeout(() => returnFocusRef.current?.focus(), 0);
   }
 
   function prepareEmail(event: FormEvent<HTMLFormElement>) {
@@ -77,16 +79,50 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
 
   useEffect(() => {
     if (!intakeOpen) return;
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    const opener = returnFocusRef.current;
     const previousOverflow = document.body.style.overflow;
+    // The portal is a body sibling so the underlying page can be made inert.
+    const background = Array.from(document.body.children)
+      .filter((element): element is HTMLElement => element instanceof HTMLElement && element !== backdropRef.current)
+      .map((element) => ({ element, inert: element.inert }));
+    background.forEach(({ element }) => { element.inert = true; });
     document.body.style.overflow = "hidden";
     firstFieldRef.current?.focus();
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") closeIntake();
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setIntakeOpen(false);
+      }
+      if (event.key !== "Tab") return;
+      const controls = Array.from(dialog.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex="0"]',
+      )).filter((element) => element.getClientRects().length > 0);
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (!first || !last) {
+        event.preventDefault();
+        dialog.focus();
+      } else if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    const keepFocusInside = (event: FocusEvent) => {
+      if (event.target instanceof Node && !dialog.contains(event.target)) firstFieldRef.current?.focus();
     };
     window.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("focusin", keepFocusInside);
     return () => {
       document.body.style.overflow = previousOverflow;
+      background.forEach(({ element, inert }) => { element.inert = inert; });
       window.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("focusin", keepFocusInside);
+      if (opener?.isConnected) opener.focus();
     };
   }, [intakeOpen]);
 
@@ -127,7 +163,7 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
 
       <div className="map-panel">
         <div className="montana-map">
-          <svg viewBox="0 0 900 480" role="img" aria-labelledby="map-title map-description">
+          <svg viewBox="0 0 900 480" role="group" aria-labelledby="map-title map-description">
             <title id="map-title">Interactive map of Montana counties</title>
             <desc id="map-description">All 56 Montana county boundaries. Choose a county to highlight it and confirm the service area.</desc>
             <path className="state-outline" d={MONTANA_STATE_OUTLINE} />
@@ -208,17 +244,28 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
                                   <button
                                     type="button"
                                     role="radio"
+                                    tabIndex={selectedFacilityId === facility.id ? 0 : -1}
                                     aria-checked={selectedFacilityId === facility.id}
                                     aria-label={`Select ${facility.name}`}
                                     onClick={(event) => {
                                       event.stopPropagation();
                                       setSelectedFacilityId(facility.id);
                                     }}
+                                    onKeyDown={(event) => {
+                                      const directions: Record<string, number> = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+                                      if (!(event.key in directions) && event.key !== "Home" && event.key !== "End") return;
+                                      event.preventDefault();
+                                      const facilities = countyDetention.facilities;
+                                      const index = facilities.findIndex((item) => item.id === facility.id);
+                                      const nextIndex = event.key === "Home" ? 0 : event.key === "End" ? facilities.length - 1 : (index + directions[event.key] + facilities.length) % facilities.length;
+                                      setSelectedFacilityId(facilities[nextIndex].id);
+                                      event.currentTarget.closest('[role="radiogroup"]')?.querySelectorAll<HTMLButtonElement>('[role="radio"]')[nextIndex]?.focus();
+                                    }}
                                   >
                                     <span>{facility.kind}</span>
                                   </button>
                                   {(() => {
-                                    const jailPage = facility.pagePath ?? (hasJailGuide(facility.id) ? "/jails/" + facility.id : null);
+                                    const jailPage = hasJailGuide(facility.id) ? "/jails/" + facility.id : null;
                                     const locationPage = selectedCityGuide ? "/locations/" + selectedCityGuide.slug : null;
                                     const nameHref = jailPage ?? locationPage;
                                     return nameHref ? (
@@ -276,17 +323,21 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
         {compact && <a className="map-more" href="/service-areas">Open the full county guide <span>→</span></a>}
       </div>
 
-      {intakeOpen && (
+      {intakeOpen && createPortal(
         <div
+          ref={backdropRef}
           className="custody-intake-backdrop"
-          onKeyDown={(event) => {
-            if (event.key === "Escape") closeIntake();
-          }}
           onMouseDown={(event) => {
-            if (event.target === event.currentTarget) closeIntake();
+            if (event.target === event.currentTarget) {
+              // Avoid the browser moving focus to the backdrop after restoration.
+              event.preventDefault();
+              closeIntake();
+            }
           }}
         >
           <section
+            ref={dialogRef}
+            tabIndex={-1}
             className="custody-intake"
             role="dialog"
             aria-modal="true"
@@ -334,7 +385,8 @@ export function MontanaCoverage({ compact = false }: { compact?: boolean }) {
               </p>
             </form>
           </section>
-        </div>
+        </div>,
+        document.body,
       )}
     </section>
   );

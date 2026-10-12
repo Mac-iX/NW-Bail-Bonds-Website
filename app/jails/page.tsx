@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/app/lib/metadata";
 import { InquirySection } from "@/app/components/inquiry-section";
 import { PageHero } from "@/app/components/page-hero";
 import { SiteFooter } from "@/app/components/site-footer";
@@ -6,11 +6,11 @@ import { SiteHeader } from "@/app/components/site-header";
 import { JAIL_GUIDES } from "@/app/data/seo-pages";
 import { PHONE_DISPLAY } from "@/app/lib/site";
 
-export const metadata: Metadata = {
-  title: "Montana Jail Bail Bond Guides",
-  description: "Montana jail and detention guides with official inmate-roster links, facility contacts, and 24/7 bail bond help from Northwest Bail Bonds.",
-  alternates: { canonical: "/jails" },
-};
+export const metadata = createPageMetadata(
+  "Montana Jail Bail Bond Guides",
+  "Montana jail and detention guides with official inmate-roster links, facility contacts, and 24/7 bail bond help from Northwest Bail Bonds.",
+  "/jails",
+);
 
 export default function JailsPage() {
   return (
@@ -27,11 +27,17 @@ export default function JailsPage() {
         <p>These pages are built for the moment when you know the facility name but not what to do next. Use the official roster when one is available, confirm the bond information, then call Northwest.</p>
         <div className="official-links">
           {JAIL_GUIDES.map((guide) => (
-            <a href={"/jails/" + guide.slug} key={guide.slug}>
-              <span>{guide.city} · {guide.county}</span>
-              <strong>{guide.facility}</strong>
-              <small>Facility details, inmate lookup, bail steps, and 24/7 contact path.</small>
-            </a>
+            <div className="official-resource-card" key={guide.slug}>
+              <a className="guide-link" href={"/jails/" + guide.slug}>
+                <span>{guide.city} · {guide.county}</span>
+                <strong>{guide.facility}</strong>
+              </a>
+              <small>
+                <a href={guide.officialUrl} target="_blank" rel="noreferrer" aria-label={"Official facility details for " + guide.facility}>Facility details</a>, {guide.rosterUrl ? (
+                  <a href={guide.rosterUrl} target="_blank" rel="noreferrer" aria-label={"Official inmate lookup for " + guide.facility}>inmate lookup</a>
+                ) : "inmate lookup"}, bail steps, and 24/7 contact path.
+              </small>
+            </div>
           ))}
         </div>
       </section>

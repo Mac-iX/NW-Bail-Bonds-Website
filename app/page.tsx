@@ -1,4 +1,6 @@
 /* eslint-disable @next/next/no-img-element, @next/next/no-html-link-for-pages */
+import { createPageMetadata } from "@/app/lib/metadata";
+import { HeroReel } from "@/app/components/hero-reel";
 import { HelpRequestForm } from "@/app/components/help-request-form";
 import { MontanaSceneBand } from "@/app/components/montana-scene-band";
 import { MontanaCoverage } from "@/app/components/montana-coverage";
@@ -15,6 +17,15 @@ import {
   PHONE_LINK,
   SITE_NAME,
 } from "@/app/lib/site";
+
+export const metadata = {
+  ...createPageMetadata(
+    "Northwest Bail Bondsman | 24/7 Montana Bail Bonds",
+    "A customer-service-first bail bond company based in Billings and serving all 56 Montana counties, 24 hours a day.",
+    "/",
+  ),
+  title: { absolute: "Northwest Bail Bondsman | 24/7 Montana Bail Bonds" },
+};
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -138,19 +149,14 @@ export default function Home() {
           </div>
           <p className="hero-note">Based in Billings · Serving all 56 Montana counties</p>
         </div>
-        <div className="hero-reel">
-          <video
+        <figure className="hero-reel">
+          <HeroReel
             src="/videos/northwest-bail-bonds-2am-call.mp4"
             poster="/images/marketing/northwest-bail-bonds-2am-call-poster.jpg"
-            playsInline
-            muted
-            loop
-            autoPlay
-            preload="metadata"
-            aria-label="Northwest Bail Bonds 2 a.m. call: from arrest to release on your phone"
+            label="Northwest Bail Bonds 2 a.m. call: from arrest to release on your phone"
           />
           <figcaption>The 2 a.m. call: how a bond gets posted from your phone</figcaption>
-        </div>
+        </figure>
       </section>
 
       <ul className="trust-strip" aria-label="Northwest Bail Bonds credentials">

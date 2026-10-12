@@ -2,6 +2,7 @@
 "use client";
 
 import { PHONE_DISPLAY, PHONE_LINK } from "@/app/lib/site";
+import { HeroReel } from "@/app/components/hero-reel";
 
 type PageHeroProps = {
   eyebrow: string;
@@ -43,17 +44,12 @@ export function PageHero({
         )}
       </div>
       {hasVisual && (
-        <div className="page-hero-visual">
+        <figure className="page-hero-visual">
           {visualType === "reel" ? (
-            <video
-              src={visualSrc}
+            <HeroReel
+              src={visualSrc!}
               poster={visualPoster ?? "/images/marketing/northwest-bail-bonds-2am-call-poster.jpg"}
-              playsInline
-              muted
-              loop
-              autoPlay
-              preload="metadata"
-              aria-label={visualAlt || "Northwest Bail Bonds 2 a.m. call: from arrest to release on your phone"}
+              label={visualAlt || "Northwest Bail Bonds 2 a.m. call: from arrest to release on your phone"}
             />
           ) : (
             <img
@@ -67,7 +63,7 @@ export function PageHero({
             />
           )}
           {visualCaption && <figcaption>{visualCaption}</figcaption>}
-        </div>
+        </figure>
       )}
     </section>
   );

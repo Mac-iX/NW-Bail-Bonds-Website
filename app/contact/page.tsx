@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/app/lib/metadata";
 import { HelpRequestForm } from "@/app/components/help-request-form";
 import { MontanaSceneBand } from "@/app/components/montana-scene-band";
 import { PageHero } from "@/app/components/page-hero";
@@ -13,11 +13,11 @@ import {
   PHONE_LINK,
 } from "@/app/lib/site";
 
-export const metadata: Metadata = {
-  title: "Contact Northwest Bail Bonds",
-  description: `Call or email Northwest Bail Bonds at ${PHONE_DISPLAY} or ${EMAIL_ADDRESS} for 24-hour bail bond help in Billings and throughout Montana.`,
-  alternates: { canonical: "/contact" },
-};
+export const metadata = createPageMetadata(
+  "Contact Northwest Bail Bonds",
+  `Call or email Northwest Bail Bonds at ${PHONE_DISPLAY} or ${EMAIL_ADDRESS} for 24-hour bail bond help in Billings and throughout Montana.`,
+  "/contact",
+);
 
 const contactPageSchema = {
   "@context": "https://schema.org",

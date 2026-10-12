@@ -1,15 +1,15 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/app/lib/metadata";
 import { InquirySection } from "@/app/components/inquiry-section";
 import { PageHero } from "@/app/components/page-hero";
 import { SiteFooter } from "@/app/components/site-footer";
 import { SiteHeader } from "@/app/components/site-header";
 import { CITY_GUIDES } from "@/app/data/seo-pages";
 
-export const metadata: Metadata = {
-  title: "Montana Bail Bonds by City",
-  description: "24/7 Montana bail bond guides for Billings, Great Falls, Bozeman, Missoula, Kalispell, Helena, and Butte, with direct links to local detention guides.",
-  alternates: { canonical: "/locations" },
-};
+export const metadata = createPageMetadata(
+  "Montana Bail Bonds by City",
+  "24/7 Montana bail bond guides for Billings, Great Falls, Bozeman, Missoula, Kalispell, Helena, and Butte, with direct links to local detention guides.",
+  "/locations",
+);
 
 export default function LocationsPage() {
   return (

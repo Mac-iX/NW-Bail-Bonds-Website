@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/app/lib/metadata";
 import { PageHero } from "@/app/components/page-hero";
 import { SiteFooter } from "@/app/components/site-footer";
 import { SiteHeader } from "@/app/components/site-header";
 
-export const metadata: Metadata = {
-  title: "Website Privacy Notice",
-  description: "Read the Northwest Bail Bonds website privacy notice, including how click-to-call and email-request features work.",
-  alternates: { canonical: "/privacy" },
-};
+export const metadata = createPageMetadata(
+  "Website Privacy Notice",
+  "Read the Northwest Bail Bonds website privacy notice, including how click-to-call and email-request features work.",
+  "/privacy",
+);
 
 export default function PrivacyPage() {
   return (

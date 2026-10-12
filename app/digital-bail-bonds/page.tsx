@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-html-link-for-pages, @next/next/no-img-element, react/no-unescaped-entities */
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/app/lib/metadata";
 import { InquirySection } from "@/app/components/inquiry-section";
 import { MontanaSceneBand } from "@/app/components/montana-scene-band";
 import { PageHero } from "@/app/components/page-hero";
@@ -7,11 +7,11 @@ import { SiteFooter } from "@/app/components/site-footer";
 import { SiteHeader } from "@/app/components/site-header";
 import { PHONE_DISPLAY } from "@/app/lib/site";
 
-export const metadata: Metadata = {
-  title: "Digital Bail Bonds in Montana | Remote Paperwork 24/7",
-  description: "Start a Montana bail bond remotely by phone and electronic paperwork when eligible. Learn what digital bail bonds can and cannot do, then call Northwest Bail Bonds 24/7.",
-  alternates: { canonical: "/digital-bail-bonds" },
-};
+export const metadata = createPageMetadata(
+  "Digital Bail Bonds in Montana | Remote Paperwork 24/7",
+  "Start a Montana bail bond remotely by phone and electronic paperwork when eligible. Learn what digital bail bonds can and cannot do, then call Northwest Bail Bonds 24/7.",
+  "/digital-bail-bonds",
+);
 
 const faqs = [
   {

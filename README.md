@@ -45,6 +45,8 @@ npm run typecheck
 npm run lint
 npm run build
 npm test
+npx playwright install chromium
+npm run test:browser
 ```
 
 Production deployments must set:
@@ -54,6 +56,8 @@ NEXT_PUBLIC_SITE_URL=https://nwbailbonds.com
 ```
 
 The value controls canonical URLs, Open Graph URLs, structured data, `sitemap.xml`, and `robots.txt`.
+
+`npm test` checks rendered pages, route metadata, asset uniqueness, and real image dimensions. `npm run test:browser` checks map keyboard navigation, dialog focus, reel playback, and responsive hero placement. Both commands build and start their own temporary production server. Run them sequentially. If Chromium is already installed, set `CHROMIUM_PATH` to its executable when running the browser tests.
 
 ## Content architecture
 

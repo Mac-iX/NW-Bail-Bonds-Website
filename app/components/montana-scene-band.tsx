@@ -11,7 +11,7 @@ export function MontanaSceneBand({ scene }: { scene: keyof typeof scenes }) {
   const artwork = scenes[scene];
   return (
     <div className={`montana-scene montana-scene-${scene}`} id={`transition-${scene}`} aria-hidden="true">
-      <img src={artwork.src} alt="" width={artwork.width} height={artwork.height} loading="lazy" />
+      <img src={artwork.src} alt="" title="" decoding="async" width={artwork.width} height={artwork.height} loading="lazy" />
     </div>
   );
 }

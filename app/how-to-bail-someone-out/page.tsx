@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-html-link-for-pages, react/no-unescaped-entities */
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/app/lib/metadata";
 import { InquirySection } from "@/app/components/inquiry-section";
 import { MontanaSceneBand } from "@/app/components/montana-scene-band";
 import { PageHero } from "@/app/components/page-hero";
@@ -7,12 +7,11 @@ import { SiteFooter } from "@/app/components/site-footer";
 import { SiteHeader } from "@/app/components/site-header";
 import { PHONE_DISPLAY } from "@/app/lib/site";
 
-export const metadata: Metadata = {
-  title: "How to Bail Someone Out of Jail in Montana",
-  description:
-    "A plain-terms Montana bail walkthrough: bail vs. bond, what it costs, the six steps to get someone released, what not to assume, and the questions people actually ask.",
-  alternates: { canonical: "/how-to-bail-someone-out" },
-};
+export const metadata = createPageMetadata(
+  "How to Bail Someone Out of Jail in Montana",
+  "A plain-terms Montana bail walkthrough: bail vs. bond, what it costs, the six steps to get someone released, what not to assume, and the questions people actually ask.",
+  "/how-to-bail-someone-out",
+);
 
 const howToSchema = {
   "@context": "https://schema.org",

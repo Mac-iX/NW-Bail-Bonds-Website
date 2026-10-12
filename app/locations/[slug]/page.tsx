@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element, react/no-unescaped-entities */
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/app/lib/metadata";
 import { notFound } from "next/navigation";
 import { InquirySection } from "@/app/components/inquiry-section";
 import { MontanaSceneBand } from "@/app/components/montana-scene-band";
@@ -18,11 +19,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const guide = getCityGuide(slug);
   if (!guide) return {};
   const path = "/locations/" + guide.slug;
+  const pageMetadata = createPageMetadata(
+    guide.city + " Bail Bonds | 24/7 Montana Bail Bondsman",
+    "24/7 bail bonds in " + guide.city + ", Montana and " + guide.county + ". Jail-specific guidance, remote paperwork options, and direct help from Northwest Bail Bonds.",
+    path,
+  );
   return {
-    title: guide.city + " Bail Bonds | 24/7 Montana Bail Bondsman",
-    description: "24/7 bail bonds in " + guide.city + ", Montana and " + guide.county + ". Jail-specific guidance, remote paperwork options, and direct help from Northwest Bail Bonds.",
-    alternates: { canonical: path },
-    openGraph: { url: path, title: guide.city + " Bail Bonds | Northwest Bail Bonds" },
+    ...pageMetadata,
+    openGraph: {
+      ...pageMetadata.openGraph,
+      title: guide.city + " Bail Bonds | Northwest Bail Bonds",
+    },
   };
 }
 

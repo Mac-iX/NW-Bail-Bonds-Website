@@ -1,15 +1,15 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/app/lib/metadata";
 import { MontanaSceneBand } from "@/app/components/montana-scene-band";
 import { PageHero } from "@/app/components/page-hero";
 import { SiteFooter } from "@/app/components/site-footer";
 import { SiteHeader } from "@/app/components/site-header";
 import { BASE_URL, EMAIL_ADDRESS, PHONE_DISPLAY, PHONE_LINK } from "@/app/lib/site";
 
-export const metadata: Metadata = {
-  title: "Montana Bail Bond Licensing & Producer Verification",
-  description: "Montana surety bail bond producer licensing information, verification steps, and what to ask before you sign a bail bond agreement.",
-  alternates: { canonical: "/licensing" },
-};
+export const metadata = createPageMetadata(
+  "Montana Bail Bond Licensing & Producer Verification",
+  "Montana surety bail bond producer licensing information, verification steps, and what to ask before you sign a bail bond agreement.",
+  "/licensing",
+);
 
 const schema = {
   "@context": "https://schema.org",

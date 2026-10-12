@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/app/lib/metadata";
 import { HelpRequestForm } from "@/app/components/help-request-form";
 import { InquirySection } from "@/app/components/inquiry-section";
 import { MontanaSceneBand } from "@/app/components/montana-scene-band";
@@ -14,11 +14,11 @@ import {
   RECOMMENDED_ATTORNEY_URL,
 } from "@/app/lib/site";
 
-export const metadata: Metadata = {
-  title: "Montana Bail Bond Resources, Licensing & FAQ",
-  description: "Montana bail bond guides, producer licensing information, attorney resources, official court links, and plain-language answers from Northwest Bail Bonds.",
-  alternates: { canonical: "/resources" },
-};
+export const metadata = createPageMetadata(
+  "Montana Bail Bond Resources, Licensing & FAQ",
+  "Montana bail bond guides, producer licensing information, attorney resources, official court links, and plain-language answers from Northwest Bail Bonds.",
+  "/resources",
+);
 
 const faqSchema = {
   "@context": "https://schema.org",

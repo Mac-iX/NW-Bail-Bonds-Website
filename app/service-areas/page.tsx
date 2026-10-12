@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/app/lib/metadata";
 import { InquirySection } from "@/app/components/inquiry-section";
 import { MontanaSceneBand } from "@/app/components/montana-scene-band";
 import { MontanaCoverage } from "@/app/components/montana-coverage";
@@ -14,11 +14,11 @@ import {
 import { CITY_GUIDES, hasJailGuide } from "@/app/data/seo-pages";
 import { BASE_URL } from "@/app/lib/site";
 
-export const metadata: Metadata = {
-  title: "Montana Bail Bond Service Areas",
-  description: "Northwest Bail Bonds serves Billings, Yellowstone County, and all 56 Montana counties. Search your county and call for 24-hour statewide bail bond help.",
-  alternates: { canonical: "/service-areas" },
-};
+export const metadata = createPageMetadata(
+  "Montana Bail Bond Service Areas",
+  "Northwest Bail Bonds serves Billings, Yellowstone County, and all 56 Montana counties. Search your county and call for 24-hour statewide bail bond help.",
+  "/service-areas",
+);
 
 const regions = [
   {

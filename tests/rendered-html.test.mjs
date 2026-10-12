@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
+import { imageSize } from "image-size";
 
 const testBaseUrl = process.env.TEST_BASE_URL;
 if (!testBaseUrl) throw new Error("TEST_BASE_URL is required. Run this suite through npm test.");
@@ -17,6 +18,23 @@ async function render(pathname) {
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   return response.text();
+}
+
+async function publicPages() {
+  const response = await request("/sitemap.xml");
+  assert.equal(response.status, 200);
+  const sitemap = await response.text();
+  const paths = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => new URL(match[1]).pathname);
+  assert.ok(paths.length >= 30, "The checks must include the generated jail and city guides.");
+  return paths;
+}
+
+function documentMarkup(html) {
+  return html.replace(/<script[\s\S]*?<\/script>/g, "");
+}
+
+function attributes(tag) {
+  return Object.fromEntries([...tag.matchAll(/([\w:-]+)="([^"]*)"/g)].map((match) => [match[1], match[2]]));
 }
 
 test("uses the configured public URL for canonical and Open Graph metadata", async () => {
@@ -366,4 +384,84 @@ test("includes jail, city, how-to, digital, and FAQ pages in the sitemap", async
     "/digital-bail-bonds",
     "/faq",
   ]) assert.match(sitemap, new RegExp(path.replaceAll("/", "\\/")));
+});
+
+test("gives every public page its own canonical, Open Graph identity, and share artwork", async () => {
+  for (const pathname of await publicPages()) {
+    const markup = documentMarkup(await render(pathname));
+    const tags = [...markup.matchAll(/<(?:link|meta)\b[^>]*>/g)].map((match) => attributes(match[0]));
+    const expected = "https://example.test" + (pathname === "/" ? "" : pathname);
+    assert.equal(tags.find((tag) => tag.rel === "canonical")?.href, expected, pathname);
+    assert.equal(tags.find((tag) => tag.property === "og:url")?.content, expected, pathname);
+    assert.ok(tags.find((tag) => tag.property === "og:title")?.content, pathname);
+    assert.ok(tags.find((tag) => tag.property === "og:description")?.content, pathname);
+    assert.ok(tags.find((tag) => tag.property === "og:image")?.content.startsWith("https://example.test/"), pathname);
+    assert.ok(tags.find((tag) => tag.name === "twitter:image")?.content, pathname);
+  }
+});
+
+test("keeps distinct editorial images and the approved digital assets on each page", async () => {
+  for (const pathname of await publicPages()) {
+    const markup = documentMarkup(await render(pathname));
+    const images = [...markup.matchAll(/<img\b[^>]*>/g)]
+      .map((match) => attributes(match[0]))
+      .filter((image) => !["brand-logo", "footer-logo"].includes(image.class));
+    const sources = images.map((image) => image.src);
+    assert.equal(new Set(sources).size, sources.length, `Repeated editorial image on ${pathname}`);
+  }
+  const home = documentMarkup(await render("/"));
+  const hero = home.match(/<section class="hero"[^>]*>([\s\S]*?)<\/section>/)?.[1] ?? "";
+  assert.equal((hero.match(/<video\b/g) ?? []).length, 1);
+  assert.equal((home.match(/<video\b/g) ?? []).length, 1);
+  assert.match(hero, /src="\/videos\/northwest-bail-bonds-2am-call\.mp4"/);
+  assert.match(hero, /<h1>[^<]*bail bonds/i);
+  const digital = documentMarkup(await render("/digital-bail-bonds"));
+  assert.match(digital, /class="page-hero[^>]*>[\s\S]*?<video[^>]*src="\/videos\/northwest-bail-bonds-2am-call\.mp4"/);
+  assert.match(digital, /class="phone-asset-wide"[\s\S]*?src="\/images\/marketing\/northwest-bail-bonds-answer-call\.jpg"/);
+  assert.match(digital, /class="phone-asset-single"[\s\S]*?src="\/images\/marketing\/northwest-bail-bonds-esignature\.jpg"/);
+  assert.doesNotMatch(digital, /northwest-bail-bonds-digital-process\.jpg/);
+});
+
+test("serves images with complete attributes and dimensions matching their actual files", async () => {
+  const checked = new Map();
+  for (const pathname of await publicPages()) {
+    const markup = documentMarkup(await render(pathname));
+    for (const match of markup.matchAll(/<img\b[^>]*>/g)) {
+      const image = attributes(match[0]);
+      for (const name of ["alt", "title", "width", "height", "loading", "decoding"]) {
+        assert.ok(Object.hasOwn(image, name), `${pathname}: ${image.src} is missing ${name}`);
+      }
+      if (!checked.has(image.src)) {
+        const response = await request(image.src);
+        assert.equal(response.status, 200, image.src);
+        checked.set(image.src, imageSize(new Uint8Array(await response.arrayBuffer())));
+      }
+      const dimensions = checked.get(image.src);
+      assert.equal(Number(image.width), dimensions.width, `${pathname}: ${image.src} width`);
+      assert.equal(Number(image.height), dimensions.height, `${pathname}: ${image.src} height`);
+    }
+  }
+  assert.ok(checked.size > 20, "The test must exercise actual image assets.");
+});
+
+test("keeps all page headings free of terminal periods and excludes the banned release claim", async () => {
+  for (const pathname of await publicPages()) {
+    const html = await render(pathname);
+    assert.doesNotMatch(html, /out by morning/i, pathname);
+    for (const match of documentMarkup(html).matchAll(/<h[1-3][^>]*>([\s\S]*?)<\/h[1-3]>/g)) {
+      const heading = match[1].replace(/<[^>]+>/g, " ").trim();
+      assert.doesNotMatch(heading, /\.$/, `${pathname}: ${heading}`);
+    }
+  }
+});
+
+test("keeps internal jail guides and official resources together in every jail directory card", async () => {
+  const markup = documentMarkup(await render("/jails"));
+  const cards = [...markup.matchAll(/<div class="official-resource-card">([\s\S]*?)<\/div>/g)];
+  assert.equal(cards.length, 12);
+  for (const [, card] of cards) {
+    assert.match(card, /class="guide-link" href="\/jails\/[^"]+"/);
+    assert.match(card, /href="https:\/\/[^\"]+" target="_blank" rel="noreferrer"[^>]*>Facility details<\/a>/);
+    assert.doesNotMatch(card, /<a[^>]*>(?:(?!<\/a>)[\s\S])*<a\b/, "Links must not be nested.");
+  }
 });

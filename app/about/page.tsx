@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/app/lib/metadata";
 import { InquirySection } from "@/app/components/inquiry-section";
 import { MontanaSceneBand } from "@/app/components/montana-scene-band";
 import { PageHero } from "@/app/components/page-hero";
@@ -12,11 +12,11 @@ import {
   PHONE_LINK,
 } from "@/app/lib/site";
 
-export const metadata: Metadata = {
-  title: "About Northwest Bail Bonds",
-  description: "Learn how Northwest Bail Bonds began in Billings, read Joel Graf’s founder story, and see how the company serves people across Montana.",
-  alternates: { canonical: "/about" },
-};
+export const metadata = createPageMetadata(
+  "About Northwest Bail Bonds",
+  "Learn how Northwest Bail Bonds began in Billings, read Joel Graf’s founder story, and see how the company serves people across Montana.",
+  "/about",
+);
 
 const aboutImageSchema = {
   "@context": "https://schema.org",
@@ -173,20 +173,20 @@ export default function AboutPage() {
         </div>
         <div className="gallery-grid">
           {[
-            { src: "/images/real/gallery/1-1.jpg", alt: "Northwest Bail Bonds community moment in Montana." },
-            { src: "/images/real/gallery/2-1.jpg", alt: "Northwest Bail Bonds field and community work." },
-            { src: "/images/real/gallery/3-1.jpg", alt: "Joel Graf and the Northwest team with community members." },
-            { src: "/images/real/gallery/4.jpg", alt: "Northwest Bail Bonds supporting a Montana community event." },
-            { src: "/images/real/gallery/5.jpg", alt: "Northwest Bail Bonds team moment in Montana." },
-            { src: "/images/real/gallery/6.jpg", alt: "Community outreach connected to Northwest Bail Bonds." },
-            { src: "/images/real/gallery/7.jpg", alt: "Northwest Bail Bonds in the Montana community." },
-            { src: "/images/real/gallery/8.jpg", alt: "Northwest Bail Bonds field work moment." },
-            { src: "/images/real/gallery/9.jpg", alt: "Northwest Bail Bonds community gathering." },
-            { src: "/images/real/gallery/10.jpg", alt: "Northwest Bail Bonds team and community photo." },
-            { src: "/images/real/gallery/11.jpg", alt: "Northwest Bail Bonds Montana community work." },
+            { src: "/images/real/gallery/1-1.jpg", width: 1280, height: 1600, alt: "Northwest Bail Bonds community moment in Montana." },
+            { src: "/images/real/gallery/2-1.jpg", width: 1280, height: 1600, alt: "Northwest Bail Bonds field and community work." },
+            { src: "/images/real/gallery/3-1.jpg", width: 1280, height: 1600, alt: "Joel Graf and the Northwest team with community members." },
+            { src: "/images/real/gallery/4.jpg", width: 1600, height: 1280, alt: "Northwest Bail Bonds supporting a Montana community event." },
+            { src: "/images/real/gallery/5.jpg", width: 1600, height: 1280, alt: "Northwest Bail Bonds team moment in Montana." },
+            { src: "/images/real/gallery/6.jpg", width: 1600, height: 1280, alt: "Community outreach connected to Northwest Bail Bonds." },
+            { src: "/images/real/gallery/7.jpg", width: 1600, height: 1280, alt: "Northwest Bail Bonds in the Montana community." },
+            { src: "/images/real/gallery/8.jpg", width: 1600, height: 1280, alt: "Northwest Bail Bonds field work moment." },
+            { src: "/images/real/gallery/9.jpg", width: 1280, height: 1600, alt: "Northwest Bail Bonds community gathering." },
+            { src: "/images/real/gallery/10.jpg", width: 1600, height: 1280, alt: "Northwest Bail Bonds team and community photo." },
+            { src: "/images/real/gallery/11.jpg", width: 1600, height: 1280, alt: "Northwest Bail Bonds Montana community work." },
           ].map((photo) => (
             <figure key={photo.src}>
-              <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" />
+              <img src={photo.src} alt={photo.alt} title={photo.alt} width={photo.width} height={photo.height} loading="lazy" decoding="async" />
             </figure>
           ))}
         </div>
@@ -217,6 +217,8 @@ export default function AboutPage() {
               src="/images/real/northwest-africa-school.jpg"
               alt="Children and adults gathered outside a school in Kenya supported through Northwest's giving."
               title="School in Kenya supported through Northwest's giving"
+              width={738}
+              height={1600}
               loading="lazy"
               decoding="async"
             />
@@ -227,6 +229,8 @@ export default function AboutPage() {
               src="/images/real/veterans-skydive.jpg"
               alt="A group of veterans and supporters after a community skydive event in Montana."
               title="Veterans community skydive event"
+              width={738}
+              height={1600}
               loading="lazy"
               decoding="async"
             />

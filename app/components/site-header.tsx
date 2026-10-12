@@ -24,9 +24,12 @@ export function SiteHeader() {
         <img
           className="brand-logo"
           src="/northwest-logo-transparent.png"
+          title="Northwest Bail Bonds"
+          decoding="async"
           alt=""
           width="779"
           height="491"
+          loading="eager"
         />
       </a>
       <nav className="desktop-nav" aria-label="Primary navigation">

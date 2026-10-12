@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-html-link-for-pages, @next/next/no-img-element */
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/app/lib/metadata";
 import { notFound } from "next/navigation";
 import { InquirySection } from "@/app/components/inquiry-section";
 import { MontanaSceneBand } from "@/app/components/montana-scene-band";
@@ -20,11 +21,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const guide = getJailGuide(slug);
   if (!guide) return {};
   const path = "/jails/" + guide.slug;
+  const pageMetadata = createPageMetadata(
+    guide.facility + " Bail Bonds | " + guide.city + ", MT",
+    "How to bail someone out of " + guide.facility + " in " + guide.city + ", Montana. Official custody links, facility contact information, and 24/7 help from Northwest Bail Bonds.",
+    path,
+  );
   return {
-    title: guide.facility + " Bail Bonds | " + guide.city + ", MT",
-    description: "How to bail someone out of " + guide.facility + " in " + guide.city + ", Montana. Official custody links, facility contact information, and 24/7 help from Northwest Bail Bonds.",
-    alternates: { canonical: path },
+    ...pageMetadata,
     openGraph: {
+      ...pageMetadata.openGraph,
       url: path,
       title: guide.facility + " Bail Bonds",
       description: "Official custody links and a direct 24/7 bail bond contact path for " + guide.facility + ".",
