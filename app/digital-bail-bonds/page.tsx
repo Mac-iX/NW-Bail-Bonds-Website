@@ -67,32 +67,18 @@ export default function DigitalBailBondsPage() {
           />
           <figcaption>Answer the call · Northwest Bail Bonds, any hour</figcaption>
         </figure>
-        <div className="phone-asset-pair">
-          <figure>
-            <img
-              src="/images/marketing/northwest-bail-bonds-digital-process.jpg"
-              alt="A phone screen showing the four digital bail bond steps: the jail alert, calling Northwest 24/7, posting bond from your phone with an e-signature, and a confirmed release time."
-              title="Digital bail bond steps handled from your phone"
-              width={1008}
-              height={1792}
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>Four steps · handled from your phone</figcaption>
-          </figure>
-          <figure>
-            <img
-              src="/images/marketing/northwest-bail-bonds-esignature.jpg"
-              alt="A phone screen showing a secure bail bond application with full name, phone number, and case or booking ID fields above an e-sign and submit button."
-              title="e-Signature bail bond paperwork from your phone"
-              width={1008}
-              height={1792}
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>e-Sign the eligible paperwork</figcaption>
-          </figure>
-        </div>
+        <figure className="phone-asset-single">
+          <img
+            src="/images/marketing/northwest-bail-bonds-esignature.jpg"
+            alt="A phone screen showing a secure bail bond application with full name, phone number, and case or booking ID fields above an e-sign and submit button."
+            title="e-Signature bail bond paperwork from your phone"
+            width={1008}
+            height={1792}
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>e-Sign the eligible paperwork</figcaption>
+        </figure>
         <p>Start with one piece of information. Northwest confirms the rest.</p>
       </section>
 

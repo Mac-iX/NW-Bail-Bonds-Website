@@ -1094,6 +1094,7 @@ img { max-width: 100%; }
 }
 .process-phone-row figure,
 .phone-asset-pair figure,
+.phone-asset-single,
 .phone-asset-wide,
 .process-desk-visual {
   margin: 0;
@@ -1103,6 +1104,7 @@ img { max-width: 100%; }
 }
 .process-phone-row img,
 .phone-asset-pair img,
+.phone-asset-single img,
 .phone-asset-wide img,
 .process-desk-visual img {
   display: block;
@@ -1111,6 +1113,7 @@ img { max-width: 100%; }
 }
 .process-phone-row figcaption,
 .phone-asset-pair figcaption,
+.phone-asset-single figcaption,
 .phone-asset-wide figcaption,
 .process-desk-visual figcaption {
   padding: 14px 16px 15px;
@@ -1137,6 +1140,10 @@ img { max-width: 100%; }
   grid-template-columns: 1fr 1fr;
   gap: 22px;
   margin: 38px 0 8px;
+}
+.phone-asset-single {
+  margin: 34px auto 8px;
+  max-width: min(420px, 62vw);
 }
 
 /* Portrait phone graphic, kept small (jail/city pages). */
