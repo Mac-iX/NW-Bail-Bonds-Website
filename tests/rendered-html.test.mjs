@@ -29,8 +29,8 @@ test("uses the configured public URL for canonical and Open Graph metadata", asy
 
 test("renders the approved homepage lead, concise help form, and a visible Home navigation link", async () => {
   const html = await render("/");
-  assert.match(html, /Posted tonight, anywhere in Montana/);
-  assert.match(html, /One call starts it: Northwest confirms custody/);
+  assert.match(html, /Montana bail bonds: we can help you bail out your loved one/);
+  assert.match(html, /Call Northwest and we confirm custody/);
   assert.match(html, /<a[^>]+href="\/"[^>]*>Home<\/a>/);
   assert.match(html, /We&#x27;re here to help/);
   assert.match(html, /Ask Northwest for help/);

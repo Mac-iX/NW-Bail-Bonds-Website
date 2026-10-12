@@ -120,13 +120,13 @@ export default function Home() {
       <section className="hero" id="top">
         <div className="hero-copy">
           <p className="eyebrow">
-            <span className="live-dot" /> Montana bail bonds · answered 24/7
+            <span className="live-dot" /> Live phone answered 24/7 · Billings, Montana
           </p>
           <h1>
-            Posted tonight, anywhere in Montana
+            Montana bail bonds: we can help you bail out your loved one
           </h1>
           <p className="hero-lede">
-            One call starts it: Northwest confirms custody, explains the bond, and posts it — nights, weekends, and holidays.
+            Call Northwest and we confirm custody, explain the bond, and post it — nights, weekends, and holidays.
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href={`tel:${PHONE_LINK}`}>
@@ -137,6 +137,19 @@ export default function Home() {
             </a>
           </div>
           <p className="hero-note">Based in Billings · Serving all 56 Montana counties</p>
+        </div>
+        <div className="hero-reel">
+          <video
+            src="/videos/northwest-bail-bonds-2am-call.mp4"
+            poster="/images/marketing/northwest-bail-bonds-2am-call-poster.jpg"
+            playsInline
+            muted
+            loop
+            autoPlay
+            preload="metadata"
+            aria-label="Northwest Bail Bonds 2 a.m. call: from arrest to release on your phone"
+          />
+          <figcaption>The 2 a.m. call: how a bond gets posted from your phone</figcaption>
         </div>
       </section>
 
@@ -152,15 +165,15 @@ export default function Home() {
       <section className="digital-bail-section" aria-labelledby="digital-bail-title">
         <figure className="digital-bail-visual">
           <img
-            src="/images/marketing/northwest-bail-bonds-phone-hero.jpg"
-            alt="Northwest Bail Bonds 24/7 phone answered around the clock"
-            title="24/7 phone service"
-            width="1792"
-            height="1008"
+            src="/images/marketing/northwest-bail-bonds-digital-process.jpg"
+            alt="Digital bail bond process from a phone: the jail alert, calling Northwest 24/7, posting bond from your phone with an e-signature, and a confirmed release time."
+            title="Digital bail bonds: the four steps, handled from your phone"
+            width="1008"
+            height="1792"
             loading="lazy"
             decoding="async"
           />
-          <figcaption>24/7 phone service · From the first call to release</figcaption>
+          <figcaption>Digital bail bonds · four steps from your phone</figcaption>
         </figure>
         <div className="digital-bail-copy">
                   <span className="promo-tag">24/7 phone service</span>
@@ -197,23 +210,22 @@ export default function Home() {
 
       <section className="mobile-hero-band" aria-labelledby="mobile-hero-title">
         <div className="mobile-hero-copy">
-          <span className="section-label">From arrest to release</span>
-          <h2 id="mobile-hero-title">The 2 a.m. call handled from your phone</h2>
-          <p>You do not need to drive to a jail before you know whether your presence is required. Call first. Northwest can gather the basic information, explain the agreement, and use electronic paperwork when appropriate.</p>
+          <span className="section-label">Montana bail bonds, answered 24/7</span>
+          <h2 id="mobile-hero-title">The call goes to a phone, not a call center</h2>
+          <p>Call from wherever you are. Northwest gathers the basic information, explains the agreement, and starts the electronic paperwork while the bond is coordinated with the court or detention facility.</p>
           <a className="text-link" href="/digital-bail-bonds">See the full digital bail bond process <span>→</span></a>
         </div>
         <figure className="mobile-hero-visual">
-          <video
-            src="/videos/northwest-bail-bonds-2am-call.mp4"
-            poster="/images/marketing/northwest-bail-bonds-2am-call-poster.jpg"
-            playsInline
-            muted
-            loop
-            autoPlay
-            preload="metadata"
-            aria-label="Northwest Bail Bonds 2 a.m. call: from arrest to release on your phone"
+          <img
+            src="/images/marketing/northwest-bail-bonds-phone-hero.jpg"
+            alt="Northwest Bail Bonds 24/7 call screen on a smartphone showing the direct line (406) 601-1225 and an Answer Call button."
+            title="Call Northwest Bail Bonds from your phone, 24/7"
+            width="1792"
+            height="1008"
+            loading="lazy"
+            decoding="async"
           />
-          <figcaption>The 2 a.m. call: how a bond gets posted from your phone</figcaption>
+          <figcaption>Montana bail bonds · one call, answered any hour</figcaption>
         </figure>
       </section>
 

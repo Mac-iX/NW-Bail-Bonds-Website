@@ -1019,9 +1019,8 @@ img { max-width: 100%; }
 .digital-bail-visual { margin: 0; display: flex; justify-content: center; }
 .digital-bail-visual img {
   display: block;
-  width: min(520px, 58vw);
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  width: min(520px, 62vw);
+  height: auto;
   border: 1px solid rgba(255,196,45,.28);
   border-radius: 16px;
   background: #000;
@@ -1202,8 +1201,8 @@ img { max-width: 100%; }
 /* Mobile hero band: reel + copy for home and jail/location pages. */
 .mobile-hero-band {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(240px, .9fr);
-  gap: clamp(36px, 7vw, 100px);
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(30px, 4vw, 54px);
   align-items: center;
   padding: clamp(92px, 9vw, 142px) clamp(24px, 7vw, 112px);
   background: radial-gradient(circle at 88% 10%, rgba(255,196,45,.1), transparent 28%), #05090c;
@@ -1239,8 +1238,18 @@ img { max-width: 100%; }
 }
 .mobile-hero-visual {
   position: relative;
-  justify-self: end;
-  width: min(520px, 44vw);
+  justify-self: stretch;
+  width: 100%;
+  max-width: 1180px;
+}
+.mobile-hero-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(255,196,45,.28);
+  border-radius: 16px;
+  background: #000;
+  box-shadow: 0 32px 70px rgba(0,0,0,.55);
 }
 .mobile-hero-visual video {
   display: block;
@@ -1265,8 +1274,7 @@ img { max-width: 100%; }
   .page-hero-with-visual { grid-template-columns: 1fr; gap: 36px; }
   .page-hero-with-visual > .page-hero-visual { width: min(280px, 55vw); justify-self: start; }
   .page-hero { min-height: 480px; padding: 78px 21px 95px; }
-  .mobile-hero-band { grid-template-columns: 1fr; gap: 36px; padding: 78px 21px; }
-  .mobile-hero-visual { width: min(420px, 68vw); justify-self: start; }
+  .mobile-hero-band { gap: 32px; padding: 78px 21px; }
 }
 
 @media (max-width: 720px) {
@@ -1274,5 +1282,4 @@ img { max-width: 100%; }
   .process-phone-row { grid-template-columns: 1fr; }
   .phone-asset-pair { grid-template-columns: 1fr; }
   .mobile-hero-band { padding: 78px 21px; }
-  .mobile-hero-visual { width: min(400px, 78vw); }
 }
